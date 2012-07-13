@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Light Events</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta charset="utf-8"/>
     <script src='http://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
     <!--script src='http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js' class='remove'></script-->
     <script class="remove">
@@ -70,9 +70,8 @@
       <h2>Terminology</h2>
       <p>
         The <code><a href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler">
-        EventHandler</a></code> interface represents a callback used for event
-        handlers as defined in [[!HTML5]].
-      </p>
+        EventHandler</a></code> interface represents a <a href="http://www.w3.org/TR/WebIDL/#idl-callback-functions">callback function</a> used for <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
+      handlers</a> as defined in [[!HTML5]]. </p>
       <p>
         The concepts <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">
         queue a task</a></dfn> and
@@ -153,18 +152,6 @@
                 attribute to positive Infinity, otherwise initialize the
                 attribute to the <a>current device light</a>.
               </li>
-              <li>
-                 If the implementation is unable to report the <a>minimum
-                 sensing distance</a>, initialize the <code>min</code>
-                 attribute to negative Infinity, otherwise initialize the
-                 attribute to the <a>minimum sensing distance</a>.
-              </li>
-              <li>
-                 If the implementation is unable to report the <a>maximum
-                 sensing distance</a>, initialize the <code>max</code>
-                 attribute to positive Infinity, otherwise initialize the
-                 attribute to the <a>maximum sensing distance</a>.
-              </li>
             </ol>
           </li>
           <li>
@@ -173,18 +160,14 @@
           </li>
         </ol>
         <p>
-          When <a>the current light</a> changes, the <dfn>user
-          agent</dfn> MUST <a>fire a device light event</a>.
+          When <a>the current light</a> changes, the <a>user
+          agent</a> MUST <a>fire a device light event</a>.
         </p>
         <div class="note">
           The definition of granularity i.e. how often the event is fired is
           left to the implementation. Implementations may fire the event if
           they have reason to believe that the page does not have sufficiently
-          fresh data. Different devices may also support different minimum and
-          maximum sensing distances as well as different resolution, thus
-          authors are strongly advised to use the <a>UserLightEvent</a>
-          interface if the are only interested in finding out if the user is
-          near or far.
+          fresh data.
         </div>
         <section>
           <h2>Event handlers</h2>
@@ -214,8 +197,7 @@
     <section class="appendix">
       <h2>Acknowledgements</h2>
       <p>
-        Doug Turner for the initial prototype.
-      </p>
+        Doug Turner for the <a href="http://dougturner.wordpress.com/2012/03/26/device-light-sensor/">initial prototype</a>. </p>
     </section>
   </body>
 </html>
