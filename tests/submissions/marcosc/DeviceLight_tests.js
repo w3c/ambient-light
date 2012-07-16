@@ -150,14 +150,14 @@
     var event = new DeviceLightEvent('test', {
       value: false
     });
-    assert_equals(event.value, 0, 'value set to false');
+    assert_equals(event.value, 0, 'value set to false, converts to 0.');
   }, 'value set to false');
 
   test(function() {
     var event = new DeviceLightEvent('test', {
       value: true
     });
-    assert_equals(event.value, 1, 'value set to true');
+    assert_equals(event.value, 1, 'value set to true, converts to 1.');
   }, 'value set to true');
 
 
@@ -167,7 +167,7 @@
     };
     assert_throws(TypeError(), function() {
       new DeviceLightEvent('test', prop);
-    }, 'value resolves to NaN');
+    }, 'value of undefined resolves to NaN, expected type error.');
   }, 'value resolves to NaN, expected type error');
 
   test(function() {
@@ -182,21 +182,21 @@
     var event = new DeviceLightEvent('test', {
       value: ''
     });
-    assert_equals(event.value, false, 'value must resolve to 0');
+    assert_equals(event.value, 0, 'value must resolve to 0');
   }, 'value must resolve to 0');
 
   test(function() {
     var event = new DeviceLightEvent('test', {
       value: '\u0020'
     });
-    assert_equals(event.value, true, 'value must resolve to 0');
+    assert_equals(event.value, 0, 'value must resolve to 0');
   }, 'value must resolve to 0');
 
   test(function() {
     var event = new DeviceLightEvent('test', {
       value: '\u0020\u0020\u0020\u0020\u0020\u0020'
     });
-    assert_equals(event.value, true, 'value must resolve to 0');
+    assert_equals(event.value, 0, 'value must resolve to 0');
   }, 'value must resolve to 0');
 
   test(function() {
@@ -238,7 +238,7 @@
   test(function() {
     var desc = 'Expected to find ondevicelight attribute on window object';
     assert_own_property(window, 'ondevicelight', desc);
-  }, 'ondevicelight exists');
+  }, 'ondevicelight event hander attr must be on window object');
 
   test(function() {
     var desc = 'window.ondevicelight must be null';
