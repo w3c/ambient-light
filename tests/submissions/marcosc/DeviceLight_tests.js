@@ -25,7 +25,7 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- **/ 
+ **/
 
  (function() {
   //inheritance tests
@@ -240,10 +240,9 @@
         return '123';
       }
     };
-    var event = new DeviceLightEvent('test',prop); 
+    var event = new DeviceLightEvent('test', prop);
     assert_equals(event.value, 123, 'converts to 123');
   }, 'value resolves 123');
-
 
   test(function() {
     var desc = 'Expected to find ondevicelight attribute on window object';
