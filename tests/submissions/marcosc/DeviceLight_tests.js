@@ -168,7 +168,7 @@
     assert_throws(TypeError(), function() {
       new DeviceLightEvent('test', prop);
     }, 'value of undefined resolves to NaN, expected type error.');
-  }, 'value resolves to NaN, expected type error');
+  }, 'value of undefined resolves to NaN, expected type error.');
 
   test(function() {
     var event = new DeviceLightEvent('test', {
@@ -221,24 +221,34 @@
     assert_throws(TypeError(), function() {
       new DeviceLightEvent('test', prop);
     }, 'value of {} resolves to NaN');
+  }, 'value of {} resolves to NaN, expected type error');
+
+  test(function() {
+    var prop = {
+      get value() {
+        return NaN;
+      }
+    };
+    assert_throws(TypeError(), function() {
+      new DeviceLightEvent('test', prop);
+    }, 'value resolves to NaN');
   }, 'value resolves to NaN, expected type error');
 
   test(function() {
     var prop = {
       get value() {
-        return 123;
+        return '123';
       }
     };
-    assert_throws(TypeError(), function() {
-      new DeviceLightEvent('test', prop);
-    }, 'value of {} resolves to NaN');
-  }, 'value resolves to NaN, expected type error');
+    var event = new DeviceLightEvent('test',prop); 
+    assert_equals(event.value, 123, 'converts to 123');
+  }, 'value resolves 123');
 
 
   test(function() {
     var desc = 'Expected to find ondevicelight attribute on window object';
     assert_own_property(window, 'ondevicelight', desc);
-  }, 'ondevicelight event hander attr must be on window object');
+  }, 'ondevicelight event hander attr must be on window object.');
 
   test(function() {
     var desc = 'window.ondevicelight must be null';
