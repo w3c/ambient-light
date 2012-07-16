@@ -256,10 +256,12 @@
 
   test(function() {
     var desc = 'window.ondevicelight did not accept callable object',
-      func = function() {};
+      func = function() {},
+      desc = 'Expected to find ondevicelight attribute on window object';
+    assert_own_property(window, 'ondevicelight', desc);
     window.ondevicelight = func;
     assert_equals(window.ondevicelight, func, desc);
-  }, 'ondevicelight is set to function');
+  }, 'expected ondevicelight on window and to be set to function');
 
   test(function() {
     var desc = 'window.ondevicelight did not treat noncallable as null';
@@ -339,5 +341,4 @@
     });
     t2.done();
   };
-
 })();
