@@ -118,7 +118,7 @@
 
   test(function() {
     var event = new DeviceLightEvent(function test() {});
-    assert_equals(event.type, 'function test() {}');
+    assert_regex_match(event.type, /function test.+{\s?}/);
   }, 'type argument is function');
 
   test(function() {
