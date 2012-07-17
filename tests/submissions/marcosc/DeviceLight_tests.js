@@ -246,7 +246,7 @@
 
   test(function() {
     var desc = 'Expected to find ondevicelight attribute on window object';
-    assert_idl_attribute(window,'ondevicelight', desc);
+    assert_idl_attribute(window, 'ondevicelight', desc);
   }, 'ondevicelight event hander attr must be on window object.');
 
   test(function() {
@@ -258,7 +258,7 @@
     var desc = 'window.ondevicelight did not accept callable object',
       func = function() {},
       desc = 'Expected to find ondevicelight attribute on window object';
-    assert_own_property(window, 'ondevicelight', desc);
+    assert_idl_attribute(window, 'ondevicelight', desc);
     window.ondevicelight = func;
     assert_equals(window.ondevicelight, func, desc);
   }, 'expected ondevicelight on window and to be set to function');
