@@ -246,7 +246,7 @@
 
   test(function() {
     var desc = 'Expected to find ondevicelight attribute on window object';
-    assert_equals(('ondevicelight' in window), desc);
+    assert_idl_attribute(window,'ondevicelight', desc);
   }, 'ondevicelight event hander attr must be on window object.');
 
   test(function() {
