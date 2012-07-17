@@ -280,15 +280,6 @@
   }, 'treat object with non-callable call property as null');
 
   test(function() {
-    var desc = 'window.ondevicelight did not treat noncallable as null',
-      test = function() {};
-    test.call = 'test';
-    window.ondevicelight = function() {};
-    window.ondevicelight = test;
-    assert_equals(window.ondevicelight, null, desc);
-  }, 'treat object with non-callable call property as null');
-
-  test(function() {
     var desc = 'window.ondevicelight did not treat noncallable (string) as null';
     window.ondevicelight = function() {};
     window.ondevicelight = 'string';
