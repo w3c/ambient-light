@@ -41,7 +41,7 @@
 
   //Type attribute tests
   test(function() {
-    assert_throws(TypeError(), function() {
+    assert_throws(null, function() {
       new DeviceLightEvent();
     }, 'First argument is required, so was expecting a TypeError.');
   }, 'Missing type argument');
@@ -118,7 +118,7 @@
 
   test(function() {
     var event = new DeviceLightEvent(function test() {});
-    assert_regex_match(event.type, /function test.+{\s?}/);
+    assert_regexp_match(event.type, /function test.+{\s?}/);
   }, 'type argument is function');
 
   test(function() {
@@ -131,7 +131,7 @@
   }, 'type argument is complext object, with toString method');
 
   test(function() {
-    assert_throws(TypeError(), function() {
+    assert_throws(null, function() {
       new DeviceLightEvent({
         toString: function() {
           return function() {}
@@ -165,7 +165,7 @@
     var prop = {
       value: undefined
     };
-    assert_throws(TypeError(), function() {
+    assert_throws(null, function() {
       new DeviceLightEvent('test', prop);
     }, 'value of undefined resolves to NaN, expected type error.');
   }, 'value of undefined resolves to NaN, expected type error.');
@@ -218,7 +218,7 @@
     var prop = {
       value: {}
     };
-    assert_throws(TypeError(), function() {
+    assert_throws(null, function() {
       new DeviceLightEvent('test', prop);
     }, 'value of {} resolves to NaN');
   }, 'value of {} resolves to NaN, expected type error');
@@ -229,7 +229,7 @@
         return NaN;
       }
     };
-    assert_throws(TypeError(), function() {
+    assert_throws(null, function() {
       new DeviceLightEvent('test', prop);
     }, 'value resolves to NaN');
   }, 'value resolves to NaN, expected type error');
