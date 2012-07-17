@@ -246,7 +246,7 @@
 
   test(function() {
     var desc = 'Expected to find ondevicelight attribute on window object';
-    assert_own_property(window, 'ondevicelight', desc);
+    assert_equals(('ondevicelight' in window), desc);
   }, 'ondevicelight event hander attr must be on window object.');
 
   test(function() {
@@ -329,6 +329,7 @@
     t.step(function() {
       var msg = 'expected instance of DeviceLightEvent: ';
       assert_true(e instanceof window.DeviceLightEvent, msg);
+      assert_own_property(e, 'value', 'event has value property');
     });
     t.done();
   });
@@ -338,6 +339,7 @@
     t2.step(function() {
       var msg = 'expected instance of DeviceLightEvent: ';
       assert_true(e instanceof window.DeviceLightEvent, msg);
+      assert_own_property(e, 'value', 'event has value property');
     });
     t2.done();
   };
