@@ -320,7 +320,7 @@
     t.step(function() {
       var msg = 'expected instance of DeviceLightEvent: ';
       assert_true(e instanceof window.DeviceLightEvent, msg);
-      assert_own_property(e, 'value', 'event has value property');
+      assert_idl_attribute(e, 'value', 'event has value property');
     });
     t.done();
   });
@@ -330,7 +330,7 @@
     t2.step(function() {
       var msg = 'expected instance of DeviceLightEvent: ';
       assert_true(e instanceof window.DeviceLightEvent, msg);
-      assert_own_property(e, 'value', 'event has value property');
+      assert_idl_attribute(e, 'value', 'event has value property');
     });
     t2.done();
   };
