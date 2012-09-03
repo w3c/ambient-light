@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ambient Light Events</title>
+    <meta charset="utf-8"/>
+    <script src='http://www.w3.org/Tools/respec/respec-w3c-common' class='remove' async></script>
+    <script class="remove">
+      var respecConfig = {
+          specStatus:           "ED",
+          shortName:            "ambient-light",
+          //publishDate:          "yyyy-mm-dd",
+          //previousPublishDate:  "yyyy-mm-dd",
+          // previousMaturity:     "ED",
+          edDraftURI:           "http://dvcs.w3.org/hg/dap/raw-file/tip/light/Overview.html",
+          //lcEnd:                "yyyy-mm-dd",
+          editors:  [
+              { name: "Doug Turner", company: "Mozilla Corporation", companyURL: "http://mozilla.com/" }
+          ],
+          // inlineCSS:    true,
+          noIDLIn:      true,
+          wg:           "Device APIs Working Group",
+          wgURI:        "http://www.w3.org/2009/dap/",
+          wgPublicList: "public-device-apis",
+          wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/43696/status",
+      };
+    </script>
+  </head>
+  <body>
+    <section id="abstract">
+      This specification defines a means to receive events that correspond to
+      a light sensor detecting the presence of a light.
+    </section>
+    
+    <section id="sotd">
+      <p>
+        The functionality described in this specification was initially
+        specified as part of the
+        <a href="http://dvcs.w3.org/hg/dap/raw-file/tip/sensor-api/Overview.html">
+        Sensor API</a> but has been extracted in order to be more
+        straightforward to implement, and in order to produce a specification
+        that could be implemented on its own merits without interference with
+        other features.
+      </p>
+    </section>
+    
+    <section class="informative">
+      <h2>Introduction</h2>
+      <p>
+        The <a>DeviceLightEvent</a> interface provides web developers
+        information about the ambient light levels near the hosting.
+      </p>
+      <p>
+        This is achieved by interrogating a photosensors or similar detectors
+        of a device.
+      </p>
+    </section>
+    
+    <section id="conformance">
+      <p>
+        This specification defines conformance criteria that apply to a single
+        product: the <dfn>user agent</dfn> that implements the
+        interfaces that it contains.
+      </p>
+    </section>
+    
+    <section>
+      <h2>Terminology</h2>
+      <p>
+        The <code><a href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler">
+        EventHandler</a></code> interface represents a <a href="http://www.w3.org/TR/WebIDL/#idl-callback-functions">callback function</a> used for <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
+      handlers</a> as defined in [[!HTML5]]. </p>
+      <p>
+        The concepts <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">
+        queue a task</a></dfn> and
+        <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">
+        fires a simple event</a></dfn> are defined in [[!HTML5]].
+      </p>
+      <p>
+        The terms <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">
+        event handlers</a></dfn> and
+        <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type">
+        event handler event types</a></dfn> are defined in [[!HTML5]].
+      </p>
+      <p>The concepts <dfn>
+      <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#constructing-events">
+      create an event</a></dfn> and <dfn>
+      <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#firing-events">
+      fire an event</a></dfn> are defined in [[!DOM4]].
+      <p>
+        The <dfn>value device light</dfn> is a value that represents the
+        ambient light levels around the hosting device in lux units.
+      </p>
+    </section>
+    
+    <section>
+      <h2>Security and privacy considerations</h2>
+      <p>
+      </p>
+    </section>
+    
+    <section>
+      <h2>Device light</h2>
+      <p>
+        The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
+        which this specification extends:
+      </p>
+      <dl title="partial interface Window" class="idl">
+        <dt>attribute EventHandler ondevicelight</dt>
+        <dd>
+        </dd>
+      </dl>
+      <p>
+        The <code>ondevicelight</code> event handler and its corresponding
+        event handler event type <code>devicelight</code> MUST be supported
+        as an IDL attribute by all objects implementing the <a>Window</a>
+        interface.
+      </p>
+      <section>
+        <h2><a>DeviceLightEvent</a> Interface</h2>
+        <dl title="[Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)]
+                   interface DeviceLightEvent : Event"
+            class="idl" data-merge='DeviceLightEventInit'>
+          <dt>readonly attribute double value</dt>
+          <dd>
+            The <a>ambient light level in lux</a>.
+          </dd>
+        </dl>
+        <dl title="dictionary DeviceLightEventInit : EventInit" class='idl'>
+          <dt>
+            double value
+          </dt>
+          <dd></dd>
+        </dl>
+        <p>
+          When a <dfn>user agent</dfn> is required to <dfn>fire a device
+          light event</dfn>, the <dfn>user agent</dfn> MUST run the
+          following steps:
+        </p>
+        <ol class="rule">
+          <li>
+            <a>Create an event</a> that uses the <a>DeviceLightEvent</a>
+            interface, with the name <code>devicelight</code>, which
+            bubbles, is not cancelable, and has no default action, that also
+            meets the following conditions:
+            <ol>
+              <li>
+                If the implementation is unable to report the <a>current
+                device light</a>, initialize the <code>value</code>
+                attribute to positive Infinity, otherwise initialize the
+                attribute to the <a>current device light</a>.
+              </li>
+            </ol>
+          </li>
+          <li>
+            <a>Queue a task</a> to dispatch the newly created event at the
+            <a>Window</a> object.
+          </li>
+        </ol>
+        <p>
+          When <a>the current light</a> changes, the <a>user
+          agent</a> MUST <a>fire a device light event</a>.
+        </p>
+        <div class="note">
+          The definition of granularity i.e. how often the event is fired is
+          left to the implementation. Implementations may fire the event if
+          they have reason to believe that the page does not have sufficiently
+          fresh data.
+        </div>
+        <section>
+          <h2>Event handlers</h2>
+          <p>
+            The following are the <a>event handlers</a> (and their corresponding
+            <a>event handler event types</a>) that MUST be supported as
+            attributes by the <code>Window</code> object:
+          </p>
+          <table class="simple">
+            <thead>
+              <tr>
+                <th>event handler</th>
+                <th>event handler event type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>ondevicelight</code></strong></td>
+                <td><code>devicelight</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </section>
+      
+    <section class="appendix">
+      <h2>Acknowledgements</h2>
+      <p>
+        Doug Turner for the <a href="http://dougturner.wordpress.com/2012/03/26/device-light-sensor/">initial prototype</a> and
+        Marcos Caceres for the test suite.
+      </p>
+    </section>
+  </body>
+</html>
