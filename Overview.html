@@ -47,8 +47,27 @@
       <h2>Introduction</h2>
       <p>
         The <a>DeviceLightEvent</a> interface provides web developers
-        information about the ambient light levels near the hosting.
+        information about the ambient light levels near the
+        hosting in terms of lux units.
       </p>
+      <p>
+        The <a>LightLevelEvent</a> interface provides web
+        developers information about the ambient light
+        levels near the hosting in terms of general ranges.
+      </p>
+      <p>
+        The values of the <a>LightLevelEvent</a> event may
+        be "normal", "dim", or "bright".  "bright" is
+        supposed to mean "direct sunlight, or similarly
+        bright conditions that make it hard to see things
+        that aren't high-contrast".  "dim" is supposed to
+        mean "dark enough that the light produced by a white
+        background is eye-straining or distracting".  The
+        lux values for "dim" typical begin below 50, and the
+        values for "bright" begin above 10000.
+      </p>
+        
+
       <p>
         This is achieved by interrogating a photosensors or similar detectors
         of a device.
@@ -99,7 +118,7 @@
     </section>
     
     <section>
-      <h2>Device light</h2>
+      <h2>Device Light</h2>
       <p>
         The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
         which this specification extends:
@@ -184,6 +203,101 @@
               <tr>
                 <td><strong><code>ondevicelight</code></strong></td>
                 <td><code>devicelight</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </section>
+
+    <section>
+      <h2>Light Level</h2>
+      <p>
+        The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
+        which this specification extends:
+      </p>
+      <dl title="partial interface Window" class="idl">
+        <dt>attribute EventHandler onlightlevel</dt>
+        <dd>
+        </dd>
+      </dl>
+      <p>
+        The <code>onlightlevel</code> event handler and its corresponding
+        event handler event type <code>lightlevel</code> MUST be supported
+        as an IDL attribute by all objects implementing the <a>Window</a>
+        interface.
+      </p>
+      <section>
+        <h2><a>LightLevelEvent</a> Interface</h2>
+        <dl title="[Constructor (DOMString type, optional LightLevelEventInit eventInitDict)]
+                   interface LightLevelEvent : Event"
+            class="idl" data-merge='LightLevelEventInit'>
+          <dt>readonly attribute string value</dt>
+          <dd>
+            The <a>light level</a> may be one of the following
+	    strings: "normal", "dim", or "bright".  The
+	    corresponding lux values are left up to the UA.
+          </dd>
+        </dl>
+        <dl title="dictionary LightLevelEventInit : EventInit" class='idl'>
+          <dt>
+            string value
+          </dt>
+          <dd></dd>
+        </dl>
+        <p>
+          When a <dfn>user agent</dfn> is required to <dfn>fire a light
+          level event</dfn>, the <dfn>user agent</dfn> MUST run the
+          following steps:
+        </p>
+        <ol class="rule">
+          <li>
+            <a>Create an event</a> that uses the <a>LightLevelEvent</a>
+            interface, with the name <code>lightlevel</code>, which
+            bubbles, is not cancelable, and has no default action, that also
+            meets the following conditions:
+            <ol>
+              <li>
+                If the implementation is unable to report the <a>current
+                light level</a>, initialize the <code>value</code>
+                attribute to empty string, otherwise initialize the
+                attribute to the <a>current light level</a>.
+              </li>
+            </ol>
+          </li>
+          <li>
+            <a>Queue a task</a> to dispatch the newly created event at the
+            <a>Window</a> object.
+          </li>
+        </ol>
+        <p>
+          When <a>the current light</a> changes, the <a>user
+          agent</a> MUST <a>fire a light level event</a>.
+        </p>
+        <div class="note">
+          The definition of granularity i.e. how often the event is fired is
+          left to the implementation. Implementations may fire the event if
+          they have reason to believe that the page does not have sufficiently
+          fresh data.
+        </div>
+        <section>
+          <h2>Event handlers</h2>
+          <p>
+            The following are the <a>event handlers</a> (and their corresponding
+            <a>event handler event types</a>) that MUST be supported as
+            attributes by the <code>Window</code> object:
+          </p>
+          <table class="simple">
+            <thead>
+              <tr>
+                <th>event handler</th>
+                <th>event handler event type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>onlightlevel</code></strong></td>
+                <td><code>lightlevel</code></td>
               </tr>
             </tbody>
           </table>
