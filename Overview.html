@@ -112,8 +112,8 @@
       <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#firing-events">
       fire an event</a></dfn> are defined in [[!DOM4]].
       <p>
-        The <dfn>value device light</dfn> is a value that represents the
-        ambient light levels around the hosting device in lux units.
+        The <dfn>current light</dfn> is a value that represents the ambient
+        light levels around the hosting device in lux units.
       </p>
     </section>
     
@@ -176,14 +176,11 @@
               </li>
             </ol>
           </li>
-          <li>
-            <a>Queue a task</a> to dispatch the newly created event at the
-            <a>Window</a> object.
-          </li>
         </ol>
         <p>
-          When <a>the current light</a> changes, the <a>user
-          agent</a> MUST <a>fire a device light event</a>.
+          When the <a>current light</a> changes, the <dfn>user agent</dfn>
+          MUST queue a task to <a>fire a device light event</a> at the
+          <a>Window</a> object.
         </p>
         <div class="note">
           The definition of granularity i.e. how often the event is fired is
@@ -271,15 +268,13 @@
               </li>
             </ol>
           </li>
-          <li>
-            <a>Queue a task</a> to dispatch the newly created event at the
-            <a>Window</a> object.
-          </li>
         </ol>
         <p>
-          When <a>the current light</a> changes, the <a>user
-          agent</a> MUST <a>fire a light level event</a>.
+          When the <a>current light</a> changes, the <dfn>user agent</dfn>
+          MUST queue a task to <a>fire a user proximity event</a> at the
+          <a>Window</a> object.
         </p>
+        
         <div class="note">
           The definition of granularity i.e. how often the event is fired is
           left to the implementation. Implementations may fire the event if
