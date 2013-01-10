@@ -116,7 +116,7 @@
         light levels around the hosting device in lux units.
       </p>
       <p>
-        The <dfn>current light state</dfn> represents the ambient light level
+        The <dfn>current light level state</dfn> represents the ambient light level
         around the hosting device as a human-readable string.
       </p>
     </section>
@@ -245,12 +245,29 @@
         <dl title="[Constructor (DOMString type, optional LightLevelEventInit eventInitDict)]
                    interface LightLevelEvent : Event"
             class="idl" data-merge='LightLevelEventInit'>
-          <dt>readonly attribute string value</dt>
+          <dt>readonly attribute LightLevelState value</dt>
           <dd></dd>
+        </dl>
+        <dl id="enum-basic" class="idl" title="enum LightLevelState">
+          <dt>normal</dt>
+          <dd>
+            Office building hallway, very dark overcast day, office lighting,
+            sunrise or sunset on a clear day, overcast day, or similar.
+          </dd>
+          <dt>dim</dt>
+          <dd>
+            Dark enough that the light produced by a white background is 
+            eye-straining or distracting.
+          </dd>
+          <dt>bright</dt>
+          <dd>
+            Direct sunlight, or similarly bright conditions that make it hard
+            to see things that aren't high-contrast.
+          </dd>
         </dl>
         <dl title="dictionary LightLevelEventInit : EventInit" class='idl'>
           <dt>
-            string value
+            LightLevelState value
           </dt>
           <dd></dd>
         </dl>
@@ -258,7 +275,7 @@
           The <code>value</code> attribute of the <a>LightLevelEvent</a>
           interface MUST return the value it was initialized to. When the
           object is created, this attribute MUST be initialized to positive
-          Infinity. It represents the <a>current light state</a>.
+          Infinity. It represents the <a>current light level state</a>.
         </p>
         <p>
           When a <dfn>user agent</dfn> is required to <dfn>fire a light
@@ -274,17 +291,17 @@
             <ol>
               <li>
                 If the implementation is unable to report the <a>current
-                light state</a>, initialize the <code>value</code>
+                light level state</a>, initialize the <code>value</code>
                 attribute to empty string, otherwise initialize the
-                attribute to the <a>current light state</a>, which MUST be one
-                of the following values:
+                attribute to the <a>current light level state</a>, which MUST
+                be one of the following values:
                 <ul>
                   <li><code>normal</code></li>
                   <li><code>dim</code></li>
                   <li><code>bright</code></li>
                 </ul>
                 <div class="note">
-                  The lux ranges that map to the <a>current light state</a>s
+                  The lux ranges that map to the <a>current light level state</a>s
                   are left to the implementation.
                 </div>
               </li>
@@ -292,7 +309,7 @@
           </li>
         </ol>
         <p>
-          When the <a>current light level</a> changes, the <dfn>user agent</dfn>
+          When the <a>current light level state</a> changes, the <dfn>user agent</dfn>
           MUST queue a task to <a>fire a user proximity event</a> at the
           <a>Window</a> object.
         </p>
