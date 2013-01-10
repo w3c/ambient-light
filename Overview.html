@@ -52,31 +52,12 @@
     <section class="informative">
       <h2>Introduction</h2>
       <p>
-        The <a>DeviceLightEvent</a> interface provides web developers
-        information about the ambient light levels near the
-        hosting in terms of lux units.
-      </p>
-      <p>
-        The <a>LightLevelEvent</a> interface provides web
-        developers information about the ambient light
-        levels near the hosting in terms of general ranges.
-      </p>
-      <p>
-        The values of the <a>LightLevelEvent</a> event may
-        be "normal", "dim", or "bright".  "bright" is
-        supposed to mean "direct sunlight, or similarly
-        bright conditions that make it hard to see things
-        that aren't high-contrast".  "dim" is supposed to
-        mean "dark enough that the light produced by a white
-        background is eye-straining or distracting".  The
-        lux values for "dim" typical begin below 50, and the
-        values for "bright" begin above 10000.
-      </p>
-        
-
-      <p>
-        This is achieved by interrogating a photosensors or similar detectors
-        of a device.
+        This specification defines events that provide information about the
+        ambient light level, as measured by a device's light sensor.  A
+        <a>LightLevelEvent</a> describes the light level as one of three simple
+        categories - "dim", "normal", and "bright" - while a
+        <a>DeviceLightEvent</a> provides a more granular answer by describing
+        the light level in terms of lux units.
       </p>
     </section>
     
@@ -130,6 +111,11 @@
     <section>
       <h2>Device Light</h2>
       <p>
+        The <a>DeviceLightEvent</a> interface provides information about the
+        ambient light levels, as detected by the device's light detector, in
+        terms of lux units.
+      </p>
+      <p>
         The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
         which this specification extends:
       </p>
@@ -166,6 +152,11 @@
           object is created, this attribute MUST be initialized to positive
           Infinity. It represents the <a>current light level</a>.
         </p>
+        <div class="note">
+          The precise lux value reported by different devices in the same light
+          can be different, due to differences in detection method, sensor
+          construction etc.
+        </div>
         <p>
           When a <dfn>user agent</dfn> is required to <dfn>fire a device
           light event</dfn>, the <dfn>user agent</dfn> MUST run the
@@ -225,6 +216,11 @@
 
     <section>
       <h2>Light Level</h2>
+      <p>
+        The <a>LightLevelEvent</a> interface provides information about the
+        ambient light levels, as detected by the device's light detector, in
+        terms of three general range: "dim", "normal", or "bright".
+      </p>
       <p>
         The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
         which this specification extends:
@@ -301,8 +297,13 @@
                   <li><code>bright</code></li>
                 </ul>
                 <div class="note">
-                  The lux ranges that map to the <a>current light level state</a>s
-                  are left to the implementation.
+                  The lux ranges that map to the <a>current light level
+                  state</a>s are left to the implementation, as devices with
+                  different sensitivities could map them slightly differently.
+                  However, it is recommended that "dim" correspond to ambient
+                  light below 50 lux, "normal" correspond to light between
+                  50 lux and 10000 lux, and "bright" correspond to light
+                  above 10000 lux.
                 </div>
               </li>
             </ol>
