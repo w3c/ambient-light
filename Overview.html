@@ -246,24 +246,17 @@
           <dd></dd>
         </dl>
         <dl id="enum-basic" class="idl" title="enum LightLevelState">
-          <dt>normal</dt>
+          <dt>&zwj;</dt><!-- (empty string) -->
           <dd>
-            Office building hallway, very dark overcast day, office lighting,
-            sunrise or sunset on a clear day, overcast day, or similar.
           </dd>
           <dt>dim</dt>
           <dd>
-            Dark enough that the light produced by a white background is 
-            eye-straining or distracting.
+          </dd>
+          <dt>normal</dt>
+          <dd>
           </dd>
           <dt>bright</dt>
           <dd>
-            Direct sunlight, or similarly bright conditions that make it hard
-            to see things that aren't high-contrast.
-          </dd>
-          <dt>&zwj;</dt>
-          <dd>
-            (empty string)
           </dd>
         </dl>
         <dl title="dictionary LightLevelEventInit : EventInit" class='idl'>
@@ -297,18 +290,24 @@
                 attribute to the <a>current light level state</a>, which MUST
                 be one of the following values:
                 <ul>
-                  <li><code>normal</code></li>
                   <li><code>dim</code></li>
+                  <li><code>normal</code></li>
                   <li><code>bright</code></li>
                 </ul>
                 <div class="note">
                   The lux ranges that map to the <a>current light level
                   state</a>s are left to the implementation, as devices with
                   different sensitivities could map them slightly differently.
-                  However, it is recommended that "dim" correspond to ambient
-                  light below 50 lux, "normal" correspond to light between
-                  50 lux and 10000 lux, and "bright" correspond to light
-                  above 10000 lux.
+                  However, it is recommended that "<code>dim</code>" correspond
+                  to ambient light below 50 lux (dark enough that the light
+                  produced by a white background is eye-straining or
+                  distracting), "<code>normal</code>" correspond to light
+                  between 50 lux and 10000 lux (office building hallway, very
+                  dark overcast day, office lighting, sunrise or sunset on a
+                  clear day, overcast day, or similar), and
+                  "<code>bright</code>" correspond to light above 10000 lux
+                  (direct sunlight, or similarly bright conditions that make it
+                  hard to see things that aren't high-contrast).
                 </div>
               </li>
             </ol>
