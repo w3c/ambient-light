@@ -533,9 +533,11 @@ table.exceptions table {
       handlers</a> as defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>]. </p>
       <p>
         The concepts <dfn id="dfn-queue-a-task"><a href="http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">
-        queue a task</a></dfn> and
+        queue a task</a></dfn>,
         <dfn id="dfn-fires-a-simple-event"><a href="http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">
-        fires a simple event</a></dfn> are defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
+        fires a simple event</a></dfn>, and <dfn id="dfn-browsing-context">
+        <a href="http://dev.w3.org/html5/spec/browsers.html#browsing-context">
+        browsing context</a></dfn> are defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
       </p>
       <p>
         The terms <dfn id="dfn-event-handlers"><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">
@@ -543,12 +545,14 @@ table.exceptions table {
         <dfn id="dfn-event-handler-event-types"><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type">
         event handler event types</a></dfn> are defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
       </p>
-      <p>The concepts <dfn id="dfn-create-an-event">
-      <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#constructing-events">
-      create an event</a></dfn> and <dfn id="dfn-fire-an-event">
-      <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#firing-events">
-      fire an event</a></dfn> are defined in [<cite><a class="bibref" href="#bib-DOM4">DOM4</a></cite>].
-      </p><p>
+      <p>
+        The concepts <dfn id="dfn-create-an-event">
+        <a href="http://dom.spec.whatwg.org/#constructing-events">
+        create an event</a></dfn> and <dfn id="dfn-fire-an-event">
+        <a href="http://dom.spec.whatwg.org/#firing-events">
+        fire an event</a></dfn> are defined in [<cite><a class="bibref" href="#bib-DOM4">DOM4</a></cite>].
+      </p>
+      <p>
         The <dfn id="dfn-current-light-level">current light level</dfn> is a value that represents the ambient
         light levels around the hosting device in lux units.
       </p>
@@ -627,8 +631,8 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
         </ol>
         <p>
           When the <a href="#dfn-current-light-level" class="internalDFN">current light level</a> changes, the <dfn id="dfn-user-agent-3">user agent</dfn>
-          <em class="rfc2119" title="must">must</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN">fire a device light event</a> at the
-          <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
+          <em class="rfc2119" title="must">must</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN">fire a device light event</a>
+          at each <a href="#dfn-browsing-context" class="internalDFN">browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
         <div class="note"><div class="note-title"><span>Note</span></div><div class="">
           The definition of granularity i.e. how often the event is fired is
@@ -746,8 +750,8 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
         </ol>
         <p>
           When the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a> changes, the <dfn id="dfn-user-agent-6">user agent</dfn>
-          <em class="rfc2119" title="must">must</em> queue a task to <a>fire a user proximity event</a> at the
-          <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
+          <em class="rfc2119" title="must">must</em> queue a task to <a>fire a user proximity event</a>
+          at each <a href="#dfn-browsing-context" class="internalDFN">browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
         
         <div class="note"><div class="note-title"><span>Note</span></div><div class="">
