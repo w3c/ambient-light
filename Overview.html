@@ -127,7 +127,7 @@ div.issue-title, div.note-title {
     color: #b9ab2d;
 }
 div.issue-title { color: #e05252; }
-div.note-title { color: #52e052; }
+div.note-title { color: #2b2; }
 div.issue-title span, div.note-title span {
     text-transform: uppercase;
 }
@@ -142,7 +142,7 @@ div.note, div.issue {
     border-left-style: solid;
 }
 div.issue, div.note {
-    padding: 0.5em;
+    padding: 1em 1.2em 0.5em;
     margin: 1em 0;
     position: relative;
     clear: both;
@@ -192,6 +192,11 @@ pre.idl::before {
     font-weight:    bold;
     color:  #005a9c;
 }
+a.idlEnumItem {
+    color:  #000;
+    border-bottom:  1px dotted #ccc;
+    text-decoration: none;
+}
 
 .idlSuperclass {
     font-style: italic;
@@ -224,6 +229,16 @@ pre.idl::before {
     text-decoration: none;
 }
 
+/*.idlCtor*/
+.idlCtorName {
+    color:  #ff4500;
+}
+.idlCtorName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
 /*.idlParam*/
 .idlParamType {
     color:  #005a9c;
@@ -234,6 +249,11 @@ pre.idl::before {
 
 .extAttr {
     color:  #666;
+}
+
+/*.idlSectionComment*/
+.idlSectionComment {
+    color: gray;
 }
 
 /*.idlConst*/
@@ -283,15 +303,15 @@ pre.idl::before {
     font-weight:    bold;
 }
 
-dl.attributes, dl.methods, dl.constants, dl.fields, dl.dictionary-members {
+dl.attributes, dl.methods, dl.constants, dl.constructors, dl.fields, dl.dictionary-members {
     margin-left:    2em;
 }
 
-.attributes dt, .methods dt, .constants dt, .fields dt, .dictionary-members dt {
+.attributes dt, .methods dt, .constants dt, .constructors dt, .fields dt, .dictionary-members dt {
     font-weight:    normal;
 }
 
-.attributes dt code, .methods dt code, .constants dt code, .fields dt code, .dictionary-members dt code {
+.attributes dt code, .methods dt code, .constants dt code, .constructors dt code, .fields dt code, .dictionary-members dt code {
     font-weight:    bold;
     color:  #000;
     font-family:    monospace;
@@ -317,7 +337,11 @@ dl.attributes, dl.methods, dl.constants, dl.fields, dl.dictionary-members {
     background:  #ddffd2;
 }
 
-.attributes dd, .methods dd, .constants dd, .fields dd, .dictionary-members dd {
+.constructors dt code {
+    background:  #cfc;
+}
+
+.attributes dd, .methods dd, .constants dd, .constructors dd, .fields dd, .dictionary-members dd {
     margin-bottom:  1em;
 }
 
@@ -373,7 +397,7 @@ table.exceptions table {
   </p>
   <h1 class="title" id="title">Ambient Light Events</h1>
   
-  <h2 id="w3c-editor-s-draft-06-february-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft 06 February 2013</h2>
+  <h2 id="w3c-editor-s-draft-15-april-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft 15 April 2013</h2>
   <dl>
     
       <dt>This version:</dt>
@@ -515,8 +539,8 @@ table.exceptions table {
   normative.
 </p>
 <p>
-  The key words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="must not">must not</em>, <em class="rfc2119" title="required">required</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119" title="should not">should not</em>, <em class="rfc2119" title="recommended">recommended</em>, <em class="rfc2119" title="may">may</em>,
-  and <em class="rfc2119" title="optional">optional</em> in this specification are to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
+  The key words <em class="rfc2119" title="MUST">MUST</em>, <em class="rfc2119" title="MUST NOT">MUST NOT</em>, <em class="rfc2119" title="REQUIRED">REQUIRED</em>, <em class="rfc2119" title="SHOULD">SHOULD</em>, <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em>, <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em>, <em class="rfc2119" title="MAY">MAY</em>,
+  and <em class="rfc2119" title="OPTIONAL">OPTIONAL</em> in this specification are to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
 </p>
 
       <p>
@@ -581,11 +605,11 @@ table.exceptions table {
         which this specification extends:
       </p>
       <pre class="idl"><span class="idlInterface" id="idl-def-Window">partial interface <span class="idlInterfaceID">Window</span> {
-<span class="idlAttribute">             attribute <span class="idlAttrType"><a>EventHandler</a></span> <span class="idlAttrName"><a href="#widl-Window-ondevicelight">ondevicelight</a></span>;</span>
+<span class="idlAttribute">                attribute <span class="idlAttrType"><a>EventHandler</a></span> <span class="idlAttrName"><a href="#widl-Window-ondevicelight">ondevicelight</a></span>;</span>
 };</span></pre>
       <p>
         The <code>ondevicelight</code> event handler and its corresponding
-        event handler event type <code>devicelight</code> <em class="rfc2119" title="must">must</em> be supported
+        event handler event type <code>devicelight</code> <em class="rfc2119" title="MUST">MUST</em> be supported
         as an IDL attribute by all objects implementing the <a href="#idl-def-Window" class="idlType"><code>Window</code></a>
         interface.
       </p>
@@ -595,23 +619,23 @@ table.exceptions table {
 <span class="idlMember">    <span class="idlMemberType"><a>double</a></span> <span class="idlMemberName"><a href="#widl-DeviceLightEventInit-value">value</a></span>;</span>
 };</span><br><br>[<span class="extAttr">Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)</span>]
 interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="idlSuperclass"><a>Event</a></span> {
-<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>double</a></span> <span class="idlAttrName"><a href="#widl-DeviceLightEvent-value">value</a></span>;</span>
+<span class="idlAttribute">    readonly    attribute <span class="idlAttrType"><a>unrestricted double</a></span> <span class="idlAttrName"><a href="#widl-DeviceLightEvent-value">value</a></span>;</span>
 };</span></pre>
         
         <p>
           The <code>value</code> attribute of the <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a>
-          interface <em class="rfc2119" title="must">must</em> return the value it was initialized to. When the
-          object is created, this attribute <em class="rfc2119" title="must">must</em> be initialized to positive
+          interface <em class="rfc2119" title="MUST">MUST</em> return the value it was initialized to. When the
+          object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to positive
           Infinity. It represents the <a href="#dfn-current-light-level" class="internalDFN">current light level</a>.
         </p>
-        <div class="note"><div class="note-title"><span>Note</span></div><div class="">
+        <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
           The precise lux value reported by different devices in the same light
           can be different, due to differences in detection method, sensor
           construction etc.
         </div></div>
         <p>
           When a <dfn id="dfn-user-agent-1">user agent</dfn> is required to <dfn id="dfn-fire-a-device-light-event">fire a device
-          light event</dfn>, the <dfn id="dfn-user-agent-2">user agent</dfn> <em class="rfc2119" title="must">must</em> run the
+          light event</dfn>, the <dfn id="dfn-user-agent-2">user agent</dfn> <em class="rfc2119" title="MUST">MUST</em> run the
           following steps:
         </p>
         <ol class="rule">
@@ -632,10 +656,10 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
         </ol>
         <p>
           When the <a href="#dfn-current-light-level" class="internalDFN">current light level</a> changes, the <dfn id="dfn-user-agent-3">user agent</dfn>
-          <em class="rfc2119" title="must">must</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN">fire a device light event</a>
+          <em class="rfc2119" title="MUST">MUST</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN">fire a device light event</a>
           at each <a href="#dfn-browsing-context" class="internalDFN">browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
-        <div class="note"><div class="note-title"><span>Note</span></div><div class="">
+        <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
           The definition of granularity i.e. how often the event is fired is
           left to the implementation. Implementations can fire the event if
           they have reason to believe that the page does not have sufficiently
@@ -645,7 +669,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
           <h4><span class="secno">5.1.1 </span>Event handlers</h4>
           <p>
             The following are the <a href="#dfn-event-handlers" class="internalDFN">event handlers</a> (and their corresponding
-            <a href="#dfn-event-handler-event-types" class="internalDFN">event handler event types</a>) that <em class="rfc2119" title="must">must</em> be supported as
+            <a href="#dfn-event-handler-event-types" class="internalDFN">event handler event types</a>) that <em class="rfc2119" title="MUST">MUST</em> be supported as
             attributes by the <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object:
           </p>
           <table class="simple">
@@ -678,38 +702,38 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
         which this specification extends:
       </p>
       <pre class="idl"><span class="idlInterface" id="idl-def-Window-1">partial interface <span class="idlInterfaceID">Window</span> {
-<span class="idlAttribute">             attribute <span class="idlAttrType"><a>EventHandler</a></span> <span class="idlAttrName"><a href="#widl-Window-onlightlevel">onlightlevel</a></span>;</span>
+<span class="idlAttribute">                attribute <span class="idlAttrType"><a>EventHandler</a></span> <span class="idlAttrName"><a href="#widl-Window-onlightlevel">onlightlevel</a></span>;</span>
 };</span></pre>
       <p>
         The <code>onlightlevel</code> event handler and its corresponding
-        event handler event type <code>lightlevel</code> <em class="rfc2119" title="must">must</em> be supported
+        event handler event type <code>lightlevel</code> <em class="rfc2119" title="MUST">MUST</em> be supported
         as an IDL attribute by all objects implementing the <a href="#idl-def-Window" class="idlType"><code>Window</code></a>
         interface.
       </p>
       <section id="lightlevelevent-interface">
         <h3><span class="secno">6.1 </span><a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a> Interface</h3>
         <pre class="idl"><span class="idlInterface" id="idl-def-LightLevelEvent"><span class="idlEnum" id="idl-def-LightLevelState">enum <span class="idlEnumID">LightLevelState</span> {
-    "<span class="idlEnumItem">‍</span>",
-    "<span class="idlEnumItem">dim</span>",
-    "<span class="idlEnumItem">normal</span>",
-    "<span class="idlEnumItem">bright</span>"
+    "<a href="#idl-def-LightLevelState.generatedID" class="idlEnumItem">‍</a>",
+    "<a href="#idl-def-LightLevelState.dim" class="idlEnumItem">dim</a>",
+    "<a href="#idl-def-LightLevelState.normal" class="idlEnumItem">normal</a>",
+    "<a href="#idl-def-LightLevelState.bright" class="idlEnumItem">bright</a>"
 };</span><br><br><span class="idlDictionary" id="idl-def-LightLevelEventInit">dictionary <span class="idlDictionaryID">LightLevelEventInit</span> : <span class="idlSuperclass"><a>EventInit</a></span> {
 <span class="idlMember">    <span class="idlMemberType"><a href="#idl-def-LightLevelState" class="idlType"><code>LightLevelState</code></a></span> <span class="idlMemberName"><a href="#widl-LightLevelEventInit-value">value</a></span>;</span>
 };</span><br><br>[<span class="extAttr">Constructor (DOMString type, optional LightLevelEventInit eventInitDict)</span>]
 interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idlSuperclass"><a>Event</a></span> {
-<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="#idl-def-LightLevelState" class="idlType"><code>LightLevelState</code></a></span> <span class="idlAttrName"><a href="#widl-LightLevelEvent-value">value</a></span>;</span>
+<span class="idlAttribute">    readonly    attribute <span class="idlAttrType"><a href="#idl-def-LightLevelState" class="idlType"><code>LightLevelState</code></a></span> <span class="idlAttrName"><a href="#widl-LightLevelEvent-value">value</a></span>;</span>
 };</span></pre>
         
         
         <p>
           The <code>value</code> attribute of the <a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a>
-          interface <em class="rfc2119" title="must">must</em> return the value it was initialized to. When the
-          object is created, this attribute <em class="rfc2119" title="must">must</em> be initialized to positive
+          interface <em class="rfc2119" title="MUST">MUST</em> return the value it was initialized to. When the
+          object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to positive
           Infinity. It represents the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>.
         </p>
         <p>
           When a <dfn id="dfn-user-agent-4">user agent</dfn> is required to <dfn id="dfn-fire-a-light-level-event">fire a light
-          level event</dfn>, the <dfn id="dfn-user-agent-5">user agent</dfn> <em class="rfc2119" title="must">must</em> run the
+          level event</dfn>, the <dfn id="dfn-user-agent-5">user agent</dfn> <em class="rfc2119" title="MUST">MUST</em> run the
           following steps:
         </p>
         <ol class="rule">
@@ -723,14 +747,14 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
                 If the implementation is unable to report the <a href="#dfn-current-light-level-state" class="internalDFN">current
                 light level state</a>, initialize the <code>value</code>
                 attribute to empty string, otherwise initialize the
-                attribute to the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>, which <em class="rfc2119" title="must">must</em>
+                attribute to the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>, which <em class="rfc2119" title="MUST">MUST</em>
                 be one of the following values:
                 <ul>
                   <li><code>dim</code></li>
                   <li><code>normal</code></li>
                   <li><code>bright</code></li>
                 </ul>
-                <div class="note"><div class="note-title"><span>Note</span></div><div class="">
+                <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
                   The lux ranges that map to the <a href="#dfn-current-light-level-state" class="internalDFN">current light level
                   state</a>s are left to the implementation, as devices with
                   different sensitivities could map them slightly differently.
@@ -751,11 +775,11 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
         </ol>
         <p>
           When the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a> changes, the <dfn id="dfn-user-agent-6">user agent</dfn>
-          <em class="rfc2119" title="must">must</em> queue a task to <a>fire a user proximity event</a>
+          <em class="rfc2119" title="MUST">MUST</em> queue a task to <a>fire a user proximity event</a>
           at each <a href="#dfn-browsing-context" class="internalDFN">browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
         
-        <div class="note"><div class="note-title"><span>Note</span></div><div class="">
+        <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
           The definition of granularity i.e. how often the event is fired is
           left to the implementation. Implementations can fire the event if
           they have reason to believe that the page does not have sufficiently
@@ -765,7 +789,7 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
           <h4><span class="secno">6.1.1 </span>Event handlers</h4>
           <p>
             The following are the <a href="#dfn-event-handlers" class="internalDFN">event handlers</a> (and their corresponding
-            <a href="#dfn-event-handler-event-types" class="internalDFN">event handler event types</a>) that <em class="rfc2119" title="must">must</em> be supported as
+            <a href="#dfn-event-handler-event-types" class="internalDFN">event handler event types</a>) that <em class="rfc2119" title="MUST">MUST</em> be supported as
             attributes by the <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object:
           </p>
           <table class="simple">
