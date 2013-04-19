@@ -51,12 +51,6 @@ code {
     color:  #ff4500;
 }
 
-
-/* --- --- */
-ol.algorithm { counter-reset:numsection; list-style-type: none; }
-ol.algorithm li { margin: 0.5em 0; }
-ol.algorithm li:before { font-weight: bold; counter-increment: numsection; content: counters(numsection, ".") ") "; }
-
 /* --- TOC --- */
 .toc a, .tof a {
     text-decoration:    none;
@@ -388,7 +382,7 @@ table.exceptions table {
     border-collapse:    collapse;
     width:  100%;
 }
-</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
+</style><link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
   <body><div class="head">
   <p>
     
@@ -397,7 +391,7 @@ table.exceptions table {
   </p>
   <h1 class="title" id="title">Ambient Light Events</h1>
   
-  <h2 id="w3c-editor-s-draft-15-april-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft 15 April 2013</h2>
+  <h2 id="w3c-editor-s-draft-19-april-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft 19 April 2013</h2>
   <dl>
     
       <dt>This version:</dt>
@@ -418,7 +412,7 @@ table.exceptions table {
     
     <dt>Editors:</dt>
     <dd><span>Doug Turner</span>, <a href="http://mozilla.com/">Mozilla Corporation</a></dd>
-<dd><span>Anssi Kostiainen</span>, <a href="http://nokia.com/">Nokia</a></dd>
+<dd><span>Anssi Kostiainen</span>, <a href="http://intel.com/">Intel</a></dd>
 
     
   </dl>
@@ -640,7 +634,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
         </p>
         <ol class="rule">
           <li>
-            <a>Create an event</a> that uses the <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a>
+            <a href="#dfn-create-an-event" class="internalDFN">Create an event</a> that uses the <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a>
             interface, with the name <code>devicelight</code>, which
             bubbles, is not cancelable, and has no default action, that also
             meets the following conditions:
@@ -738,7 +732,7 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
         </p>
         <ol class="rule">
           <li>
-            <a>Create an event</a> that uses the <a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a>
+            <a href="#dfn-create-an-event" class="internalDFN">Create an event</a> that uses the <a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a>
             interface, with the name <code>lightlevel</code>, which
             bubbles, is not cancelable, and has no default action, that also
             meets the following conditions:
