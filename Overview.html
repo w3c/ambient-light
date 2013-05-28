@@ -391,7 +391,7 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title">Ambient Light Events</h1>
   
-  <h2 id="w3c-editor-s-draft-27-may-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-05-27">27 May 2013</time></h2>
+  <h2 id="w3c-editor-s-draft-28-may-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-05-28">28 May 2013</time></h2>
   <dl>
     
       <dt>This version:</dt>
@@ -555,9 +555,9 @@ table.exceptions table {
         The concepts <dfn id="dfn-queue-a-task"><a href="http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">
         queue a task</a></dfn>,
         <dfn id="dfn-fires-a-simple-event"><a href="http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">
-        fires a simple event</a></dfn>, and <dfn id="dfn-browsing-context">
-        <a href="http://dev.w3.org/html5/spec/browsers.html#browsing-context">
-        browsing context</a></dfn> are defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
+        fires a simple event</a></dfn>, and <dfn id="dfn-top-level-browsing-context">
+        <a href="http://dev.w3.org/html5/spec/browsers.html#top-level-browsing-context">
+        top-level browsing context</a></dfn> are defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
       </p>
       <p>
         The terms <dfn id="dfn-event-handlers"><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">
@@ -621,6 +621,14 @@ table.exceptions table {
         Web application developers that use this specification should perform a
         privacy assessment of their application taking all aspects of their
         application into consideration.
+      </p>
+      <p>
+        The events defined in this specification are only fired in the
+        <a href="#dfn-top-level-browsing-context" class="internalDFN">top-level browsing context</a> to avoid the privacy risk of
+        sharing the information defined in this specification with contexts
+        unfamiliar to the user. For example, a mobile device will only fire
+        these events on the active tab, and not on the background tabs or
+        within iframes.
       </p>
     </section>
     
@@ -688,7 +696,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
         <p>
           When the <a href="#dfn-current-light-level" class="internalDFN">current light level</a> changes, the <dfn id="dfn-user-agent-3">user agent</dfn>
           <em class="rfc2119" title="MUST">MUST</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN">fire a device light event</a>
-          at each <a href="#dfn-browsing-context" class="internalDFN">browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
+          at the <a href="#dfn-top-level-browsing-context" class="internalDFN">top-level browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
         <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
           The definition of granularity i.e. how often the event is fired is
@@ -807,7 +815,7 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
         <p>
           When the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a> changes, the <dfn id="dfn-user-agent-6">user agent</dfn>
           <em class="rfc2119" title="MUST">MUST</em> queue a task to <a>fire a user proximity event</a>
-          at each <a href="#dfn-browsing-context" class="internalDFN">browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
+          at the <a href="#dfn-top-level-browsing-context" class="internalDFN">top-level browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
         
         <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
@@ -851,6 +859,6 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
   
 
 <section id="references" class="appendix"><!--OddPage--><h2><span class="secno">B. </span>References</h2><section id="normative-references"><h3><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-DOM4">[DOM4]</dt><dd>Anne van Kesteren; Aryeh Gregor; Lachlan Hunt; Ms2ger. <a href="http://www.w3.org/TR/dom/"><cite>DOM4</cite></a>. 6 December 2012. W3C Working Draft. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
-</dd><dt id="bib-HTML5">[HTML5]</dt><dd>Robin Berjon et al. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 17 December 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+</dd><dt id="bib-HTML5">[HTML5]</dt><dd>Robin Berjon et al. <a href="http://www.w3.org/TR/html5/"><cite>HTML5.</cite></a>. 17 December 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
 </dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
 </dd></dl></section></section></body></html>
