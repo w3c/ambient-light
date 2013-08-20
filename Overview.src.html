@@ -341,8 +341,8 @@
         <p>
           The <code>value</code> attribute of the <a>LightLevelEvent</a>
           interface MUST return the value it was initialized to. When the
-          object is created, this attribute MUST be initialized to positive
-          Infinity. It represents the <a>current light level state</a>.
+          object is created, this attribute MUST be initialized to an empty
+          string. It represents the <a>current light level state</a>.
         </p>
         <p>
           When a <dfn>user agent</dfn> is required to <dfn>fire a light
@@ -359,7 +359,7 @@
               <li>
                 If the implementation is unable to report the <a>current
                 light level state</a>, initialize the <code>value</code>
-                attribute to empty string, otherwise initialize the
+                attribute to an empty string, otherwise initialize the
                 attribute to the <a>current light level state</a>, which MUST
                 be one of the following values:
                 <ul>

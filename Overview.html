@@ -391,7 +391,7 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Ambient Light Events</h1>
   
-  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-08-20T17:28:11.000Z" id="w3c-editor-s-draft-20-august-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-08-20">20 August 2013</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-08-20T17:34:18.000Z" id="w3c-editor-s-draft-20-august-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-08-20">20 August 2013</time></h2>
   <dl>
     
       <dt>This version:</dt>
@@ -798,8 +798,8 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
         <p>
           The <code>value</code> attribute of the <a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a>
           interface <em class="rfc2119" title="MUST">MUST</em> return the value it was initialized to. When the
-          object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to positive
-          Infinity. It represents the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>.
+          object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to an empty
+          string. It represents the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>.
         </p>
         <p>
           When a <dfn id="dfn-user-agent-4">user agent</dfn> is required to <dfn id="dfn-fire-a-light-level-event">fire a light
@@ -816,7 +816,7 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
               <li>
                 If the implementation is unable to report the <a href="#dfn-current-light-level-state" class="internalDFN">current
                 light level state</a>, initialize the <code>value</code>
-                attribute to empty string, otherwise initialize the
+                attribute to an empty string, otherwise initialize the
                 attribute to the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>, which <em class="rfc2119" title="MUST">MUST</em>
                 be one of the following values:
                 <ul>
