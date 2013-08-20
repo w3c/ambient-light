@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" typeof="bibo:Document " about="" property="dcterms:language" content="en">
 <head>
     <title>Ambient Light Events</title>
     <meta charset="utf-8">
@@ -382,16 +382,16 @@ table.exceptions table {
     border-collapse:    collapse;
     width:  100%;
 }
-</style><link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
-  <body class="h-entry"><div class="head">
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
+  <body class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
   <p>
     
       <a href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
     
   </p>
-  <h1 class="title p-name" id="title">Ambient Light Events</h1>
+  <h1 class="title p-name" id="title" property="dcterms:title">Ambient Light Events</h1>
   
-  <h2 id="w3c-editor-s-draft-29-may-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-05-29">29 May 2013</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-08-20T17:23:43.000Z" id="w3c-editor-s-draft-20-august-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-08-20">20 August 2013</time></h2>
   <dl>
     
       <dt>This version:</dt>
@@ -414,8 +414,10 @@ table.exceptions table {
     
     
     <dt>Editors:</dt>
-    <dd class="p-author h-card vcard"><span class="p-name fn">Doug Turner</span>, <a class="p-org org h-org h-card" href="http://mozilla.com/">Mozilla Corporation</a></dd>
-<dd class="p-author h-card vcard"><span class="p-name fn">Anssi Kostiainen</span>, <a class="p-org org h-org h-card" href="http://intel.com/">Intel</a></dd>
+    <dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Doug Turner</span>, <a rel="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://mozilla.com/">Mozilla Corporation</a></span>
+</dd>
+<dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anssi Kostiainen</span>, <a rel="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://intel.com/">Intel</a></span>
+</dd>
 
     
     
@@ -423,7 +425,7 @@ table.exceptions table {
         
           <dt>Revision history:</dt>
           
-              
+             
                 
                   <dd>
                     <a href="https://dvcs.w3.org/hg/dap/log/default/light/Overview.src.html">
@@ -433,7 +435,7 @@ table.exceptions table {
                 
              
           
-          
+        
       
     
   </dl>
@@ -443,10 +445,10 @@ table.exceptions table {
   
     
       <p class="copyright">
-        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
         2013
         
-        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> 
+        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
         (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
         <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
         <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved.
@@ -458,10 +460,10 @@ table.exceptions table {
   
   <hr>
 </div>
-    <section id="abstract" class="introductory"><h2>Abstract</h2><p>
+    <section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#abstract" rel="bibo:chapter"><h2 aria-level="1" role="heading" id="h2_abstract">Abstract</h2><p>
       This specification defines a means to receive events that correspond to
       a light sensor detecting the presence of a light.
-    </p></section><section id="sotd" class="introductory"><h2>Status of This Document</h2>
+    </p></section><section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#sotd" rel="bibo:chapter"><h2 aria-level="1" role="heading" id="h2_sotd">Status of This Document</h2>
   
     
       
@@ -499,10 +501,10 @@ table.exceptions table {
           
           
           
-        All comments are welcome.
+            All comments are welcome.</p>
+          
         
-        
-          </p><p>
+          <p>
             Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership.
             This is a draft document and may be updated, replaced or obsoleted by other documents at 
             any time. It is inappropriate to cite this document as other than work in progress.
@@ -512,7 +514,9 @@ table.exceptions table {
         <p>
           
             This document was produced by a group operating under the 
-            <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+             
+                <a id="sotd_patent" about="" rel="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+            
           
           
           
@@ -531,12 +535,12 @@ table.exceptions table {
       
     
   
-</section><section id="toc"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li><li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">3. </span>Terminology</a></li><li class="tocline"><a href="#security-and-privacy-considerations" class="tocxref"><span class="secno">4. </span>Security and privacy considerations</a></li><li class="tocline"><a href="#device-light" class="tocxref"><span class="secno">5. </span>Device Light</a><ul class="toc"><li class="tocline"><a href="#devicelightevent-interface" class="tocxref"><span class="secno">5.1 </span><span class="formerLink"><code>DeviceLightEvent</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#event-handlers" class="tocxref"><span class="secno">5.1.1 </span>Event handlers</a></li></ul></li></ul></li><li class="tocline"><a href="#light-level" class="tocxref"><span class="secno">6. </span>Light Level</a><ul class="toc"><li class="tocline"><a href="#lightlevelevent-interface" class="tocxref"><span class="secno">6.1 </span><span class="formerLink"><code>LightLevelEvent</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#event-handlers-1" class="tocxref"><span class="secno">6.1.1 </span>Event handlers</a></li></ul></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li></ul></li></ul></section>
+</section><section id="toc"><h2 class="introductory" aria-level="1" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li><li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">3. </span>Terminology</a></li><li class="tocline"><a href="#security-and-privacy-considerations" class="tocxref"><span class="secno">4. </span>Security and privacy considerations</a></li><li class="tocline"><a href="#device-light" class="tocxref"><span class="secno">5. </span>Device Light</a><ul class="toc"><li class="tocline"><a href="#devicelightevent-interface" class="tocxref"><span class="secno">5.1 </span><span class="formerLink"><code>DeviceLightEvent</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#event-handlers" class="tocxref"><span class="secno">5.1.1 </span>Event handlers</a></li></ul></li></ul></li><li class="tocline"><a href="#light-level" class="tocxref"><span class="secno">6. </span>Light Level</a><ul class="toc"><li class="tocline"><a href="#lightlevelevent-interface" class="tocxref"><span class="secno">6.1 </span><span class="formerLink"><code>LightLevelEvent</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#event-handlers-1" class="tocxref"><span class="secno">6.1.1 </span>Event handlers</a></li></ul></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li></ul></li></ul></section>
     
     
     
     <section class="informative" id="introduction">
-      <!--OddPage--><h2><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_introduction"><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
       <p>
         This specification defines events that provide information about the
         ambient light level, as measured by a device's light sensor.  A
@@ -547,7 +551,7 @@ table.exceptions table {
       </p>
     </section>
     
-    <section id="conformance"><!--OddPage--><h2><span class="secno">2. </span>Conformance</h2>
+    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" rel="bibo:chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_conformance"><span class="secno">2. </span>Conformance</h2>
 <p>
   As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
   and notes in this specification are non-normative. Everything else in this specification is
@@ -563,10 +567,17 @@ table.exceptions table {
         product: the <dfn id="dfn-user-agent">user agent</dfn> that implements the
         interfaces that it contains.
       </p>
+      <p>
+        Implementations that use ECMAScript to implement the APIs
+        defined in this specification must implement them in a manner
+        consistent with the ECMAScript Bindings defined in the Web IDL
+        specification [<cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>], as this specification uses that
+        specification and terminology.
+      </p>
     </section>
     
     <section id="terminology">
-      <!--OddPage--><h2><span class="secno">3. </span>Terminology</h2>
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_terminology"><span class="secno">3. </span>Terminology</h2>
       <p>
         The <code><a href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler">
         EventHandler</a></code> interface represents a <a href="http://www.w3.org/TR/WebIDL/#idl-callback-functions">callback function</a> used for <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
@@ -608,7 +619,7 @@ table.exceptions table {
     </section>
     
     <section class="informative" id="security-and-privacy-considerations">
-      <!--OddPage--><h2><span class="secno">4. </span>Security and privacy considerations</h2><p><em>This section is non-normative.</em></p>
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_security-and-privacy-considerations"><span class="secno">4. </span>Security and privacy considerations</h2><p><em>This section is non-normative.</em></p>
       <p>
         Privacy risks can arise when this specification is used in
         combination with other functionality or when used over time,
@@ -653,7 +664,7 @@ table.exceptions table {
     </section>
     
     <section id="device-light">
-      <!--OddPage--><h2><span class="secno">5. </span>Device Light</h2>
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_device-light"><span class="secno">5. </span>Device Light</h2>
       <p>
         The <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> interface provides information about the
         ambient light levels, as detected by the device's light detector, in
@@ -673,7 +684,7 @@ table.exceptions table {
         interface.
       </p>
       <section id="devicelightevent-interface">
-        <h3><span class="secno">5.1 </span><a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> Interface</h3>
+        <h3 aria-level="2" role="heading" id="h3_devicelightevent-interface"><span class="secno">5.1 </span><a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> Interface</h3>
         <pre class="idl"><span class="idlInterface" id="idl-def-DeviceLightEvent"><span class="idlDictionary" id="idl-def-DeviceLightEventInit">dictionary <span class="idlDictionaryID">DeviceLightEventInit</span> : <span class="idlSuperclass"><a>EventInit</a></span> {
 <span class="idlMember">    <span class="idlMemberType"><a>double</a></span> <span class="idlMemberName"><a href="#widl-DeviceLightEventInit-value">value</a></span>;</span>
 };</span><br><br>[<span class="extAttr">Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)</span>]
@@ -687,7 +698,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
           object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to positive
           Infinity. It represents the <a href="#dfn-current-light-level" class="internalDFN">current light level</a>.
         </p>
-        <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
+        <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_1"><span>Note</span></div><div class="">
           The precise lux value reported by different devices in the same light
           can be different, due to differences in detection method, sensor
           construction etc.
@@ -718,14 +729,14 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
           <em class="rfc2119" title="MUST">MUST</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN">fire a device light event</a>
           at the <a href="#dfn-top-level-browsing-context" class="internalDFN">top-level browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
-        <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
+        <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_2"><span>Note</span></div><div class="">
           The definition of granularity i.e. how often the event is fired is
           left to the implementation. Implementations can fire the event if
           they have reason to believe that the page does not have sufficiently
           fresh data.
         </div></div>
         <section id="event-handlers">
-          <h4><span class="secno">5.1.1 </span>Event handlers</h4>
+          <h4 aria-level="3" role="heading" id="h4_event-handlers"><span class="secno">5.1.1 </span>Event handlers</h4>
           <p>
             The following are the <a href="#dfn-event-handlers" class="internalDFN">event handlers</a> (and their corresponding
             <a href="#dfn-event-handler-event-types" class="internalDFN">event handler event types</a>) that <em class="rfc2119" title="MUST">MUST</em> be supported as
@@ -750,7 +761,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
     </section>
 
     <section id="light-level">
-      <!--OddPage--><h2><span class="secno">6. </span>Light Level</h2>
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_light-level"><span class="secno">6. </span>Light Level</h2>
       <p>
         The <a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a> interface provides information about the
         ambient light levels, as detected by the device's light detector, in
@@ -770,7 +781,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
         interface.
       </p>
       <section id="lightlevelevent-interface">
-        <h3><span class="secno">6.1 </span><a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a> Interface</h3>
+        <h3 aria-level="2" role="heading" id="h3_lightlevelevent-interface"><span class="secno">6.1 </span><a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a> Interface</h3>
         <pre class="idl"><span class="idlInterface" id="idl-def-LightLevelEvent"><span class="idlEnum" id="idl-def-LightLevelState">enum <span class="idlEnumID">LightLevelState</span> {
     "<a href="#idl-def-LightLevelState.generatedID" class="idlEnumItem">‍</a>",
     "<a href="#idl-def-LightLevelState.dim" class="idlEnumItem">dim</a>",
@@ -813,7 +824,7 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
                   <li><code>normal</code></li>
                   <li><code>bright</code></li>
                 </ul>
-                <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
+                <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_3"><span>Note</span></div><div class="">
                   The lux ranges that map to the <a href="#dfn-current-light-level-state" class="internalDFN">current light level
                   state</a>s are left to the implementation, as devices with
                   different sensitivities could map them slightly differently.
@@ -838,14 +849,14 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
           at the <a href="#dfn-top-level-browsing-context" class="internalDFN">top-level browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
         
-        <div class="note"><div class="note-title" role="heading" aria-level="4"><span>Note</span></div><div class="">
+        <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_4"><span>Note</span></div><div class="">
           The definition of granularity i.e. how often the event is fired is
           left to the implementation. Implementations can fire the event if
           they have reason to believe that the page does not have sufficiently
           fresh data.
         </div></div>
         <section id="event-handlers-1">
-          <h4><span class="secno">6.1.1 </span>Event handlers</h4>
+          <h4 aria-level="3" role="heading" id="h4_event-handlers-1"><span class="secno">6.1.1 </span>Event handlers</h4>
           <p>
             The following are the <a href="#dfn-event-handlers" class="internalDFN">event handlers</a> (and their corresponding
             <a href="#dfn-event-handler-event-types" class="internalDFN">event handler event types</a>) that <em class="rfc2119" title="MUST">MUST</em> be supported as
@@ -870,7 +881,7 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
     </section>
       
     <section class="appendix" id="acknowledgements">
-      <!--OddPage--><h2><span class="secno">A. </span>Acknowledgements</h2>
+      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_acknowledgements"><span class="secno">A. </span>Acknowledgements</h2>
       <p>
         Doug Turner for the <a href="http://dougturner.wordpress.com/2012/03/26/device-light-sensor/">initial prototype</a> and
         Marcos Caceres for the test suite.
@@ -878,7 +889,8 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
     </section>
   
 
-<section id="references" class="appendix"><!--OddPage--><h2><span class="secno">B. </span>References</h2><section id="normative-references"><h3><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-DOM4">[DOM4]</dt><dd>Anne van Kesteren; Aryeh Gregor; Lachlan Hunt; Ms2ger. <a href="http://www.w3.org/TR/dom/"><cite>DOM4</cite></a>. 6 December 2012. W3C Working Draft. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
-</dd><dt id="bib-HTML5">[HTML5]</dt><dd>Robin Berjon et al. <a href="http://www.w3.org/TR/html5/"><cite>HTML5.</cite></a>. 17 December 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
-</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-DOM4">[DOM4]</dt><dd rel="dcterms:requires">Anne van Kesteren; Aryeh Gregor; Lachlan Hunt; Ms2ger. <a href="http://www.w3.org/TR/dom/"><cite>DOM4</cite></a>. 6 December 2012. W3C Working Draft. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
+</dd><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 6 August 2013. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
+</dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd rel="dcterms:requires">Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a>
 </dd></dl></section></section></body></html>
