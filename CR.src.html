@@ -320,7 +320,7 @@
         </dl>
         <dl id="enum-basic" class="idl" title="enum LightLevelState">
           <dt>
-            <code id="idl-def-LightLevelState.generatedID">&zwj;</code><!-- (empty string) -->
+            <code>&zwj;</code><!-- (empty string) -->
           </dt>
           <dd></dd>
           <dt>
@@ -347,8 +347,9 @@
           <code id="widl-LightLevelEventInit-value"></code>
           attribute of the <a>LightLevelEvent</a>
           interface MUST return the value it was initialized to. When the
-          object is created, this attribute MUST be initialized to an empty
-          string. It represents the <a>current light level state</a>.
+          object is created, this attribute MUST be initialized to an
+          <dfn id="idl-def-LightLevelState.generatedID">empty
+          string</dfn>. It represents the <a>current light level state</a>.
         </p>
         <p>
           When a <dfn>user agent</dfn> is required to <dfn>fire a light
@@ -365,7 +366,7 @@
               <li>
                 If the implementation is unable to report the <a>current
                 light level state</a>, initialize the <code>value</code>
-                attribute to an empty string, otherwise initialize the
+                attribute to an <a>empty string</a>, otherwise initialize the
                 attribute to the <a>current light level state</a>, which MUST
                 be one of the following values:
                 <ul>

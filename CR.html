@@ -812,8 +812,9 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
           <code id="widl-LightLevelEventInit-value"></code>
           attribute of the <a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a>
           interface <em class="rfc2119" title="MUST">MUST</em> return the value it was initialized to. When the
-          object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to an empty
-          string. It represents the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>.
+          object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to an
+          <dfn id="idl-def-LightLevelState.generatedID">empty
+          string</dfn>. It represents the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>.
         </p>
         <p>
           When a <dfn id="dfn-user-agent-4">user agent</dfn> is required to <dfn id="dfn-fire-a-light-level-event">fire a light
@@ -830,7 +831,7 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
               <li>
                 If the implementation is unable to report the <a href="#dfn-current-light-level-state" class="internalDFN">current
                 light level state</a>, initialize the <code>value</code>
-                attribute to an empty string, otherwise initialize the
+                attribute to an <a href="#idl-def-LightLevelState.generatedID" class="internalDFN">empty string</a>, otherwise initialize the
                 attribute to the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>, which <em class="rfc2119" title="MUST">MUST</em>
                 be one of the following values:
                 <ul>
