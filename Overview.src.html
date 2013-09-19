@@ -191,7 +191,8 @@
         <dd></dd>
       </dl>
       <p>
-        The <code>ondevicelight</code> event handler and its corresponding
+        The <code id="widl-Window-ondevicelight">ondevicelight</code>
+        event handler and its corresponding
         event handler event type <code>devicelight</code> MUST be supported
         as an IDL attribute by all objects implementing the <a>Window</a>
         interface.
@@ -213,7 +214,9 @@
           <dd></dd>
         </dl>
         <p>
-          The <code>value</code> attribute of the <a>DeviceLightEvent</a>
+          The <code id="widl-DeviceLightEvent-value">value</code>
+          <code id="widl-DeviceLightEventInit-value"></code>
+          attribute of the <a>DeviceLightEvent</a>
           interface MUST return the value it was initialized to. When the
           object is created, this attribute MUST be initialized to positive
           Infinity. It represents the <a>current light level</a>.
@@ -299,7 +302,8 @@
         </dd>
       </dl>
       <p>
-        The <code>onlightlevel</code> event handler and its corresponding
+        The <code id="widl-Window-onlightlevel">onlightlevel</code>
+        event handler and its corresponding
         event handler event type <code>lightlevel</code> MUST be supported
         as an IDL attribute by all objects implementing the <a>Window</a>
         interface.
@@ -316,7 +320,7 @@
         </dl>
         <dl id="enum-basic" class="idl" title="enum LightLevelState">
           <dt>
-            &zwj;<!-- (empty string) -->
+            <code id="idl-def-LightLevelState.generatedID">&zwj;</code><!-- (empty string) -->
           </dt>
           <dd></dd>
           <dt>
@@ -339,7 +343,9 @@
           <dd></dd>
         </dl>
         <p>
-          The <code>value</code> attribute of the <a>LightLevelEvent</a>
+          The <code id="widl-LightLevelEvent-value">value</code>
+          <code id="widl-LightLevelEventInit-value"></code>
+          attribute of the <a>LightLevelEvent</a>
           interface MUST return the value it was initialized to. When the
           object is created, this attribute MUST be initialized to an empty
           string. It represents the <a>current light level state</a>.
@@ -363,9 +369,9 @@
                 attribute to the <a>current light level state</a>, which MUST
                 be one of the following values:
                 <ul>
-                  <li><code>dim</code></li>
-                  <li><code>normal</code></li>
-                  <li><code>bright</code></li>
+                  <li><code id="idl-def-LightLevelState.dim">dim</code></li>
+                  <li><code id="idl-def-LightLevelState.normal">normal</code></li>
+                  <li><code id="idl-def-LightLevelState.bright">bright</code></li>
                 </ul>
                 <div class="note">
                   The lux ranges that map to the <a>current light level
@@ -426,8 +432,8 @@
     <section class="appendix">
       <h2>Acknowledgements</h2>
       <p>
-        Doug Turner for the <a href="http://dougturner.wordpress.com/2012/03/26/device-light-sensor/">initial prototype</a> and
-        Marcos Caceres for the test suite.
+        Doug Turner for the initial prototype and Marcos Caceres for the
+        test suite.
       </p>
     </section>
   </body>

@@ -391,7 +391,7 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Ambient Light Events</h1>
   
-  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-09-19T10:03:00.000Z" id="w3c-editor-s-draft-19-september-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-09-19">19 September 2013</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-09-19T10:58:10.000Z" id="w3c-editor-s-draft-19-september-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-09-19">19 September 2013</time></h2>
   <dl>
     
       <dt>This version:</dt>
@@ -678,7 +678,8 @@ table.exceptions table {
 <span class="idlAttribute">                attribute <span class="idlAttrType"><a>EventHandler</a></span> <span class="idlAttrName"><a href="#widl-Window-ondevicelight">ondevicelight</a></span>;</span>
 };</span></pre>
       <p>
-        The <code>ondevicelight</code> event handler and its corresponding
+        The <code id="widl-Window-ondevicelight">ondevicelight</code>
+        event handler and its corresponding
         event handler event type <code>devicelight</code> <em class="rfc2119" title="MUST">MUST</em> be supported
         as an IDL attribute by all objects implementing the <a href="#idl-def-Window" class="idlType"><code>Window</code></a>
         interface.
@@ -693,7 +694,9 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
 };</span></pre>
         
         <p>
-          The <code>value</code> attribute of the <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a>
+          The <code id="widl-DeviceLightEvent-value">value</code>
+          <code id="widl-DeviceLightEventInit-value"></code>
+          attribute of the <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a>
           interface <em class="rfc2119" title="MUST">MUST</em> return the value it was initialized to. When the
           object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to positive
           Infinity. It represents the <a href="#dfn-current-light-level" class="internalDFN">current light level</a>.
@@ -775,7 +778,8 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
 <span class="idlAttribute">                attribute <span class="idlAttrType"><a>EventHandler</a></span> <span class="idlAttrName"><a href="#widl-Window-onlightlevel">onlightlevel</a></span>;</span>
 };</span></pre>
       <p>
-        The <code>onlightlevel</code> event handler and its corresponding
+        The <code id="widl-Window-onlightlevel">onlightlevel</code>
+        event handler and its corresponding
         event handler event type <code>lightlevel</code> <em class="rfc2119" title="MUST">MUST</em> be supported
         as an IDL attribute by all objects implementing the <a href="#idl-def-Window" class="idlType"><code>Window</code></a>
         interface.
@@ -796,7 +800,9 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
         
         
         <p>
-          The <code>value</code> attribute of the <a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a>
+          The <code id="widl-LightLevelEvent-value">value</code>
+          <code id="widl-LightLevelEventInit-value"></code>
+          attribute of the <a href="#idl-def-LightLevelEvent" class="idlType"><code>LightLevelEvent</code></a>
           interface <em class="rfc2119" title="MUST">MUST</em> return the value it was initialized to. When the
           object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to an empty
           string. It represents the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>.
@@ -820,9 +826,9 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
                 attribute to the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>, which <em class="rfc2119" title="MUST">MUST</em>
                 be one of the following values:
                 <ul>
-                  <li><code>dim</code></li>
-                  <li><code>normal</code></li>
-                  <li><code>bright</code></li>
+                  <li><code id="idl-def-LightLevelState.dim">dim</code></li>
+                  <li><code id="idl-def-LightLevelState.normal">normal</code></li>
+                  <li><code id="idl-def-LightLevelState.bright">bright</code></li>
                 </ul>
                 <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_3"><span>Note</span></div><div class="">
                   The lux ranges that map to the <a href="#dfn-current-light-level-state" class="internalDFN">current light level
@@ -883,8 +889,8 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
     <section class="appendix" id="acknowledgements">
       <!--OddPage--><h2 aria-level="1" role="heading" id="h2_acknowledgements"><span class="secno">A. </span>Acknowledgements</h2>
       <p>
-        Doug Turner for the <a href="http://dougturner.wordpress.com/2012/03/26/device-light-sensor/">initial prototype</a> and
-        Marcos Caceres for the test suite.
+        Doug Turner for the initial prototype and Marcos Caceres for the
+        test suite.
       </p>
     </section>
   
