@@ -114,6 +114,12 @@ table.simple {
 .section dl.attrs dd, .section dl.eldef dd {
     margin-bottom:  0;
 }
+
+@media print {
+    .removeOnSave {
+        display: none;
+    }
+}
 </style><style>/* --- ISSUES/NOTES --- */
 div.issue-title, div.note-title {
     padding-right:  1em;
@@ -391,7 +397,7 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Ambient Light Events</h1>
   
-  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-09-23T08:59:20.000Z" id="w3c-editor-s-draft-23-september-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-09-23">23 September 2013</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-04-28T08:06:54.000Z" id="w3c-editor-s-draft-28-april-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2014-04-28">28 April 2014</time></h2>
   <dl>
     
       <dt>This version:</dt>
@@ -405,7 +411,8 @@ table.exceptions table {
     
     
       <dt>Test suite:</dt>
-      <dd><a href="https://w3c-test.org/web-platform-tests/master/ambient-light/">https://w3c-test.org/web-platform-tests/master/ambient-light/</a></dd>
+      <dd><a href="http://w3c-test.org/ambient-light/">http://w3c-test.org/ambient-light/</a></dd>
+    
     
     
     
@@ -446,32 +453,38 @@ table.exceptions table {
     
       <p class="copyright">
         <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
-        2013
+        2014
         
         <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
         (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
         <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved.
+        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), 
+        
+        All Rights Reserved.
+        
         <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
         <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
-        <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
+        
+          <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+        
+        rules apply.
       </p>
     
   
   <hr>
 </div>
-    <section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#abstract" rel="bibo:chapter"><h2 aria-level="1" role="heading" id="h2_abstract">Abstract</h2><p>
+    <section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#abstract" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_abstract">Abstract</h2><p>
       This specification defines a means to receive events that correspond to
       a light sensor detecting the presence of a light.
-    </p></section><section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#sotd" rel="bibo:chapter"><h2 aria-level="1" role="heading" id="h2_sotd">Status of This Document</h2>
+    </p></section><section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#sotd" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_sotd">Status of This Document</h2>
   
     
       
         <p>
-          <em>This section describes the status of this document at the time of its publication. Other
-          documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision
-          of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports
-          index</a> at http://www.w3.org/TR/.</em>
+          <em>This section describes the status of this document at the time of its publication.
+          Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the
+          latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+          http://www.w3.org/TR/.</em>
         </p>
         
       <p>
@@ -493,40 +506,46 @@ table.exceptions table {
           This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as an Editor's Draft.
           
           
-          If you wish to make comments regarding this document, please send them to 
-          <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a> 
-          (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
-          <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
+            If you wish to make comments regarding this document, please send them to 
+            <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a> 
+            (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
+            <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
           
           
           
           
-            All comments are welcome.</p>
+            All comments are welcome.
           
+        </p>
+        
         
           <p>
-            Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership.
-            This is a draft document and may be updated, replaced or obsoleted by other documents at 
-            any time. It is inappropriate to cite this document as other than work in progress.
+            Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+            Membership. This is a draft document and may be updated, replaced or obsoleted by other
+            documents at any time. It is inappropriate to cite this document as other than work in
+            progress.
           </p>
+        
         
         
         <p>
           
             This document was produced by a group operating under the 
-             
-                <a id="sotd_patent" about="" rel="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
-            
+            <a id="sotd_patent" about="" rel="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+            Policy</a>.
           
           
           
             
-              <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> 
+              <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent
+              disclosures</a> 
             
-            made in connection with the deliverables of the group; that page also includes instructions for 
-            disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
-            <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the
-            information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+            made in connection with the deliverables of the group; that page also includes
+            instructions for disclosing a patent. An individual who has actual knowledge of a patent
+            which the individual believes contains
+            <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+            Claim(s)</a> must disclose the information in accordance with
+            <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
             6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
           
           
@@ -551,7 +570,7 @@ table.exceptions table {
       </p>
     </section>
     
-    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" rel="bibo:chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_conformance"><span class="secno">2. </span>Conformance</h2>
+    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_conformance"><span class="secno">2. </span>Conformance</h2>
 <p>
   As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
   and notes in this specification are non-normative. Everything else in this specification is
@@ -675,7 +694,7 @@ table.exceptions table {
         which this specification extends:
       </p>
       <pre class="idl"><span class="idlInterface" id="idl-def-Window">partial interface <span class="idlInterfaceID">Window</span> {
-<span class="idlAttribute">                attribute <span class="idlAttrType"><a>EventHandler</a></span> <span class="idlAttrName"><a href="#widl-Window-ondevicelight">ondevicelight</a></span>;</span>
+<span class="idlAttribute">                attribute <span class="idlAttrType">EventHandler</span> <span class="idlAttrName"><a href="#widl-Window-ondevicelight">ondevicelight</a></span>;</span>
 };</span></pre>
       <p>
         The <code id="widl-Window-ondevicelight">ondevicelight</code>
@@ -686,11 +705,11 @@ table.exceptions table {
       </p>
       <section id="devicelightevent-interface">
         <h3 aria-level="2" role="heading" id="h3_devicelightevent-interface"><span class="secno">5.1 </span><a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> Interface</h3>
-        <pre class="idl"><span class="idlInterface" id="idl-def-DeviceLightEvent"><span class="idlDictionary" id="idl-def-DeviceLightEventInit">dictionary <span class="idlDictionaryID">DeviceLightEventInit</span> : <span class="idlSuperclass"><a>EventInit</a></span> {
-<span class="idlMember">    <span class="idlMemberType"><a>unrestricted double</a></span> <span class="idlMemberName"><a href="#widl-DeviceLightEventInit-value">value</a></span>;</span>
+        <pre class="idl"><span class="idlInterface" id="idl-def-DeviceLightEvent"><span class="idlDictionary" id="idl-def-DeviceLightEventInit">dictionary <span class="idlDictionaryID">DeviceLightEventInit</span> : <span class="idlSuperclass">EventInit</span> {
+<span class="idlMember">    <span class="idlMemberType">unrestricted double</span> <span class="idlMemberName"><a href="#widl-DeviceLightEventInit-value">value</a></span>;</span>
 };</span><br><br>[<span class="extAttr">Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)</span>]
-interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="idlSuperclass"><a>Event</a></span> {
-<span class="idlAttribute">    readonly    attribute <span class="idlAttrType"><a>unrestricted double</a></span> <span class="idlAttrName"><a href="#widl-DeviceLightEvent-value">value</a></span>;</span>
+interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="idlSuperclass">Event</span> {
+<span class="idlAttribute">    readonly    attribute <span class="idlAttrType">unrestricted double</span> <span class="idlAttrName"><a href="#widl-DeviceLightEvent-value">value</a></span>;</span>
 };</span></pre>
         
         <p>
@@ -707,8 +726,8 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
           construction etc.
         </div></div>
         <p>
-          When a <dfn id="dfn-user-agent-1">user agent</dfn> is required to <dfn id="dfn-fire-a-device-light-event">fire a device
-          light event</dfn>, the <dfn id="dfn-user-agent-2">user agent</dfn> <em class="rfc2119" title="MUST">MUST</em> run the
+          When a <a href="#dfn-user-agent" class="internalDFN">user agent</a> is required to <dfn id="dfn-fire-a-device-light-event">fire a device
+          light event</dfn>, the <a href="#dfn-user-agent" class="internalDFN">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the
           following steps:
         </p>
         <ol class="rule">
@@ -728,7 +747,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
           </li>
         </ol>
         <p>
-          When the <a href="#dfn-current-light-level" class="internalDFN">current light level</a> changes, the <dfn id="dfn-user-agent-3">user agent</dfn>
+          When the <a href="#dfn-current-light-level" class="internalDFN">current light level</a> changes, the <a href="#dfn-user-agent" class="internalDFN">user agent</a>
           <em class="rfc2119" title="MUST">MUST</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN">fire a device light event</a>
           at the <a href="#dfn-top-level-browsing-context" class="internalDFN">top-level browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
@@ -775,7 +794,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
         which this specification extends:
       </p>
       <pre class="idl"><span class="idlInterface" id="idl-def-Window-1">partial interface <span class="idlInterfaceID">Window</span> {
-<span class="idlAttribute">                attribute <span class="idlAttrType"><a>EventHandler</a></span> <span class="idlAttrName"><a href="#widl-Window-onlightlevel">onlightlevel</a></span>;</span>
+<span class="idlAttribute">                attribute <span class="idlAttrType">EventHandler</span> <span class="idlAttrName"><a href="#widl-Window-onlightlevel">onlightlevel</a></span>;</span>
 };</span></pre>
       <p>
         The <code id="widl-Window-onlightlevel">onlightlevel</code>
@@ -791,10 +810,10 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
     "<a href="#idl-def-LightLevelState.dim" class="idlEnumItem">dim</a>",
     "<a href="#idl-def-LightLevelState.normal" class="idlEnumItem">normal</a>",
     "<a href="#idl-def-LightLevelState.bright" class="idlEnumItem">bright</a>"
-};</span><br><br><span class="idlDictionary" id="idl-def-LightLevelEventInit">dictionary <span class="idlDictionaryID">LightLevelEventInit</span> : <span class="idlSuperclass"><a>EventInit</a></span> {
+};</span><br><br><span class="idlDictionary" id="idl-def-LightLevelEventInit">dictionary <span class="idlDictionaryID">LightLevelEventInit</span> : <span class="idlSuperclass">EventInit</span> {
 <span class="idlMember">    <span class="idlMemberType"><a href="#idl-def-LightLevelState" class="idlType"><code>LightLevelState</code></a></span> <span class="idlMemberName"><a href="#widl-LightLevelEventInit-value">value</a></span>;</span>
 };</span><br><br>[<span class="extAttr">Constructor (DOMString type, optional LightLevelEventInit eventInitDict)</span>]
-interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idlSuperclass"><a>Event</a></span> {
+interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idlSuperclass">Event</span> {
 <span class="idlAttribute">    readonly    attribute <span class="idlAttrType"><a href="#idl-def-LightLevelState" class="idlType"><code>LightLevelState</code></a></span> <span class="idlAttrName"><a href="#widl-LightLevelEvent-value">value</a></span>;</span>
 };</span></pre>
         
@@ -808,8 +827,8 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
           string. It represents the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a>.
         </p>
         <p>
-          When a <dfn id="dfn-user-agent-4">user agent</dfn> is required to <dfn id="dfn-fire-a-light-level-event">fire a light
-          level event</dfn>, the <dfn id="dfn-user-agent-5">user agent</dfn> <em class="rfc2119" title="MUST">MUST</em> run the
+          When a <a href="#dfn-user-agent" class="internalDFN">user agent</a> is required to <dfn id="dfn-fire-a-light-level-event">fire a light
+          level event</dfn>, the <a href="#dfn-user-agent" class="internalDFN">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the
           following steps:
         </p>
         <ol class="rule">
@@ -850,8 +869,8 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
           </li>
         </ol>
         <p>
-          When the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a> changes, the <dfn id="dfn-user-agent-6">user agent</dfn>
-          <em class="rfc2119" title="MUST">MUST</em> queue a task to <a>fire a user proximity event</a>
+          When the <a href="#dfn-current-light-level-state" class="internalDFN">current light level state</a> changes, the <a href="#dfn-user-agent" class="internalDFN">user agent</a>
+          <em class="rfc2119" title="MUST">MUST</em> queue a task to <dfn id="dfn-fire-a-user-proximity-event">fire a user proximity event</dfn>
           at the <a href="#dfn-top-level-browsing-context" class="internalDFN">top-level browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
         
@@ -895,8 +914,8 @@ interface <span class="idlInterfaceID">LightLevelEvent</span> : <span class="idl
     </section>
   
 
-<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-DOM4">[DOM4]</dt><dd rel="dcterms:requires">Anne van Kesteren; Aryeh Gregor; Lachlan Hunt; Ms2ger. <a href="http://www.w3.org/TR/dom/"><cite>DOM4</cite></a>. 6 December 2012. W3C Working Draft. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
-</dd><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 6 August 2013. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-DOM4">[DOM4]</dt><dd rel="dcterms:requires">Anne van Kesteren; Aryeh Gregor; Ms2ger; Alex Russell; Robin Berjon. <a href="http://www.w3.org/TR/dom/"><cite>W3C DOM4</cite></a>. 4 February 2014. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
+</dd><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 4 February 2014. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
 </dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
 </dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd rel="dcterms:requires">Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a>
 </dd></dl></section></section></body></html>

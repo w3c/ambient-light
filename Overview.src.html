@@ -24,7 +24,7 @@
           wgURI:        "http://www.w3.org/2009/dap/",
           wgPublicList: "public-device-apis",
           wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/43696/status",
-          testSuiteURI: "https://w3c-test.org/web-platform-tests/master/ambient-light/",
+          testSuiteURI: "http://w3c-test.org/ambient-light/",
           scheme:       "https",
           otherLinks: [{
             key: "Revision history",
@@ -227,8 +227,8 @@
           construction etc.
         </div>
         <p>
-          When a <dfn>user agent</dfn> is required to <dfn>fire a device
-          light event</dfn>, the <dfn>user agent</dfn> MUST run the
+          When a <a>user agent</a> is required to <dfn>fire a device
+          light event</dfn>, the <a>user agent</a> MUST run the
           following steps:
         </p>
         <ol class="rule">
@@ -248,7 +248,7 @@
           </li>
         </ol>
         <p>
-          When the <a>current light level</a> changes, the <dfn>user agent</dfn>
+          When the <a>current light level</a> changes, the <a>user agent</a>
           MUST queue a task to <a>fire a device light event</a>
           at the <a>top-level browsing context</a>'s <a>Window</a> object.
         </p>
@@ -351,8 +351,8 @@
           string. It represents the <a>current light level state</a>.
         </p>
         <p>
-          When a <dfn>user agent</dfn> is required to <dfn>fire a light
-          level event</dfn>, the <dfn>user agent</dfn> MUST run the
+          When a <a>user agent</a> is required to <dfn>fire a light
+          level event</dfn>, the <a>user agent</a> MUST run the
           following steps:
         </p>
         <ol class="rule">
@@ -393,8 +393,8 @@
           </li>
         </ol>
         <p>
-          When the <a>current light level state</a> changes, the <dfn>user agent</dfn>
-          MUST queue a task to <a>fire a user proximity event</a>
+          When the <a>current light level state</a> changes, the <a>user agent</a>
+          MUST queue a task to <dfn>fire a user proximity event</dfn>
           at the <a>top-level browsing context</a>'s <a>Window</a> object.
         </p>
         
