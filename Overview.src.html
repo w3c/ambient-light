@@ -69,9 +69,12 @@
     <section class="informative">
       <h2>Introduction</h2>
       <p>
-        This specification defines an event that provide information about the
-        ambient light level, as measured by a device's light sensor, in terms
-        of lux units. The
+        The <a>DeviceLightEvent</a> interface provides information about the
+        ambient light levels, as detected by the device's light detector, in
+        terms of lux units.
+      </p>
+      <p>
+        The
         <a href="http://dev.w3.org/csswg/mediaqueries4/#light-level">
         'light-level' media feature</a> [[mediaqueries4]] provides more granular,
         less precise, information about the ambient light level.
@@ -181,28 +184,26 @@
     
     <section>
       <h2>Device Light</h2>
-      <p>
-        The <a>DeviceLightEvent</a> interface provides information about the
-        ambient light levels, as detected by the device's light detector, in
-        terms of lux units.
-      </p>
-      <p>
-        The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
-        which this specification extends:
-      </p>
-      <dl title="partial interface Window" class="idl">
-        <dt>
-          attribute EventHandler ondevicelight
-        </dt>
-        <dd></dd>
-      </dl>
-      <p>
-        The <code id="widl-Window-ondevicelight">ondevicelight</code>
-        event handler and its corresponding
-        event handler event type <code>devicelight</code> MUST be supported
-        as an IDL attribute by all objects implementing the <a>Window</a>
-        interface.
-      </p>
+      <section>
+        <h2>Extensions to <a>Window</a> Interface</h2>
+        <p>
+          The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
+          which this specification extends:
+        </p>
+        <dl title="partial interface Window" class="idl">
+          <dt>
+            attribute EventHandler ondevicelight
+          </dt>
+          <dd></dd>
+        </dl>
+        <p>
+          The <code id="widl-Window-ondevicelight">ondevicelight</code>
+          event handler and its corresponding
+          event handler event type <code>devicelight</code> MUST be supported
+          as an IDL attribute by all objects implementing the <a>Window</a>
+          interface.
+        </p>
+      </section>
       <section>
         <h2><a>DeviceLightEvent</a> Interface</h2>
         <dl title="[Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)]
