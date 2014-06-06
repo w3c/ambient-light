@@ -32,7 +32,19 @@
               value: "https://dvcs.w3.org/hg/dap/log/default/light/Overview.src.html",
               href:  "https://dvcs.w3.org/hg/dap/log/default/light/Overview.src.html"
             }]
-          }]
+          }],
+          localBiblio: {
+            "mediaqueries4": {
+                title:     "Media Queries Level 4",
+                href:      "http://dev.w3.org/csswg/mediaqueries4/",
+                authors:  [
+                           "Florian Rivoal",
+                           "Tab Atkins Jr."
+                ],
+                status:    "ED",
+                publisher: "W3C"
+            }
+          }
       };
     </script>
   </head>
@@ -52,22 +64,17 @@
         that could be implemented on its own merits without interference with
         other features.
       </p>
-      <p>
-        Changes in this document since the previously published First Public Working Draft
-        include the addition of the Light Level section with the LightLevelEvent interface,
-        editorial cleanup, and an update to the references.
-      </p>
     </section>
     
     <section class="informative">
       <h2>Introduction</h2>
       <p>
-        This specification defines events that provide information about the
-        ambient light level, as measured by a device's light sensor.  A
-        <a>LightLevelEvent</a> describes the light level as one of three simple
-        categories - "dim", "normal", and "bright" - while a
-        <a>DeviceLightEvent</a> provides a more granular answer by describing
-        the light level in terms of lux units.
+        This specification defines an event that provide information about the
+        ambient light level, as measured by a device's light sensor, in terms
+        of lux units. The
+        <a href="http://dev.w3.org/csswg/mediaqueries4/#light-level">
+        'light-level' media feature</a> [[mediaqueries4]] provides more granular,
+        less precise, information about the ambient light level.
       </p>
     </section>
     
@@ -143,9 +150,8 @@
       <p>
         Variations in implementation light level values as well as event firing
         rates offer the possibility of fingerprinting to identify users.
-        Browser implementations may reduce the risk by only using the less
-        precise <a>LightLevelState</a> of 'dim', 'normal', and 'bright' and limiting
-        event rates available to web application developers.
+        Browser implementations may reduce the risk by limiting event rates
+        available to web application developers.
       </p>
       <p>
         If the same JavaScript code using the API can be used simultaneously in
@@ -164,11 +170,11 @@
         application into consideration.
       </p>
       <p>
-        The events defined in this specification are only fired in the
+        The event defined in this specification is only fired in the
         <a>top-level browsing context</a> to avoid the privacy risk of
         sharing the information defined in this specification with contexts
         unfamiliar to the user. For example, a mobile device will only fire
-        these events on the active tab, and not on the background tabs or
+        the event on the active tab, and not on the background tabs or
         within iframes.
       </p>
     </section>
@@ -282,153 +288,7 @@
         </section>
       </section>
     </section>
-
-    <section>
-      <h2>Light Level</h2>
-      <p>
-        The <a>LightLevelEvent</a> interface provides information about the
-        ambient light levels, as detected by the device's light detector, in
-        terms of three general range: "dim", "normal", or "bright".
-      </p>
-      <p>
-        The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
-        which this specification extends:
-      </p>
-      <dl title="partial interface Window" class="idl">
-        <dt>
-          attribute EventHandler onlightlevel
-        </dt>
-        <dd>
-        </dd>
-      </dl>
-      <p>
-        The <code id="widl-Window-onlightlevel">onlightlevel</code>
-        event handler and its corresponding
-        event handler event type <code>lightlevel</code> MUST be supported
-        as an IDL attribute by all objects implementing the <a>Window</a>
-        interface.
-      </p>
-      <section>
-        <h2><a>LightLevelEvent</a> Interface</h2>
-        <dl title="[Constructor (DOMString type, optional LightLevelEventInit eventInitDict)]
-                   interface LightLevelEvent : Event"
-            class="idl" data-merge='LightLevelEventInit LightLevelState'>
-          <dt>
-            readonly attribute LightLevelState value
-          </dt>
-          <dd></dd>
-        </dl>
-        <dl id="enum-basic" class="idl" title="enum LightLevelState">
-          <dt>
-            <code id="idl-def-LightLevelState.generatedID">&zwj;</code><!-- (empty string) -->
-          </dt>
-          <dd></dd>
-          <dt>
-            dim
-          </dt>
-          <dd></dd>
-          <dt>
-            normal
-          </dt>
-          <dd></dd>
-          <dt>
-            bright
-          </dt>
-          <dd></dd>
-        </dl>
-        <dl title="dictionary LightLevelEventInit : EventInit" class='idl'>
-          <dt>
-            LightLevelState value
-          </dt>
-          <dd></dd>
-        </dl>
-        <p>
-          The <code id="widl-LightLevelEvent-value">value</code>
-          <code id="widl-LightLevelEventInit-value"></code>
-          attribute of the <a>LightLevelEvent</a>
-          interface MUST return the value it was initialized to. When the
-          object is created, this attribute MUST be initialized to an empty
-          string. It represents the <a>current light level state</a>.
-        </p>
-        <p>
-          When a <a>user agent</a> is required to <dfn>fire a light
-          level event</dfn>, the <a>user agent</a> MUST run the
-          following steps:
-        </p>
-        <ol class="rule">
-          <li>
-            <a>Create an event</a> that uses the <a>LightLevelEvent</a>
-            interface, with the name <code>lightlevel</code>, which
-            bubbles, is not cancelable, and has no default action, that also
-            meets the following conditions:
-            <ol>
-              <li>
-                If the implementation is unable to report the <a>current
-                light level state</a>, initialize the <code>value</code>
-                attribute to an empty string, otherwise initialize the
-                attribute to the <a>current light level state</a>, which MUST
-                be one of the following values:
-                <ul>
-                  <li><code id="idl-def-LightLevelState.dim">dim</code></li>
-                  <li><code id="idl-def-LightLevelState.normal">normal</code></li>
-                  <li><code id="idl-def-LightLevelState.bright">bright</code></li>
-                </ul>
-                <div class="note">
-                  The lux ranges that map to the <a>current light level
-                  state</a>s are left to the implementation, as devices with
-                  different sensitivities could map them slightly differently.
-                  However, it is recommended that "<code>dim</code>" correspond
-                  to ambient light below 50 lux (dark enough that the light
-                  produced by a white background is eye-straining or
-                  distracting), "<code>normal</code>" correspond to light
-                  between 50 lux and 10000 lux (office building hallway, very
-                  dark overcast day, office lighting, sunrise or sunset on a
-                  clear day, overcast day, or similar), and
-                  "<code>bright</code>" correspond to light above 10000 lux
-                  (direct sunlight, or similarly bright conditions that make it
-                  hard to see things that aren't high-contrast).
-                </div>
-              </li>
-            </ol>
-          </li>
-        </ol>
-        <p>
-          When the <a>current light level state</a> changes, the <a>user agent</a>
-          MUST queue a task to <dfn>fire a user proximity event</dfn>
-          at the <a>top-level browsing context</a>'s <a>Window</a> object.
-        </p>
-        
-        <div class="note">
-          The definition of granularity i.e. how often the event is fired is
-          left to the implementation. Implementations can fire the event if
-          they have reason to believe that the page does not have sufficiently
-          fresh data.
-        </div>
-        <section>
-          <h2>Event handlers</h2>
-          <p>
-            The following are the <a>event handlers</a> (and their corresponding
-            <a>event handler event types</a>) that MUST be supported as
-            attributes by the <a>Window</a> object:
-          </p>
-          <table class="simple">
-            <thead>
-              <tr>
-                <th>event handler</th>
-                <th>event handler event type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong><code>onlightlevel</code></strong></td>
-                <td><code>lightlevel</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </section>
-    </section>
-      
+    
     <section class="appendix">
       <h2>Acknowledgements</h2>
       <p>
