@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" typeof="bibo:Document w3p:LastCall" about="" property="dcterms:language" content="en">
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:CR" about="" property="dcterms:language" content="en">
 <head>
     <title>Ambient Light Events</title>
     <meta charset="utf-8">
@@ -48,7 +48,7 @@ cite .bibref {
 }
 
 code {
-    color:  #ff4500;
+    color:  #C83500;
 }
 
 /* --- TOC --- */
@@ -388,7 +388,7 @@ table.exceptions table {
     border-collapse:    collapse;
     width:  100%;
 }
-</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-WD"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-CR"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
   <body class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
   <p>
     
@@ -397,11 +397,11 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Ambient Light Events</h1>
   
-  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-06-18T21:00:00.000Z" id="w3c-last-call-working-draft-19-june-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Last Call Working Draft <time class="dt-published" datetime="2014-06-19">19 June 2014</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-08-27T21:00:00.000Z" id="w3c-candidate-recommendation-28-august-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Candidate Recommendation <time class="dt-published" datetime="2014-08-28">28 August 2014</time></h2>
   <dl>
     
       <dt>This version:</dt>
-      <dd><a class="u-url" href="http://www.w3.org/TR/2014/WD-ambient-light-20140619/">http://www.w3.org/TR/2014/WD-ambient-light-20140619/</a></dd>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2014/CR-ambient-light-20140828/">http://www.w3.org/TR/2014/CR-ambient-light-20140828/</a></dd>
       <dt>Latest published version:</dt>
       <dd><a href="http://www.w3.org/TR/ambient-light/">http://www.w3.org/TR/ambient-light/</a></dd>
     
@@ -414,11 +414,14 @@ table.exceptions table {
       <dd><a href="http://w3c-test.org/ambient-light/">http://w3c-test.org/ambient-light/</a></dd>
     
     
+      <dt>Implementation report:</dt>
+      <dd><a href="http://www.w3.org/2009/dap/wiki/ImplementationStatus">http://www.w3.org/2009/dap/wiki/ImplementationStatus</a></dd>
+    
     
     
     
       <dt>Previous version:</dt>
-      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2013/CR-ambient-light-20131001/">http://www.w3.org/TR/2013/CR-ambient-light-20131001/</a></dd>
+      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2014/WD-ambient-light-20140619/">http://www.w3.org/TR/2014/WD-ambient-light-20140619/</a></dd>
     
     
     <dt>Editors:</dt>
@@ -489,27 +492,11 @@ table.exceptions table {
         </p>
         
       <p>
-        The following changes have been made
-        since the
-        <a href="http://www.w3.org/TR/2013/CR-ambient-light-20131001/">
+        There have been no substantive changes since the
+        <a href="http://www.w3.org/TR/2014/WD-ambient-light-20140619/">
         <abbr title="World Wide Web Consortium">W3C</abbr>
-        Candidate Recommendation 01 October 2013</a>
-        (<a href="LC2-diff.html">diff</a>):
+        <abbr title="World Wide Web Consortium">W3C</abbr> Last Call Working Draft 19 June 2014</a>.
       </p>
-      <ul>
-        <li>
-          Removed the 
-          <a href="http://www.w3.org/TR/2013/CR-ambient-light-20131001/#lightlevelevent-interface">
-          <code>LightLevelEvent</code></a> interface to align with
-          implementations.
-        </li>
-        <li>
-          Updated the <a href="#terminology">Terminology</a>,
-          <a href="#security-and-privacy-considerations">
-          Security and privacy considerations</a> and
-          <a href="#introduction">Introduction</a> sections accordingly.
-        </li>
-      </ul>
       <p>
         The functionality described in this specification was initially
         specified as part of the
@@ -521,7 +508,7 @@ table.exceptions table {
       </p>
     
         <p>
-          This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as a Last Call Working Draft.
+          This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as a Candidate Recommendation.
           
             This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
           
@@ -531,28 +518,32 @@ table.exceptions table {
             (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
             <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
           
-          The Last Call period ends 24 July 2014.
+          
+          
+            <abbr title="World Wide Web Consortium">W3C</abbr> publishes a Candidate Recommendation to indicate that the document is believed to be
+            stable and to encourage implementation by the developer community. This Candidate
+            Recommendation is expected to advance to Proposed Recommendation no earlier than
+            01 November 2014.
           
           
             All comments are welcome.
           
         </p>
         
+          <p>
+            Please see the Working Group's  <a href="http://www.w3.org/2009/dap/wiki/ImplementationStatus">implementation
+            report</a>.
+          </p>
+        
         
           <p>
-            Publication as a Last Call Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+            Publication as a Candidate Recommendation does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
             Membership. This is a draft document and may be updated, replaced or obsoleted by other
             documents at any time. It is inappropriate to cite this document as other than work in
             progress.
           </p>
         
         
-        
-          <p>
-            This is a Last Call Working Draft and thus the Working Group has determined that this
-            document has satisfied the relevant technical requirements and is sufficiently stable to
-            advance through the Technical Recommendation process.
-          </p>
         
         <p>
           
@@ -577,6 +568,10 @@ table.exceptions table {
           
         </p>
         
+          <p>This document is governed by the <a id="w3c_process_revision" href="http://www.w3.org/2014/Process-20140801/">1 August 2014 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+          </p>
+        
+        
       
     
   
@@ -594,7 +589,7 @@ table.exceptions table {
       <p>
         The
         <a href="http://dev.w3.org/csswg/mediaqueries4/#light-level">
-        'light-level' media feature</a> [<cite><a class="bibref" href="#bib-mediaqueries4">mediaqueries4</a></cite>] provides more granular,
+        'light-level' media feature</a> [<cite><a class="bibref" href="#bib-MEDIAQUERIES4">MEDIAQUERIES4</a></cite>] provides more granular,
         less precise, information about the ambient light level.
       </p>
     </section>
@@ -813,9 +808,9 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
     </section>
   
 
-<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-DOM4">[DOM4]</dt><dd rel="dcterms:requires">Anne van Kesteren; Aryeh Gregor; Ms2ger; Alex Russell; Robin Berjon. <a href="http://www.w3.org/TR/dom/"><cite>W3C DOM4</cite></a>. 8 May 2014. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
-</dd><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 29 April 2014. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-DOM4">[DOM4]</dt><dd rel="dcterms:requires">Anne van Kesteren; Aryeh Gregor; Ms2ger; Alex Russell; Robin Berjon. <a href="http://www.w3.org/TR/dom/"><cite>W3C DOM4</cite></a>. 10 July 2014. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
+</dd><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 17 June 2014. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
 </dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a>
 </dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd rel="dcterms:requires">Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a>
-</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_informative-references"><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography" about=""><dt id="bib-mediaqueries4">[mediaqueries4]</dt><dd rel="dcterms:references">Florian Rivoal; Tab Atkins Jr.. <a href="http://dev.w3.org/csswg/mediaqueries4/"><cite>Media Queries Level 4</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/mediaqueries4/">http://dev.w3.org/csswg/mediaqueries4/</a>
+</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_informative-references"><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography" about=""><dt id="bib-MEDIAQUERIES4">[MEDIAQUERIES4]</dt><dd rel="dcterms:references">Florian Rivoal; Tab Atkins Jr.. <a href="http://dev.w3.org/csswg/mediaqueries4/"><cite>Media Queries Level 4</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/mediaqueries4/">http://dev.w3.org/csswg/mediaqueries4/</a>
 </dd></dl></section></section></body></html>

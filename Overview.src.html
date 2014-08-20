@@ -6,13 +6,13 @@
     <script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove' async></script>
     <script class="remove">
       var respecConfig = {
-          specStatus:           "LC",
+          specStatus:           "CR",
           shortName:            "ambient-light",
-          publishDate:          "2014-06-19",
-          previousPublishDate:  "2013-10-01",
-          previousMaturity:     "CR",
+          publishDate:          "2014-08-28",
+          previousPublishDate:  "2014-06-19",
+          previousMaturity:     "LC",
           edDraftURI:           "http://dvcs.w3.org/hg/dap/raw-file/default/light/Overview.html",
-          lcEnd:                "2014-07-24",
+          crEnd:                "2014-11-01",
           editors:  [
               { name: "Doug Turner", company: "Mozilla Corporation", companyURL: "http://mozilla.com/" },
               { name: "Anssi Kostiainen", company: "Intel", companyURL: "http://intel.com/" }
@@ -26,6 +26,7 @@
           wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/43696/status",
           testSuiteURI: "http://w3c-test.org/ambient-light/",
           scheme:       "https",
+          implementationReportURI: "http://www.w3.org/2009/dap/wiki/ImplementationStatus",
           otherLinks: [{
             key: "Revision history",
             data: [{
@@ -34,7 +35,7 @@
             }]
           }],
           localBiblio: {
-            "mediaqueries4": {
+            "MEDIAQUERIES4": {
                 title:     "Media Queries Level 4",
                 href:      "http://dev.w3.org/csswg/mediaqueries4/",
                 authors:  [
@@ -56,27 +57,11 @@
     
     <section id="sotd">
       <p>
-        The following changes have been made
-        since the
-        <a href="http://www.w3.org/TR/2013/CR-ambient-light-20131001/">
+        There have been no substantive changes since the
+        <a href="http://www.w3.org/TR/2014/WD-ambient-light-20140619/">
         <abbr title="World Wide Web Consortium">W3C</abbr>
-        Candidate Recommendation 01 October 2013</a>
-        (<a href="LC2-diff.html">diff</a>):
+        W3C Last Call Working Draft 19 June 2014</a>.
       </p>
-      <ul>
-        <li>
-          Removed the 
-          <a href="http://www.w3.org/TR/2013/CR-ambient-light-20131001/#lightlevelevent-interface">
-          <code>LightLevelEvent</code></a> interface to align with
-          implementations.
-        </li>
-        <li>
-          Updated the <a href="#terminology">Terminology</a>,
-          <a href="#security-and-privacy-considerations">
-          Security and privacy considerations</a> and
-          <a href="#introduction">Introduction</a> sections accordingly.
-        </li>
-      </ul>
       <p>
         The functionality described in this specification was initially
         specified as part of the
@@ -98,7 +83,7 @@
       <p>
         The
         <a href="http://dev.w3.org/csswg/mediaqueries4/#light-level">
-        'light-level' media feature</a> [[mediaqueries4]] provides more granular,
+        'light-level' media feature</a> [[MEDIAQUERIES4]] provides more granular,
         less precise, information about the ambient light level.
       </p>
     </section>
