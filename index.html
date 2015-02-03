@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" typeof="bibo:Document " about="" property="dcterms:language" content="en">
-<head>
+<html lang="en" dir="ltr" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head><meta lang="" property="dc:language" content="en">
     <title>Ambient Light Events</title>
     <meta charset="utf-8">
     
@@ -121,33 +121,34 @@ table.simple {
     }
 }
 </style><style>/* --- ISSUES/NOTES --- */
-div.issue-title, div.note-title {
+div.issue-title, div.note-title , div.warning-title {
     padding-right:  1em;
     min-width: 7.5em;
     color: #b9ab2d;
 }
 div.issue-title { color: #e05252; }
 div.note-title { color: #2b2; }
-div.issue-title span, div.note-title span {
+div.warning-title { color: #f22; }
+div.issue-title span, div.note-title span, div.warning-title span {
     text-transform: uppercase;
 }
-div.note, div.issue {
+div.note, div.issue, div.warning {
     margin-top: 1em;
     margin-bottom: 1em;
 }
-.note > p:first-child, .issue > p:first-child { margin-top: 0 }
-.issue, .note {
+.note > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
+.issue, .note, .warning {
     padding: .5em;
     border-left-width: .5em;
     border-left-style: solid;
 }
-div.issue, div.note {
+div.issue, div.note , div.warning {
     padding: 1em 1.2em 0.5em;
     margin: 1em 0;
     position: relative;
     clear: both;
 }
-span.note, span.issue { padding: .1em .5em .15em; }
+span.note, span.issue, span.warning { padding: .1em .5em .15em; }
 
 .issue {
     border-color: #e05252;
@@ -158,7 +159,24 @@ span.note, span.issue { padding: .1em .5em .15em; }
     background: #e9fbe9;
 }
 
+.warning {
+    border-color: #f11;
+    border-right-width: .2em;
+    border-top-width: .2em;
+    border-bottom-width: .2em;
+    border-style: solid;
+    background: #fbe9e9;
+}
 
+.warning-title:before{
+    content: "⚠"; /*U+26A0 WARNING SIGN*/
+    font-size: 3em;
+    float: left;
+    height: 100%;
+    padding-right: .3em;
+    vertical-align: top;
+    margin-top: -0.5em;
+}
 </style><style>/* --- WEB IDL --- */
 pre.idl {
     border-top: 1px solid #90b8de;
@@ -389,15 +407,17 @@ table.exceptions table {
     width:  100%;
 }
 </style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
-  <body class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
+  <body style="" class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
   <p>
-    
-      <a href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
-    
+      
+        
+            <a href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
+        
+      
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Ambient Light Events</h1>
   
-  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-09-29T06:19:53.000Z" id="w3c-editor-s-draft-29-september-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2014-09-29">29 September 2014</time></h2>
+  <h2 id="w3c-editor-s-draft-03-february-2015"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2015-02-03">03 February 2015</time></h2>
   <dl>
     
       <dt>This version:</dt>
@@ -424,9 +444,11 @@ table.exceptions table {
     
     
     <dt>Editors:</dt>
-    <dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Doug Turner</span>, <a rel="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://mozilla.com/">Mozilla Corporation</a></span>
+    <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Doug Turner</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://mozilla.com/">Mozilla Corporation</a></span>
+<span property="rdf:rest" resource="_:editor1"></span>
 </dd>
-<dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anssi Kostiainen</span>, <a rel="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://intel.com/">Intel</a></span>
+<dd class="p-author h-card vcard" resource="_:editor1"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anssi Kostiainen</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://intel.com/">Intel</a></span>
+<span property="rdf:rest" resource="rdf:nil"></span>
 </dd>
 
     
@@ -456,7 +478,7 @@ table.exceptions table {
     
       <p class="copyright">
         <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
-        2014
+        2015
         
         <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
         (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
@@ -476,10 +498,10 @@ table.exceptions table {
   
   <hr>
 </div>
-    <section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#abstract" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_abstract">Abstract</h2><p>
+    <section id="abstract" class="introductory" property="dc:abstract"><h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2><p>
       This specification defines a means to receive events that correspond to
       a light sensor detecting the presence of a light.
-    </p></section><section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#sotd" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_sotd">Status of This Document</h2>
+    </p></section><section id="sotd" class="introductory"><h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
   
     
       
@@ -489,6 +511,7 @@ table.exceptions table {
           latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
           http://www.w3.org/TR/.</em>
         </p>
+        
         
       <p>
         The functionality described in this specification was initially
@@ -500,6 +523,7 @@ table.exceptions table {
         other features.
       </p>
     
+        
         <p>
           This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as an Editor's Draft.
           
@@ -512,7 +536,10 @@ table.exceptions table {
           
           
           
+          
+            
             All comments are welcome.
+            
           
         </p>
         
@@ -520,6 +547,7 @@ table.exceptions table {
             Please see the Working Group's  <a href="http://www.w3.org/2009/dap/wiki/ImplementationStatus">implementation
             report</a>.
           </p>
+        
         
         
           <p>
@@ -534,7 +562,7 @@ table.exceptions table {
         <p>
           
             This document was produced by a group operating under the 
-            <a id="sotd_patent" about="" rel="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+            <a id="sotd_patent" property="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
             Policy</a>.
           
           
@@ -562,12 +590,12 @@ table.exceptions table {
       
     
   
-</section><section id="toc"><h2 class="introductory" aria-level="1" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li><li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">3. </span>Terminology</a></li><li class="tocline"><a href="#security-and-privacy-considerations" class="tocxref"><span class="secno">4. </span>Security and privacy considerations</a></li><li class="tocline"><a href="#device-light" class="tocxref"><span class="secno">5. </span>Device Light</a><ul class="toc"><li class="tocline"><a href="#extensions-to-window-interface" class="tocxref"><span class="secno">5.1 </span>Extensions to <span class="formerLink"><code>Window</code></span> Interface</a></li><li class="tocline"><a href="#devicelightevent-interface" class="tocxref"><span class="secno">5.2 </span><span class="formerLink"><code>DeviceLightEvent</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#event-handlers" class="tocxref"><span class="secno">5.2.1 </span>Event handlers</a></li></ul></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.2 </span>Informative references</a></li></ul></li></ul></section>
+</section><section id="toc"><h2 class="introductory" id="h-toc" resource="#h-toc"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li><li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">3. </span>Terminology</a></li><li class="tocline"><a href="#security-and-privacy-considerations" class="tocxref"><span class="secno">4. </span>Security and privacy considerations</a></li><li class="tocline"><a href="#device-light" class="tocxref"><span class="secno">5. </span>Device Light</a><ul class="toc"><li class="tocline"><a href="#extensions-to-window-interface" class="tocxref"><span class="secno">5.1 </span>Extensions to <span class="formerLink"><code>Window</code></span> Interface</a></li><li class="tocline"><a href="#devicelightevent-interface" class="tocxref"><span class="secno">5.2 </span><span class="formerLink"><code>DeviceLightEvent</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#event-handlers" class="tocxref"><span class="secno">5.2.1 </span>Event handlers</a></li></ul></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.2 </span>Informative references</a></li></ul></li></ul></section>
     
     
     
-    <section class="informative" id="introduction">
-      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_introduction"><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
+    <section class="informative" id="introduction" typeof="bibo:Chapter" resource="#introduction" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-introduction" resource="#h-introduction"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Introduction</span></h2><p><em>This section is non-normative.</em></p>
       <p>
         The <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> interface provides information about the
         ambient light levels, as detected by the device's light detector, in
@@ -575,21 +603,20 @@ table.exceptions table {
       </p>
       <p>
         The
-        <a href="http://dev.w3.org/csswg/mediaqueries4/#light-level">
+        <a href="http://dev.w3.org/csswg/mediaqueries/#light-level">
         'light-level' media feature</a> [<cite><a class="bibref" href="#bib-MEDIAQUERIES4">MEDIAQUERIES4</a></cite>] provides more granular,
         less precise, information about the ambient light level.
       </p>
     </section>
     
-    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_conformance"><span class="secno">2. </span>Conformance</h2>
+    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" property="bibo:hasPart"><!--OddPage--><h2 id="h-conformance" resource="#h-conformance"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Conformance</span></h2>
 <p>
   As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
   and notes in this specification are non-normative. Everything else in this specification is
   normative.
 </p>
-<p>
-  The key words <em class="rfc2119" title="MUST">MUST</em>, <em class="rfc2119" title="MUST NOT">MUST NOT</em>, <em class="rfc2119" title="REQUIRED">REQUIRED</em>, <em class="rfc2119" title="SHOULD">SHOULD</em>, <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em>, <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em>, <em class="rfc2119" title="MAY">MAY</em>,
-  and <em class="rfc2119" title="OPTIONAL">OPTIONAL</em> in this specification are to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
+<p id="respecRFC2119">The key word <em class="rfc2119" title="MUST">MUST</em> is 
+  to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
 </p>
 
       <p>
@@ -606,8 +633,8 @@ table.exceptions table {
       </p>
     </section>
     
-    <section id="terminology">
-      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_terminology"><span class="secno">3. </span>Terminology</h2>
+    <section id="terminology" typeof="bibo:Chapter" resource="#terminology" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-terminology" resource="#h-terminology"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Terminology</span></h2>
       <p>
         The <code><a href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler">
         EventHandler</a></code> interface represents a <a href="http://www.w3.org/TR/WebIDL/#idl-callback-functions">callback function</a> used for <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
@@ -644,8 +671,8 @@ table.exceptions table {
       </p>
     </section>
     
-    <section class="informative" id="security-and-privacy-considerations">
-      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_security-and-privacy-considerations"><span class="secno">4. </span>Security and privacy considerations</h2><p><em>This section is non-normative.</em></p>
+    <section class="informative" id="security-and-privacy-considerations" typeof="bibo:Chapter" resource="#security-and-privacy-considerations" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-security-and-privacy-considerations" resource="#h-security-and-privacy-considerations"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>Security and privacy considerations</span></h2><p><em>This section is non-normative.</em></p>
       <p>
         Privacy risks can arise when this specification is used in
         combination with other functionality or when used over time,
@@ -688,10 +715,10 @@ table.exceptions table {
       </p>
     </section>
     
-    <section id="device-light">
-      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_device-light"><span class="secno">5. </span>Device Light</h2>
-      <section id="extensions-to-window-interface">
-        <h3 aria-level="2" role="heading" id="h3_extensions-to-window-interface"><span class="secno">5.1 </span>Extensions to <a href="#idl-def-Window" class="idlType"><code>Window</code></a> Interface</h3>
+    <section id="device-light" typeof="bibo:Chapter" resource="#device-light" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-device-light" resource="#h-device-light"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>Device Light</span></h2>
+      <section id="extensions-to-window-interface" typeof="bibo:Chapter" resource="#extensions-to-window-interface" property="bibo:hasPart">
+        <h3 id="h-extensions-to-window-interface" resource="#h-extensions-to-window-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.1 </span>Extensions to <a href="#idl-def-Window" class="idlType"><code>Window</code></a> Interface</span></h3>
         <p>
           The HTML5 specification [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>] defines a <a href="#idl-def-Window" class="idlType"><code>Window</code></a> interface,
           which this specification extends:
@@ -707,8 +734,8 @@ table.exceptions table {
           interface.
         </p>
       </section>
-      <section id="devicelightevent-interface">
-        <h3 aria-level="2" role="heading" id="h3_devicelightevent-interface"><span class="secno">5.2 </span><a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> Interface</h3>
+      <section id="devicelightevent-interface" typeof="bibo:Chapter" resource="#devicelightevent-interface" property="bibo:hasPart">
+        <h3 id="h-devicelightevent-interface" resource="#h-devicelightevent-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2 </span><a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> Interface</span></h3>
         <pre class="idl"><span class="idlInterface" id="idl-def-DeviceLightEvent"><span class="idlDictionary" id="idl-def-DeviceLightEventInit">dictionary <span class="idlDictionaryID">DeviceLightEventInit</span> : <span class="idlSuperclass">EventInit</span> {
 <span class="idlMember">    <span class="idlMemberType">unrestricted double</span> <span class="idlMemberName"><a href="#widl-DeviceLightEventInit-value">value</a></span>;</span>
 };</span><br><br>[<span class="extAttr">Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)</span>]
@@ -724,7 +751,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
           object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to positive
           Infinity. It represents the <a href="#dfn-current-light-level" class="internalDFN">current light level</a>.
         </p>
-        <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_1"><span>Note</span></div><div class="">
+        <div class="note"><div class="note-title" aria-level="4" role="heading" id="h-note1"><span>Note</span></div><div class="">
           The precise lux value reported by different devices in the same light
           can be different, due to differences in detection method, sensor
           construction etc.
@@ -755,14 +782,14 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
           <em class="rfc2119" title="MUST">MUST</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN">fire a device light event</a>
           at the <a href="#dfn-top-level-browsing-context" class="internalDFN">top-level browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
         </p>
-        <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_2"><span>Note</span></div><div class="">
+        <div class="note"><div class="note-title" aria-level="4" role="heading" id="h-note2"><span>Note</span></div><div class="">
           The definition of granularity i.e. how often the event is fired is
           left to the implementation. Implementations can fire the event if
           they have reason to believe that the page does not have sufficiently
           fresh data.
         </div></div>
-        <section id="event-handlers">
-          <h4 aria-level="3" role="heading" id="h4_event-handlers"><span class="secno">5.2.1 </span>Event handlers</h4>
+        <section id="event-handlers" typeof="bibo:Chapter" resource="#event-handlers" property="bibo:hasPart">
+          <h4 id="h-event-handlers" resource="#h-event-handlers"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2.1 </span>Event handlers</span></h4>
           <p>
             The following are the <a href="#dfn-event-handlers" class="internalDFN">event handlers</a> (and their corresponding
             <a href="#dfn-event-handler-event-types" class="internalDFN">event handler event types</a>) that <em class="rfc2119" title="MUST">MUST</em> be supported as
@@ -786,8 +813,8 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
       </section>
     </section>
     
-    <section class="appendix" id="acknowledgements">
-      <!--OddPage--><h2 aria-level="1" role="heading" id="h2_acknowledgements"><span class="secno">A. </span>Acknowledgements</h2>
+    <section class="appendix" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-acknowledgements" resource="#h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>Acknowledgements</span></h2>
       <p>
         Doug Turner for the initial prototype and Marcos Caceres for the
         test suite.
@@ -795,9 +822,9 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
     </section>
   
 
-<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-DOM4">[DOM4]</dt><dd rel="dcterms:requires">Anne van Kesteren; Aryeh Gregor; Ms2ger; Alex Russell; Robin Berjon. <a href="http://www.w3.org/TR/dom/"><cite>W3C DOM4</cite></a>. 10 July 2014. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/dom/">http://www.w3.org/TR/dom/</a>
-</dd><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 16 September 2014. W3C Proposed Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
-</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a>
-</dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd rel="dcterms:requires">Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a>
-</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_informative-references"><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography" about=""><dt id="bib-MEDIAQUERIES4">[MEDIAQUERIES4]</dt><dd rel="dcterms:references">Florian Rivoal; Tab Atkins Jr.. <a href="http://dev.w3.org/csswg/mediaqueries4/"><cite>Media Queries Level 4</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/mediaqueries4/">http://dev.w3.org/csswg/mediaqueries4/</a>
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart"><!--OddPage--><h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B. </span>References</span></h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" property="bibo:hasPart"><h3 id="h-normative-references" resource="#h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.1 </span>Normative references</span></h3><dl class="bibliography" resource=""><dt id="bib-DOM4">[DOM4]</dt><dd>Anne van Kesteren; Aryeh Gregor; Ms2ger; Alex Russell; Robin Berjon. <a href="http://www.w3.org/TR/dom/" property="dc:requires"><cite>W3C DOM4</cite></a>. 10 July 2014. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/dom/" property="dc:requires">http://www.w3.org/TR/dom/</a>
+</dd><dt id="bib-HTML5">[HTML5]</dt><dd>Ian Hickson; Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/" property="dc:requires"><cite>HTML5</cite></a>. 28 October 2014. W3C Recommendation. URL: <a href="http://www.w3.org/TR/html5/" property="dc:requires">http://www.w3.org/TR/html5/</a>
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires">https://tools.ietf.org/html/rfc2119</a>
+</dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd>Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/" property="dc:requires"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/" property="dc:requires">http://www.w3.org/TR/WebIDL/</a>
+</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" property="bibo:hasPart"><h3 id="h-informative-references" resource="#h-informative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.2 </span>Informative references</span></h3><dl class="bibliography" resource=""><dt id="bib-MEDIAQUERIES4">[MEDIAQUERIES4]</dt><dd>Florian Rivoal; Tab Atkins Jr.. <a href="http://dev.w3.org/csswg/mediaqueries/" property="dc:references"><cite>Media Queries Level 4</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/mediaqueries/" property="dc:references">http://dev.w3.org/csswg/mediaqueries/</a>
 </dd></dl></section></section></body></html>
