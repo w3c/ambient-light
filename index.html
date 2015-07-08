@@ -121,40 +121,40 @@ table.simple {
     }
 }
 </style><style>/* --- ISSUES/NOTES --- */
-div.issue-title, div.note-title , div.warning-title {
+div.issue-title, div.note-title , div.ednote-title, div.warning-title {
     padding-right:  1em;
     min-width: 7.5em;
     color: #b9ab2d;
 }
 div.issue-title { color: #e05252; }
-div.note-title { color: #2b2; }
+div.note-title, div.ednote-title { color: #2b2; }
 div.warning-title { color: #f22; }
-div.issue-title span, div.note-title span, div.warning-title span {
+div.issue-title span, div.note-title span, div.ednote-title span, div.warning-title span {
     text-transform: uppercase;
 }
-div.note, div.issue, div.warning {
+div.note, div.issue, div.ednote, div.warning {
     margin-top: 1em;
     margin-bottom: 1em;
 }
-.note > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
-.issue, .note, .warning {
+.note > p:first-child, .ednote > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
+.issue, .note, .ednote, .warning {
     padding: .5em;
     border-left-width: .5em;
     border-left-style: solid;
 }
-div.issue, div.note , div.warning {
+div.issue, div.note , div.ednote,  div.warning {
     padding: 1em 1.2em 0.5em;
     margin: 1em 0;
     position: relative;
     clear: both;
 }
-span.note, span.issue, span.warning { padding: .1em .5em .15em; }
+span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
 
 .issue {
     border-color: #e05252;
     background: #fbe9e9;
 }
-.note {
+.note, .ednote {
     border-color: #52e052;
     background: #e9fbe9;
 }
@@ -177,6 +177,15 @@ span.note, span.issue, span.warning { padding: .1em .5em .15em; }
     vertical-align: top;
     margin-top: -0.5em;
 }
+
+li.task-list-item {
+    list-style: none;
+}
+
+input.task-list-item-checkbox {
+    margin: 0 0.35em 0.25em -1.6em;
+    vertical-align: middle;
+}
 </style><style>/* --- WEB IDL --- */
 pre.idl {
     border-top: 1px solid #90b8de;
@@ -191,7 +200,7 @@ pre.idl::before {
     width:      150px;
     background: #90b8de;
     color:  #fff;
-    font-family:    initial;
+    font-family:    sans-serif;
     padding:    3px;
     font-weight:    bold;
     margin: -1em 0 1em -1em;
@@ -272,6 +281,16 @@ a.idlEnumItem {
 /*.idlSectionComment*/
 .idlSectionComment {
     color: gray;
+}
+
+/*.idlIterable*/
+.idlIterableKeyType, .idlIterableValueType {
+    color:  #005a9c;
+}
+
+/*.idlMaplike*/
+.idlMaplikeKeyType, .idlMaplikeValueType {
+    color:  #005a9c;
 }
 
 /*.idlConst*/
@@ -376,7 +395,6 @@ table.exceptions { border-bottom:  1px solid #deb890; }
     color:  #fff;
     padding:    3px 5px;
     text-align: left;
-    font-family:    initial;
     font-weight:    normal;
     text-shadow:    #666 1px 1px 0;
 }
@@ -417,17 +435,17 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Ambient Light Events</h1>
   
-  <h2 id="w3c-editor-s-draft-03-february-2015"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2015-02-03">03 February 2015</time></h2>
+  <h2 id="w3c-editor-s-draft-08-july-2015"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2015-07-08">08 July 2015</time></h2>
   <dl>
     
       <dt>This version:</dt>
-      <dd><a class="u-url" href="http://w3c.github.io/ambient-light/">http://w3c.github.io/ambient-light/</a></dd>
+      <dd><a class="u-url" href="https://w3c.github.io/ambient-light/">https://w3c.github.io/ambient-light/</a></dd>
       <dt>Latest published version:</dt>
       <dd><a href="http://www.w3.org/TR/ambient-light/">http://www.w3.org/TR/ambient-light/</a></dd>
     
     
       <dt>Latest editor's draft:</dt>
-      <dd><a href="http://w3c.github.io/ambient-light/">http://w3c.github.io/ambient-light/</a></dd>
+      <dd><a href="https://w3c.github.io/ambient-light/">https://w3c.github.io/ambient-light/</a></dd>
     
     
       <dt>Test suite:</dt>
@@ -483,9 +501,7 @@ table.exceptions table {
         <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
         (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
         <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), 
-        
-        All Rights Reserved.
+        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). 
         
         <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
         <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
@@ -506,10 +522,7 @@ table.exceptions table {
     
       
         <p>
-          <em>This section describes the status of this document at the time of its publication.
-          Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the
-          latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
-          http://www.w3.org/TR/.</em>
+          <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
         </p>
         
         
@@ -737,7 +750,7 @@ table.exceptions table {
       <section id="devicelightevent-interface" typeof="bibo:Chapter" resource="#devicelightevent-interface" property="bibo:hasPart">
         <h3 id="h-devicelightevent-interface" resource="#h-devicelightevent-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2 </span><a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> Interface</span></h3>
         <pre class="idl"><span class="idlInterface" id="idl-def-DeviceLightEvent"><span class="idlDictionary" id="idl-def-DeviceLightEventInit">dictionary <span class="idlDictionaryID">DeviceLightEventInit</span> : <span class="idlSuperclass">EventInit</span> {
-<span class="idlMember">    <span class="idlMemberType">unrestricted double</span> <span class="idlMemberName"><a href="#widl-DeviceLightEventInit-value">value</a></span>;</span>
+<span class="idlMember">             <span class="idlMemberType">unrestricted double</span> <span class="idlMemberName"><a href="#widl-DeviceLightEventInit-value">value</a></span>;</span>
 };</span><br><br>[<span class="extAttr">Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)</span>]
 interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="idlSuperclass">Event</span> {
 <span class="idlAttribute">    readonly    attribute <span class="idlAttrType">unrestricted double</span> <span class="idlAttrName"><a href="#widl-DeviceLightEvent-value">value</a></span>;</span>
@@ -822,7 +835,7 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
     </section>
   
 
-<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart"><!--OddPage--><h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B. </span>References</span></h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" property="bibo:hasPart"><h3 id="h-normative-references" resource="#h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.1 </span>Normative references</span></h3><dl class="bibliography" resource=""><dt id="bib-DOM4">[DOM4]</dt><dd>Anne van Kesteren; Aryeh Gregor; Ms2ger; Alex Russell; Robin Berjon. <a href="http://www.w3.org/TR/dom/" property="dc:requires"><cite>W3C DOM4</cite></a>. 10 July 2014. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/dom/" property="dc:requires">http://www.w3.org/TR/dom/</a>
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart"><!--OddPage--><h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B. </span>References</span></h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" property="bibo:hasPart"><h3 id="h-normative-references" resource="#h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.1 </span>Normative references</span></h3><dl class="bibliography" resource=""><dt id="bib-DOM4">[DOM4]</dt><dd>Anne van Kesteren; Aryeh Gregor; Ms2ger; Alex Russell; Robin Berjon. <a href="http://www.w3.org/TR/dom/" property="dc:requires"><cite>W3C DOM4</cite></a>. 18 June 2015. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/dom/" property="dc:requires">http://www.w3.org/TR/dom/</a>
 </dd><dt id="bib-HTML5">[HTML5]</dt><dd>Ian Hickson; Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/" property="dc:requires"><cite>HTML5</cite></a>. 28 October 2014. W3C Recommendation. URL: <a href="http://www.w3.org/TR/html5/" property="dc:requires">http://www.w3.org/TR/html5/</a>
 </dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires">https://tools.ietf.org/html/rfc2119</a>
 </dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd>Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/" property="dc:requires"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/" property="dc:requires">http://www.w3.org/TR/WebIDL/</a>
