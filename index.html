@@ -1,535 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
-<head><meta lang="" property="dc:language" content="en">
+<html>
+  <head>
     <title>Ambient Light Events</title>
-    <meta charset="utf-8">
-    
-    
-  <style>/*****************************************************************
- * ReSpec 3 CSS
- * Robin Berjon - http://berjon.com/
- *****************************************************************/
-
-/* --- INLINES --- */
-em.rfc2119 { 
-    text-transform:     lowercase;
-    font-variant:       small-caps;
-    font-style:         normal;
-    color:              #900;
-}
-
-h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
-h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
-    border: none;
-}
-
-dfn {
-    font-weight:    bold;
-}
-
-a.internalDFN {
-    color:  inherit;
-    border-bottom:  1px solid #99c;
-    text-decoration:    none;
-}
-
-a.externalDFN {
-    color:  inherit;
-    border-bottom:  1px dotted #ccc;
-    text-decoration:    none;
-}
-
-a.bibref {
-    text-decoration:    none;
-}
-
-cite .bibref {
-    font-style: normal;
-}
-
-code {
-    color:  #C83500;
-}
-
-/* --- TOC --- */
-.toc a, .tof a {
-    text-decoration:    none;
-}
-
-a .secno, a .figno {
-    color:  #000;
-}
-
-ul.tof, ol.tof {
-    list-style: none outside none;
-}
-
-.caption {
-    margin-top: 0.5em;
-    font-style:   italic;
-}
-
-/* --- TABLE --- */
-table.simple {
-    border-spacing: 0;
-    border-collapse:    collapse;
-    border-bottom:  3px solid #005a9c;
-}
-
-.simple th {
-    background: #005a9c;
-    color:  #fff;
-    padding:    3px 5px;
-    text-align: left;
-}
-
-.simple th[scope="row"] {
-    background: inherit;
-    color:  inherit;
-    border-top: 1px solid #ddd;
-}
-
-.simple td {
-    padding:    3px 10px;
-    border-top: 1px solid #ddd;
-}
-
-.simple tr:nth-child(even) {
-    background: #f0f6ff;
-}
-
-/* --- DL --- */
-.section dd > p:first-child {
-    margin-top: 0;
-}
-
-.section dd > p:last-child {
-    margin-bottom: 0;
-}
-
-.section dd {
-    margin-bottom:  1em;
-}
-
-.section dl.attrs dd, .section dl.eldef dd {
-    margin-bottom:  0;
-}
-
-@media print {
-    .removeOnSave {
-        display: none;
-    }
-}
-</style><style>/* --- ISSUES/NOTES --- */
-div.issue-title, div.note-title , div.ednote-title, div.warning-title {
-    padding-right:  1em;
-    min-width: 7.5em;
-    color: #b9ab2d;
-}
-div.issue-title { color: #e05252; }
-div.note-title, div.ednote-title { color: #2b2; }
-div.warning-title { color: #f22; }
-div.issue-title span, div.note-title span, div.ednote-title span, div.warning-title span {
-    text-transform: uppercase;
-}
-div.note, div.issue, div.ednote, div.warning {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-.note > p:first-child, .ednote > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
-.issue, .note, .ednote, .warning {
-    padding: .5em;
-    border-left-width: .5em;
-    border-left-style: solid;
-}
-div.issue, div.note , div.ednote,  div.warning {
-    padding: 1em 1.2em 0.5em;
-    margin: 1em 0;
-    position: relative;
-    clear: both;
-}
-span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
-
-.issue {
-    border-color: #e05252;
-    background: #fbe9e9;
-}
-.note, .ednote {
-    border-color: #52e052;
-    background: #e9fbe9;
-}
-
-.warning {
-    border-color: #f11;
-    border-right-width: .2em;
-    border-top-width: .2em;
-    border-bottom-width: .2em;
-    border-style: solid;
-    background: #fbe9e9;
-}
-
-.warning-title:before{
-    content: "⚠"; /*U+26A0 WARNING SIGN*/
-    font-size: 3em;
-    float: left;
-    height: 100%;
-    padding-right: .3em;
-    vertical-align: top;
-    margin-top: -0.5em;
-}
-
-li.task-list-item {
-    list-style: none;
-}
-
-input.task-list-item-checkbox {
-    margin: 0 0.35em 0.25em -1.6em;
-    vertical-align: middle;
-}
-</style><style>/* --- WEB IDL --- */
-pre.idl {
-    border-top: 1px solid #90b8de;
-    border-bottom: 1px solid #90b8de;
-    padding:    1em;
-    line-height:    120%;
-}
-
-pre.idl::before {
-    content:    "WebIDL";
-    display:    block;
-    width:      150px;
-    background: #90b8de;
-    color:  #fff;
-    font-family:    sans-serif;
-    padding:    3px;
-    font-weight:    bold;
-    margin: -1em 0 1em -1em;
-}
-
-.idlType {
-    color:  #ff4500;
-    font-weight:    bold;
-    text-decoration:    none;
-}
-
-/*.idlModule*/
-/*.idlModuleID*/
-/*.idlInterface*/
-.idlInterfaceID, .idlDictionaryID, .idlCallbackID, .idlEnumID {
-    font-weight:    bold;
-    color:  #005a9c;
-}
-a.idlEnumItem {
-    color:  #000;
-    border-bottom:  1px dotted #ccc;
-    text-decoration: none;
-}
-
-.idlSuperclass {
-    font-style: italic;
-    color:  #005a9c;
-}
-
-/*.idlAttribute*/
-.idlAttrType, .idlFieldType, .idlMemberType {
-    color:  #005a9c;
-}
-.idlAttrName, .idlFieldName, .idlMemberName {
-    color:  #ff4500;
-}
-.idlAttrName a, .idlFieldName a, .idlMemberName a {
-    color:  #ff4500;
-    border-bottom:  1px dotted #ff4500;
-    text-decoration: none;
-}
-
-/*.idlMethod*/
-.idlMethType, .idlCallbackType {
-    color:  #005a9c;
-}
-.idlMethName {
-    color:  #ff4500;
-}
-.idlMethName a {
-    color:  #ff4500;
-    border-bottom:  1px dotted #ff4500;
-    text-decoration: none;
-}
-
-/*.idlCtor*/
-.idlCtorName {
-    color:  #ff4500;
-}
-.idlCtorName a {
-    color:  #ff4500;
-    border-bottom:  1px dotted #ff4500;
-    text-decoration: none;
-}
-
-/*.idlParam*/
-.idlParamType {
-    color:  #005a9c;
-}
-.idlParamName, .idlDefaultValue {
-    font-style: italic;
-}
-
-.extAttr {
-    color:  #666;
-}
-
-/*.idlSectionComment*/
-.idlSectionComment {
-    color: gray;
-}
-
-/*.idlIterable*/
-.idlIterableKeyType, .idlIterableValueType {
-    color:  #005a9c;
-}
-
-/*.idlMaplike*/
-.idlMaplikeKeyType, .idlMaplikeValueType {
-    color:  #005a9c;
-}
-
-/*.idlConst*/
-.idlConstType {
-    color:  #005a9c;
-}
-.idlConstName {
-    color:  #ff4500;
-}
-.idlConstName a {
-    color:  #ff4500;
-    border-bottom:  1px dotted #ff4500;
-    text-decoration: none;
-}
-
-/*.idlException*/
-.idlExceptionID {
-    font-weight:    bold;
-    color:  #c00;
-}
-
-.idlTypedefID, .idlTypedefType {
-    color:  #005a9c;
-}
-
-.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
-    color:  #c00;
-    font-weight:    normal;
-}
-
-.excName a {
-    font-family:    monospace;
-}
-
-.idlRaises a.idlType, .excName a.idlType {
-    border-bottom:  1px dotted #c00;
-}
-
-.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
-    width:  45px;
-    text-align: center;
-}
-.excGetSetTrue, .prmNullTrue, .prmOptTrue { color:  #0c0; }
-.excGetSetFalse, .prmNullFalse, .prmOptFalse { color:  #c00; }
-
-.idlImplements a {
-    font-weight:    bold;
-}
-
-dl.attributes, dl.methods, dl.constants, dl.constructors, dl.fields, dl.dictionary-members {
-    margin-left:    2em;
-}
-
-.attributes dt, .methods dt, .constants dt, .constructors dt, .fields dt, .dictionary-members dt {
-    font-weight:    normal;
-}
-
-.attributes dt code, .methods dt code, .constants dt code, .constructors dt code, .fields dt code, .dictionary-members dt code {
-    font-weight:    bold;
-    color:  #000;
-    font-family:    monospace;
-}
-
-.attributes dt code, .fields dt code, .dictionary-members dt code {
-    background:  #ffffd2;
-}
-
-.attributes dt .idlAttrType code, .fields dt .idlFieldType code, .dictionary-members dt .idlMemberType code {
-    color:  #005a9c;
-    background:  transparent;
-    font-family:    inherit;
-    font-weight:    normal;
-    font-style: italic;
-}
-
-.methods dt code {
-    background:  #d9e6f8;
-}
-
-.constants dt code {
-    background:  #ddffd2;
-}
-
-.constructors dt code {
-    background:  #cfc;
-}
-
-.attributes dd, .methods dd, .constants dd, .constructors dd, .fields dd, .dictionary-members dd {
-    margin-bottom:  1em;
-}
-
-table.parameters, table.exceptions {
-    border-spacing: 0;
-    border-collapse:    collapse;
-    margin: 0.5em 0;
-    width:  100%;
-}
-table.parameters { border-bottom:  1px solid #90b8de; }
-table.exceptions { border-bottom:  1px solid #deb890; }
-
-.parameters th, .exceptions th {
-    color:  #fff;
-    padding:    3px 5px;
-    text-align: left;
-    font-weight:    normal;
-    text-shadow:    #666 1px 1px 0;
-}
-.parameters th { background: #90b8de; }
-.exceptions th { background: #deb890; }
-
-.parameters td, .exceptions td {
-    padding:    3px 10px;
-    border-top: 1px solid #ddd;
-    vertical-align: top;
-}
-
-.parameters tr:first-child td, .exceptions tr:first-child td {
-    border-top: none;
-}
-
-.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
-    width:  100px;
-}
-
-.parameters td.prmType {
-    width:  120px;
-}
-
-table.exceptions table {
-    border-spacing: 0;
-    border-collapse:    collapse;
-    width:  100%;
-}
-</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--><script id="respecFinalConfig" type="application/json">{<br>  "specStatus": "ED",<br>  "shortName": "ambient-light",<br>  "previousPublishDate": "2014-06-18T21:00:00.000Z",<br>  "previousMaturity": "LC",<br>  "edDraftURI": "https://w3c.github.io/ambient-light/",<br>  "editors": [<br>    {<br>      "name": "Doug Turner",<br>      "company": "Mozilla Corporation",<br>      "companyURL": "http://mozilla.com/"<br>    },<br>    {<br>      "name": "Anssi Kostiainen",<br>      "company": "Intel",<br>      "companyURL": "http://intel.com/"<br>    }<br>  ],<br>  "inlineCSS": true,<br>  "noIDLIn": true,<br>  "noLegacyStyle": true,<br>  "wg": "Device APIs Working Group",<br>  "wgURI": "http://www.w3.org/2009/dap/",<br>  "wgPublicList": "public-device-apis",<br>  "wgPatentURI": "http://www.w3.org/2004/01/pp-impl/43696/status",<br>  "testSuiteURI": "http://w3c-test.org/ambient-light/",<br>  "scheme": "https",<br>  "implementationReportURI": "http://www.w3.org/2009/dap/wiki/ImplementationStatus",<br>  "otherLinks": [<br>    {<br>      "key": "Revision history",<br>      "data": [<br>        {<br>          "value": "https://github.com/w3c/ambient-light/commits/",<br>          "href": "https://github.com/w3c/ambient-light/commits/"<br>        }<br>      ]<br>    }<br>  ],<br>  "localBiblio": {<br>    "MEDIAQUERIES4": {<br>      "title": "Media Queries Level 4",<br>      "href": "http://dev.w3.org/csswg/mediaqueries/",<br>      "authors": [<br>        "Florian Rivoal",<br>        "Tab Atkins Jr."<br>      ],<br>      "status": "ED",<br>      "publisher": "W3C"<br>    }<br>  },<br>  "processVersion": 2015,<br>  "l10n": {<br>    "this_version": "This version:",<br>    "latest_published_version": "Latest published version:",<br>    "latest_editors_draft": "Latest editor's draft:",<br>    "editor": "Editor:",<br>    "editors": "Editors:",<br>    "author": "Author:",<br>    "authors": "Authors:",<br>    "abstract": "Abstract",<br>    "sotd": "Status of This Document",<br>    "status_at_publication": "This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href='http://www.w3.org/TR/'>W3C technical reports index</a> at http://www.w3.org/TR/.",<br>    "toc": "Table of Contents",<br>    "note": "Note",<br>    "fig": "Fig. ",<br>    "bug_tracker": "Bug tracker:",<br>    "file_a_bug": "file a bug",<br>    "open_bugs": "open bugs",<br>    "open_parens": "(",<br>    "close_parens": ")"<br>  },<br>  "doRDFa": true,<br>  "license": "w3c",<br>  "isCCBY": false,<br>  "isCGBG": false,<br>  "isCGFinal": false,<br>  "isBasic": false,<br>  "isWebSpec": false,<br>  "isRegular": true,<br>  "title": "Ambient Light Events",<br>  "subtitle": "",<br>  "publishDate": "2015-09-02T07:17:33.000Z",<br>  "publishYear": 2015,<br>  "publishHumanDate": "02 September 2015",<br>  "isNoTrack": false,<br>  "isRecTrack": false,<br>  "isMemberSubmission": false,<br>  "isTeamSubmission": false,<br>  "isSubmission": false,<br>  "anOrA": "an",<br>  "isTagFinding": false,<br>  "maturity": "ED",<br>  "thisVersion": "https://w3c.github.io/ambient-light/",<br>  "latestVersion": "http://www.w3.org/TR/ambient-light/",<br>  "prevVersion": "http://www.w3.org/TR/2014/WD-ambient-light-20140619/",<br>  "multipleEditors": true,<br>  "alternatesHTML": "",<br>  "longStatus": "Editor's Draft",<br>  "textStatus": "Editor's Draft",<br>  "showThisVersion": true,<br>  "showPreviousVersion": false,<br>  "notYetRec": false,<br>  "isRec": false,<br>  "notRec": true,<br>  "isUnofficial": false,<br>  "prependW3C": true,<br>  "isED": true,<br>  "isLC": false,<br>  "isCR": false,<br>  "isPR": false,<br>  "isPER": false,<br>  "isMO": false,<br>  "isIGNote": false,<br>  "dashDate": "2015-09-02",<br>  "publishISODate": "2015-09-02T07:17:33.000Z",<br>  "shortISODate": "2015-09-02",<br>  "isNewProcess": true,<br>  "sotdCustomParagraph": "\n      <div class=\"warning\">\n        <p>\n          Implementers need to be aware that this specification is not stable\n          and may change in incompatible ways. We anticipate that it will be\n          updated to be based on <a href=\"https://w3c.github.io/sensors/\">\n          Generic Sensor API</a>.\n        </p>\n        <p>\n          Implementers interested in implementing this specification should\n          <a href=\"https://github.com/w3c/ambient-light\">subscribe to the\n            repository on GitHub</a> and take part in the discussions as well\n            as in the Working Group.\n        </p>\n      </div>\n      <p>\n        The functionality described in this specification was initially\n        specified as part of the\n        <a href=\"http://dvcs.w3.org/hg/dap/raw-file/default/sensor-api/Overview.html\">\n        Sensor API</a> but has been extracted in order to be more\n        straightforward to implement, and in order to produce a specification\n        that could be implemented on its own merits without interference with\n        other features.\n      </p>\n    ",<br>  "multipleWGs": false,<br>  "wgHTML": "<a href='http://www.w3.org/2009/dap/'>Device APIs Working Group</a>",<br>  "humanLCEnd": "30 November 1899",<br>  "humanCREnd": "30 November 1899",<br>  "humanPREnd": "30 November 1899",<br>  "humanPEREnd": "30 November 1899",<br>  "recNotExpected": false,<br>  "subjectPrefixEnc": "undefined",<br>  "normativeReferences": {<br>    "RFC2119": true,<br>    "WEBIDL": true,<br>    "HTML5": true,<br>    "DOM4": true<br>  },<br>  "informativeReferences": {<br>    "MEDIAQUERIES4": true<br>  },<br>  "respecRFC2119": {<br>    "MUST": true<br>  },<br>  "definitionMap": {<br>    "user agent": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "queue a task": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "fires a simple event": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "top-level browsing context": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "event handlers": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "event handler event types": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "constructing events": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "create an event": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "fire an event": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "current light level": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ],<br>    "fire a device light event": [<br>      {<br>        "0": {},<br>        "context": {},<br>        "length": 1<br>      }<br>    ]<br>  },<br>  "biblio": {<br>    "RFC2119": {<br>      "aliasOf": "rfc2119",<br>      "id": "RFC2119"<br>    },<br>    "rfc2119": {<br>      "href": "https://tools.ietf.org/html/rfc2119",<br>      "title": "Key words for use in RFCs to Indicate Requirement Levels",<br>      "authors": [<br>        "S. Bradner"<br>      ],<br>      "status": "Best Current Practice",<br>      "publisher": "IETF",<br>      "id": "rfc2119",<br>      "date": "March 1997"<br>    },<br>    "WEBIDL": {<br>      "aliasOf": "WebIDL",<br>      "id": "WEBIDL"<br>    },<br>    "WebIDL": {<br>      "aliasOf": "WebIDL-1",<br>      "id": "WebIDL"<br>    },<br>    "WebIDL-1": {<br>      "authors": [<br>        "Cameron McCormack",<br>        "Boris Zbarsky"<br>      ],<br>      "href": "http://www.w3.org/TR/WebIDL-1/",<br>      "title": "WebIDL Level 1",<br>      "status": "WD",<br>      "publisher": "W3C",<br>      "edDraft": "https://heycam.github.io/webidl/",<br>      "deliveredBy": [<br>        {<br>          "url": "http://www.w3.org/2008/webapps/",<br>          "shortname": "webapps"<br>        }<br>      ],<br>      "versions": [<br>        "WebIDL-1-20150804",<br>        "WebIDL-1-20120419",<br>        "WebIDL-1-20120207",<br>        "WebIDL-1-20110927",<br>        "WebIDL-1-20110712",<br>        "WebIDL-1-20101021",<br>        "WebIDL-1-20081219",<br>        "WebIDL-1-20080829",<br>        "WebIDL-1-20080410",<br>        "WebIDL-1-20071017"<br>      ],<br>      "id": "WebIDL-1",<br>      "date": "4 August 2015"<br>    },<br>    "HTML5": {<br>      "aliasOf": "html5",<br>      "id": "HTML5"<br>    },<br>    "html5": {<br>      "authors": [<br>        "Ian Hickson",<br>        "Robin Berjon",<br>        "Steve Faulkner",<br>        "Travis Leithead",<br>        "Erika Doyle Navara",<br>        "Edward O'Connor",<br>        "Silvia Pfeiffer"<br>      ],<br>      "href": "http://www.w3.org/TR/html5/",<br>      "title": "HTML5",<br>      "status": "REC",<br>      "publisher": "W3C",<br>      "deliveredBy": [<br>        {<br>          "url": "http://www.w3.org/html/wg/",<br>          "shortname": "html"<br>        }<br>      ],<br>      "versions": [<br>        "html5-20141028",<br>        "html5-20140916",<br>        "html5-20140731",<br>        "html5-20140617",<br>        "html5-20140429",<br>        "html5-20140204",<br>        "html5-20130806",<br>        "html5-20121217",<br>        "html5-20121025",<br>        "html5-20120329",<br>        "html5-20110525",<br>        "html5-20110405",<br>        "html5-20110113",<br>        "html5-20101019",<br>        "html5-20100624",<br>        "html5-20100304",<br>        "html5-20090825",<br>        "html5-20090423",<br>        "html5-20090212",<br>        "html5-20080610",<br>        "html5-20080122"<br>      ],<br>      "edDraft": "http://www.w3.org/html/wg/drafts/html/master/",<br>      "obsoletes": [<br>        "Window",<br>        "web-forms-2"<br>      ],<br>      "id": "html5",<br>      "date": "28 October 2014"<br>    },<br>    "DOM4": {<br>      "aliasOf": "dom",<br>      "id": "DOM4"<br>    },<br>    "dom": {<br>      "authors": [<br>        "Anne van Kesteren",<br>        "Aryeh Gregor",<br>        "Ms2ger",<br>        "Alex Russell",<br>        "Robin Berjon"<br>      ],<br>      "href": "http://www.w3.org/TR/dom/",<br>      "title": "W3C DOM4",<br>      "status": "LCWD",<br>      "publisher": "W3C",<br>      "deliveredBy": [<br>        {<br>          "url": "http://www.w3.org/html/wg/",<br>          "shortname": "html"<br>        }<br>      ],<br>      "versions": [<br>        "dom-20150618",<br>        "dom-20150428",<br>        "dom-20140710",<br>        "dom-20140508",<br>        "dom-20140204",<br>        "dom-20131107",<br>        "dom-20121206",<br>        "dom-20120405",<br>        "dom-20120105",<br>        "dom-20110915",<br>        "dom-20110531",<br>        "dom-20101007"<br>      ],<br>      "edDraft": "https://w3c.github.io/dom/",<br>      "id": "dom",<br>      "date": "18 June 2015"<br>    },<br>    "MEDIAQUERIES4": {<br>      "title": "Media Queries Level 4",<br>      "href": "http://dev.w3.org/csswg/mediaqueries/",<br>      "authors": [<br>        "Florian Rivoal",<br>        "Tab Atkins Jr."<br>      ],<br>      "status": "ED",<br>      "publisher": "W3C"<br>    }<br>  },<br>  "noIDLSorting": false,<br>  "noIDLSectionTitle": false,<br>  "tocIntroductory": false,<br>  "maxTocLevel": 0<br>}</script></head>
-  <body class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
-  <p>
-      
-        
-            <a href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
-            
-            
-        
-      
-  </p>
-  <h1 class="title p-name" id="title" property="dcterms:title">Ambient Light Events</h1>
-  
-  <h2 id="w3c-editor-s-draft-02-september-2015"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2015-09-02">02 September 2015</time></h2>
-  <dl>
-    
-      <dt>This version:</dt>
-      <dd><a class="u-url" href="https://w3c.github.io/ambient-light/">https://w3c.github.io/ambient-light/</a></dd>
-      <dt>Latest published version:</dt>
-      <dd><a href="http://www.w3.org/TR/ambient-light/">http://www.w3.org/TR/ambient-light/</a></dd>
-    
-    
-      <dt>Latest editor's draft:</dt>
-      <dd><a href="https://w3c.github.io/ambient-light/">https://w3c.github.io/ambient-light/</a></dd>
-    
-    
-      <dt>Test suite:</dt>
-      <dd><a href="http://w3c-test.org/ambient-light/">http://w3c-test.org/ambient-light/</a></dd>
-    
-    
-      <dt>Implementation report:</dt>
-      <dd><a href="http://www.w3.org/2009/dap/wiki/ImplementationStatus">http://www.w3.org/2009/dap/wiki/ImplementationStatus</a></dd>
-    
-    
-    
-      
-    
-    
-    
-    <dt>Editors:</dt>
-    <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Doug Turner</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://mozilla.com/">Mozilla Corporation</a></span>
-<span property="rdf:rest" resource="_:editor1"></span>
-</dd>
-<dd class="p-author h-card vcard" resource="_:editor1"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anssi Kostiainen</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://intel.com/">Intel</a></span>
-<span property="rdf:rest" resource="rdf:nil"></span>
-</dd>
-
-    
-    
-      
-        
-          <dt>Revision history:</dt>
-          
-             
-                
-                  <dd>
-                    <a href="https://github.com/w3c/ambient-light/commits/">
-                      https://github.com/w3c/ambient-light/commits/
-                    </a>
-                  </dd>
-                
-             
-          
-        
-      
-    
-  </dl>
-  
-  
-  
-  
-    
-      <p class="copyright">
-        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
-        2015
-        
-        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
-        (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
-        <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). 
-        
-        <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
-        
-          <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-        
-        rules apply.
-      </p>
-    
-  
-  <hr>
-</div>
-    <section id="abstract" class="introductory" property="dc:abstract"><h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2><p>
+    <meta charset="utf-8"/>
+    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove' async></script>
+    <script class="remove">
+      var respecConfig = {
+          specStatus:           "ED",
+          shortName:            "ambient-light",
+          // publishDate:          "2014-08-28",
+          previousPublishDate:  "2014-06-19",
+          previousMaturity:     "LC",
+          edDraftURI:           "https://w3c.github.io/ambient-light/",
+          // crEnd:                "2014-11-01",
+          editors:  [
+              { name: "Doug Turner", company: "Mozilla Corporation", companyURL: "http://mozilla.com/" },
+              { name: "Anssi Kostiainen", company: "Intel", companyURL: "http://intel.com/" }
+          ],
+          inlineCSS:    true,
+          noIDLIn:      true,
+          noLegacyStyle: true,
+          wg:           "Device APIs Working Group",
+          wgURI:        "http://www.w3.org/2009/dap/",
+          wgPublicList: "public-device-apis",
+          wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/43696/status",
+          testSuiteURI: "http://w3c-test.org/ambient-light/",
+          scheme:       "https",
+          implementationReportURI: "http://www.w3.org/2009/dap/wiki/ImplementationStatus",
+          otherLinks: [{
+            key: "Revision history",
+            data: [{
+              value: "https://github.com/w3c/ambient-light/commits/",
+              href:  "https://github.com/w3c/ambient-light/commits/"
+            }]
+          }],
+          localBiblio: {
+            "MEDIAQUERIES4": {
+                title:     "Media Queries Level 4",
+                href:      "http://dev.w3.org/csswg/mediaqueries/",
+                authors:  [
+                           "Florian Rivoal",
+                           "Tab Atkins Jr."
+                ],
+                status:    "ED",
+                publisher: "W3C"
+            }
+          },
+          processVersion: 2015
+      };
+    </script>
+  </head>
+  <body>
+    <section id="abstract">
       This specification defines a means to receive events that correspond to
       a light sensor detecting the presence of a light.
-    </p></section><section id="sotd" class="introductory"><h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
-  
+    </section>
     
-      
-        <p>
-          <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
-        </p>
-        
-          
-          
-      <div class="warning"><div class="warning-title"><span>Warning</span></div><div class="">
+    <section id="sotd">
+      <div class="warning">
         <p>
           Implementers need to be aware that this specification is not stable
           and may change in incompatible ways. We anticipate that it will be
@@ -542,7 +70,7 @@ table.exceptions table {
             repository on GitHub</a> and take part in the discussions as well
             as in the Working Group.
         </p>
-      </div></div>
+      </div>
       <p>
         The functionality described in this specification was initially
         specified as part of the
@@ -552,163 +80,78 @@ table.exceptions table {
         that could be implemented on its own merits without interference with
         other features.
       </p>
+    </section>
     
-          
-          <p>
-            This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as an Editor's Draft.
-            
-            
-              If you wish to make comments regarding this document, please send them to
-              <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a>
-              (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
-              <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
-            
-            
-            
-            
-            
-              
-              All comments are welcome.
-              
-            
-          </p>
-          
-            <p>
-              Please see the Working Group's  <a href="http://www.w3.org/2009/dap/wiki/ImplementationStatus">implementation
-              report</a>.
-            </p>
-          
-          
-          
-            <p>
-              Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
-              Membership. This is a draft document and may be updated, replaced or obsoleted by other
-              documents at any time. It is inappropriate to cite this document as other than work in
-              progress.
-            </p>
-          
-          
-          
-          <p>
-            
-              This document was produced by
-              
-              a group
-               operating under the
-              <a id="sotd_patent" property="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
-              Policy</a>.
-            
-            
-            
-              
-                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent
-                disclosures</a>
-              
-              made in connection with the deliverables of
-              
-              the group; that page also includes
-              
-              instructions for disclosing a patent. An individual who has actual knowledge of a patent
-              which the individual believes contains
-              <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
-              Claim(s)</a> must disclose the information in accordance with
-              <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
-              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
-            
-            
-          </p>
-          
-            <p>This document is governed by the <a id="w3c_process_revision" href="http://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-            </p>
-          
-          
-        
-      
-    
-  
-</section><section id="toc"><h2 class="introductory" id="h-toc" resource="#h-toc"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li><li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">3. </span>Terminology</a></li><li class="tocline"><a href="#security-and-privacy-considerations" class="tocxref"><span class="secno">4. </span>Security and privacy considerations</a></li><li class="tocline"><a href="#device-light" class="tocxref"><span class="secno">5. </span>Device Light</a><ul class="toc"><li class="tocline"><a href="#extensions-to-window-interface" class="tocxref"><span class="secno">5.1 </span>Extensions to <span class="formerLink"><code>Window</code></span> Interface</a></li><li class="tocline"><a href="#devicelightevent-interface" class="tocxref"><span class="secno">5.2 </span><span class="formerLink"><code>DeviceLightEvent</code></span> Interface</a><ul class="toc"><li class="tocline"><a href="#event-handlers" class="tocxref"><span class="secno">5.2.1 </span>Event handlers</a></li></ul></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.2 </span>Informative references</a></li></ul></li></ul></section>
-    
-    
-    
-    <section class="informative" id="introduction" typeof="bibo:Chapter" resource="#introduction" property="bibo:hasPart">
-      <!--OddPage--><h2 id="h-introduction" resource="#h-introduction"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Introduction</span></h2><p><em>This section is non-normative.</em></p>
+    <section class="informative">
+      <h2>Introduction</h2>
       <p>
-        The <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> interface provides information about the
+        The <a>DeviceLightEvent</a> interface provides information about the
         ambient light levels, as detected by the device's light detector, in
         terms of lux units.
       </p>
       <p>
         The
         <a href="http://dev.w3.org/csswg/mediaqueries/#light-level">
-        'light-level' media feature</a> [<cite><a class="bibref" href="#bib-MEDIAQUERIES4">MEDIAQUERIES4</a></cite>] provides more granular,
+        'light-level' media feature</a> [[MEDIAQUERIES4]] provides more granular,
         less precise, information about the ambient light level.
       </p>
     </section>
     
-    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" property="bibo:hasPart"><!--OddPage--><h2 id="h-conformance" resource="#h-conformance"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Conformance</span></h2>
-<p>
-  As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
-  and notes in this specification are non-normative. Everything else in this specification is
-  normative.
-</p>
-<p id="respecRFC2119">The key word <em class="rfc2119" title="MUST">MUST</em> is 
-  to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
-</p>
-
+    <section id="conformance">
       <p>
         This specification defines conformance criteria that apply to a single
-        product: the <dfn data-dfn-type="dfn" id="dfn-user-agent">user agent</dfn> that implements the
+        product: the <dfn>user agent</dfn> that implements the
         interfaces that it contains.
       </p>
       <p>
         Implementations that use ECMAScript to implement the APIs
         defined in this specification must implement them in a manner
         consistent with the ECMAScript Bindings defined in the Web IDL
-        specification [<cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>], as this specification uses that
+        specification [[!WEBIDL]], as this specification uses that
         specification and terminology.
       </p>
     </section>
     
-    <section id="terminology" typeof="bibo:Chapter" resource="#terminology" property="bibo:hasPart">
-      <!--OddPage--><h2 id="h-terminology" resource="#h-terminology"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Terminology</span></h2>
+    <section>
+      <h2>Terminology</h2>
       <p>
         The <code><a href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler">
         EventHandler</a></code> interface represents a <a href="http://www.w3.org/TR/WebIDL/#idl-callback-functions">callback function</a> used for <a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
-      handlers</a> as defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>]. </p>
+      handlers</a> as defined in [[!HTML5]]. </p>
       <p>
-        The concepts <dfn data-dfn-type="dfn" id="dfn-queue-a-task"><a href="http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">
+        The concepts <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">
         queue a task</a></dfn>,
-        <dfn data-dfn-type="dfn" id="dfn-fires-a-simple-event"><a href="http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">
-        fires a simple event</a></dfn>, and <dfn data-dfn-type="dfn" id="dfn-top-level-browsing-context">
+        <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">
+        fires a simple event</a></dfn>, and <dfn>
         <a href="http://dev.w3.org/html5/spec/browsers.html#top-level-browsing-context">
-        top-level browsing context</a></dfn> are defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
+        top-level browsing context</a></dfn> are defined in [[!HTML5]].
       </p>
       <p>
-        The terms <dfn data-dfn-type="dfn" id="dfn-event-handlers"><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">
+        The terms <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers">
         event handlers</a></dfn> and
-        <dfn data-dfn-type="dfn" id="dfn-event-handler-event-types"><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type">
-        event handler event types</a></dfn> are defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
+        <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type">
+        event handler event types</a></dfn> are defined in [[!HTML5]].
       </p>
       <p>
         Event constructor behavior is defined in
-        <dfn data-dfn-type="dfn" id="dfn-constructing-events"><a href="http://dom.spec.whatwg.org/#constructing-events">
-        constructing events</a></dfn> chapter in [<cite><a class="bibref" href="#bib-DOM4">DOM4</a></cite>].
+        <dfn><a href="http://dom.spec.whatwg.org/#constructing-events">
+        constructing events</a></dfn> chapter in [[!DOM4]].
       </p>
       <p>
-        The concepts <dfn data-dfn-type="dfn" id="dfn-create-an-event">
+        The concepts <dfn>
         <a href="http://dom.spec.whatwg.org/#constructing-events">
-        create an event</a></dfn> and <dfn data-dfn-type="dfn" id="dfn-fire-an-event">
+        create an event</a></dfn> and <dfn>
         <a href="http://dom.spec.whatwg.org/#firing-events">
-        fire an event</a></dfn> are defined in [<cite><a class="bibref" href="#bib-DOM4">DOM4</a></cite>].
+        fire an event</a></dfn> are defined in [[!DOM4]].
       </p>
       <p>
-        The <dfn data-dfn-type="dfn" id="dfn-current-light-level">current light level</dfn> is a value that represents the ambient
+        The <dfn>current light level</dfn> is a value that represents the ambient
         light levels around the hosting device in lux units.
       </p>
     </section>
     
-    <section class="informative" id="security-and-privacy-considerations" typeof="bibo:Chapter" resource="#security-and-privacy-considerations" property="bibo:hasPart">
-      <!--OddPage--><h2 id="h-security-and-privacy-considerations" resource="#h-security-and-privacy-considerations"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>Security and privacy considerations</span></h2><p><em>This section is non-normative.</em></p>
+    <section class="informative">
+      <h2>Security and privacy considerations</h2>
       <p>
         Privacy risks can arise when this specification is used in
         combination with other functionality or when used over time,
@@ -743,7 +186,7 @@ table.exceptions table {
       </p>
       <p>
         The event defined in this specification is only fired in the
-        <a href="#dfn-top-level-browsing-context" class="internalDFN" data-link-type="dfn">top-level browsing context</a> to avoid the privacy risk of
+        <a>top-level browsing context</a> to avoid the privacy risk of
         sharing the information defined in this specification with contexts
         unfamiliar to the user. For example, a mobile device will only fire
         the event on the active tab, and not on the background tabs or
@@ -751,87 +194,91 @@ table.exceptions table {
       </p>
     </section>
     
-    <section id="device-light" typeof="bibo:Chapter" resource="#device-light" property="bibo:hasPart">
-      <!--OddPage--><h2 id="h-device-light" resource="#h-device-light"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>Device Light</span></h2>
-      <section id="extensions-to-window-interface" typeof="bibo:Chapter" resource="#extensions-to-window-interface" property="bibo:hasPart">
-        <h3 id="h-extensions-to-window-interface" resource="#h-extensions-to-window-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.1 </span>Extensions to <a href="#idl-def-Window" class="idlType"><code>Window</code></a> Interface</span></h3>
+    <section>
+      <h2>Device Light</h2>
+      <section>
+        <h2>Extensions to <a>Window</a> Interface</h2>
         <p>
-          The HTML5 specification [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>] defines a <a href="#idl-def-Window" class="idlType"><code>Window</code></a> interface,
+          The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
           which this specification extends:
         </p>
-        <pre class="idl"><span class="idlInterface" id="idl-def-Window">partial interface <span class="idlInterfaceID">Window</span> {
-<span class="idlAttribute">                attribute <span class="idlAttrType">EventHandler</span> <span class="idlAttrName"><a href="#widl-Window-ondevicelight">ondevicelight</a></span>;</span>
-};</span></pre>
+        <pre class="idl">
+          partial interface Window {
+                          attribute EventHandler ondevicelight;
+          };
+        </pre>
         <p>
-          The <code id="widl-Window-ondevicelight">ondevicelight</code>
+          The <code>ondevicelight</code>
           event handler and its corresponding
-          event handler event type <code>devicelight</code> <em class="rfc2119" title="MUST">MUST</em> be supported
-          as an IDL attribute by all objects implementing the <a href="#idl-def-Window" class="idlType"><code>Window</code></a>
+          event handler event type <a>devicelight</a> MUST be supported
+          as an IDL attribute by all objects implementing the <a>Window</a>
           interface.
         </p>
       </section>
-      <section id="devicelightevent-interface" typeof="bibo:Chapter" resource="#devicelightevent-interface" property="bibo:hasPart">
-        <h3 id="h-devicelightevent-interface" resource="#h-devicelightevent-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2 </span><a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a> Interface</span></h3>
-        <pre class="idl"><span class="idlInterface" id="idl-def-DeviceLightEvent"><span class="idlDictionary" id="idl-def-DeviceLightEventInit">dictionary <span class="idlDictionaryID">DeviceLightEventInit</span> : <span class="idlSuperclass">EventInit</span> {
-<span class="idlMember">             <span class="idlMemberType">unrestricted double</span> <span class="idlMemberName"><a href="#widl-DeviceLightEventInit-value">value</a></span>;</span>
-};</span><br><br>[<span class="extAttr">Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)</span>]
-interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="idlSuperclass">Event</span> {
-<span class="idlAttribute">    readonly    attribute <span class="idlAttrType">unrestricted double</span> <span class="idlAttrName"><a href="#widl-DeviceLightEvent-value">value</a></span>;</span>
-};</span></pre>
-        
-        <p>
-          The <code id="widl-DeviceLightEvent-value">value</code>
-          <code id="widl-DeviceLightEventInit-value"></code>
-          attribute of the <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a>
-          interface <em class="rfc2119" title="MUST">MUST</em> return the value it was initialized to. When the
-          object is created, this attribute <em class="rfc2119" title="MUST">MUST</em> be initialized to positive
-          Infinity. It represents the <a href="#dfn-current-light-level" class="internalDFN" data-link-type="dfn">current light level</a>.
+      <section>
+        <h2><a>DeviceLightEvent</a> Interface</h2>
+        <pre class="idl">
+          dictionary DeviceLightEventInit : EventInit {
+              unrestricted double value;
+          };
+
+          [Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)]
+          interface DeviceLightEvent : Event {
+              readonly    attribute unrestricted double value;
+          };
+        </pre>
+        <p dfn-for="DeviceLightEvent">
+          The <dfn>value</dfn>
+          attribute of the <a>DeviceLightEvent</a>
+          interface MUST return the value it was initialized to. When the
+          object is created, this attribute MUST be initialized to positive
+          Infinity. It represents the <a>current light level</a>.
         </p>
-        <div class="note"><div class="note-title" aria-level="4" role="heading" id="h-note1"><span>Note</span></div><div class="">
+        <div class="note">
           The precise lux value reported by different devices in the same light
           can be different, due to differences in detection method, sensor
           construction etc.
-        </div></div>
+        </div>
         <p>
-          When a <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> is required to <dfn data-dfn-type="dfn" id="dfn-fire-a-device-light-event">fire a device
-          light event</dfn>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the
+          When a <a>user agent</a> is required to <dfn>fire a device
+          light event</dfn>, the <a>user agent</a> MUST run the
           following steps:
         </p>
-        <ol class="rule">
+        <ol class="rule" link-for="DeviceLightEvent">
           <li>
-            <a href="#dfn-create-an-event" class="internalDFN" data-link-type="dfn">Create an event</a> that uses the <a href="#idl-def-DeviceLightEvent" class="idlType"><code>DeviceLightEvent</code></a>
-            interface, with the name <code>devicelight</code>, which
+            <a>Create an event</a> that uses the <a>DeviceLightEvent</a>
+            interface, with the name <a>devicelight</a>, which
             bubbles, is not cancelable, and has no default action, that also
             meets the following conditions:
             <ol>
               <li>
-                If the implementation is unable to report the <a href="#dfn-current-light-level" class="internalDFN" data-link-type="dfn">current
-                light level</a>, initialize the <code>value</code>
+                If the implementation is unable to report the <a>current
+                light level</a>, initialize the <a>value</a>
                 attribute to positive Infinity, otherwise initialize the
-                attribute to the <a href="#dfn-current-light-level" class="internalDFN" data-link-type="dfn">current light level</a>.
+                attribute to the <a>current light level</a>.
               </li>
             </ol>
           </li>
         </ol>
         <p>
-          When the <a href="#dfn-current-light-level" class="internalDFN" data-link-type="dfn">current light level</a> changes, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>
-          <em class="rfc2119" title="MUST">MUST</em> queue a task to <a href="#dfn-fire-a-device-light-event" class="internalDFN" data-link-type="dfn">fire a device light event</a>
-          at the <a href="#dfn-top-level-browsing-context" class="internalDFN" data-link-type="dfn">top-level browsing context</a>'s <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object.
+          When the <a>current light level</a> changes, the <a>user agent</a>
+          MUST queue a task to <a>fire a device light event</a>
+          at the <a>top-level browsing context</a>'s <a>Window</a> object.
         </p>
-        <div class="note"><div class="note-title" aria-level="4" role="heading" id="h-note2"><span>Note</span></div><div class="">
+        <div class="note">
           The definition of granularity i.e. how often the event is fired is
           left to the implementation. Implementations can fire the event if
           they have reason to believe that the page does not have sufficiently
           fresh data.
-        </div></div>
-        <section id="event-handlers" typeof="bibo:Chapter" resource="#event-handlers" property="bibo:hasPart">
-          <h4 id="h-event-handlers" resource="#h-event-handlers"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2.1 </span>Event handlers</span></h4>
+        </div>
+        <section>
+          <h2>Event handlers</h2>
           <p>
-            The following are the <a href="#dfn-event-handlers" class="internalDFN" data-link-type="dfn">event handlers</a> (and their corresponding
-            <a href="#dfn-event-handler-event-types" class="internalDFN" data-link-type="dfn">event handler event types</a>) that <em class="rfc2119" title="MUST">MUST</em> be supported as
-            attributes by the <a href="#idl-def-Window" class="idlType"><code>Window</code></a> object:
+            The following are the <a>event handlers</a> (and their corresponding
+            <a>event handler event types</a>) that MUST be supported as
+            attributes by the <a>Window</a> object:
           </p>
-          <table class="simple">
+          <table class="simple" dfn-for="Window">
             <thead>
               <tr>
                 <th>event handler</th>
@@ -840,8 +287,8 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
             </thead>
             <tbody>
               <tr>
-                <td><strong><code>ondevicelight</code></strong></td>
-                <td><code>devicelight</code></td>
+                <td><dfn><code>ondevicelight</code></dfn></td>
+                <td><dfn><code>devicelight</code></dfn></td>
               </tr>
             </tbody>
           </table>
@@ -849,18 +296,12 @@ interface <span class="idlInterfaceID">DeviceLightEvent</span> : <span class="id
       </section>
     </section>
     
-    <section class="appendix" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
-      <!--OddPage--><h2 id="h-acknowledgements" resource="#h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>Acknowledgements</span></h2>
+    <section class="appendix">
+      <h2>Acknowledgements</h2>
       <p>
         Doug Turner for the initial prototype and Marcos Caceres for the
         test suite.
       </p>
     </section>
-  
-
-<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart"><!--OddPage--><h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B. </span>References</span></h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" property="bibo:hasPart"><h3 id="h-normative-references" resource="#h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.1 </span>Normative references</span></h3><dl class="bibliography" resource=""><dt id="bib-DOM4">[DOM4]</dt><dd>Anne van Kesteren; Aryeh Gregor; Ms2ger; Alex Russell; Robin Berjon. <a href="http://www.w3.org/TR/dom/" property="dc:requires"><cite>W3C DOM4</cite></a>. 18 June 2015. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/dom/" property="dc:requires">http://www.w3.org/TR/dom/</a>
-</dd><dt id="bib-HTML5">[HTML5]</dt><dd>Ian Hickson; Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/" property="dc:requires"><cite>HTML5</cite></a>. 28 October 2014. W3C Recommendation. URL: <a href="http://www.w3.org/TR/html5/" property="dc:requires">http://www.w3.org/TR/html5/</a>
-</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires">https://tools.ietf.org/html/rfc2119</a>
-</dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd>Cameron McCormack; Boris Zbarsky. <a href="http://www.w3.org/TR/WebIDL-1/" property="dc:requires"><cite>WebIDL Level 1</cite></a>. 4 August 2015. W3C Working Draft. URL: <a href="http://www.w3.org/TR/WebIDL-1/" property="dc:requires">http://www.w3.org/TR/WebIDL-1/</a>
-</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" property="bibo:hasPart"><h3 id="h-informative-references" resource="#h-informative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.2 </span>Informative references</span></h3><dl class="bibliography" resource=""><dt id="bib-MEDIAQUERIES4">[MEDIAQUERIES4]</dt><dd>Florian Rivoal; Tab Atkins Jr.. <a href="http://dev.w3.org/csswg/mediaqueries/" property="dc:references"><cite>Media Queries Level 4</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/mediaqueries/" property="dc:references">http://dev.w3.org/csswg/mediaqueries/</a>
-</dd></dl></section></section></body></html>
+  </body>
+</html>
