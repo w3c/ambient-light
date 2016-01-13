@@ -63,7 +63,7 @@
         Introduction
       </h2>
       <p>
-        The <a>DeviceLightEvent</a> interface provides information about the
+        The <a>AmbientLightSensor</a> interface provides information about the
         ambient light levels, as detected by the device's light detector, in
         terms of lux units.
       </p>
@@ -183,20 +183,20 @@
       </h2>
       <section>
         <h2>
-          <a>DeviceLightEvent</a> Interface
+          <a>AmbientLightSensor</a> Interface
         </h2>
         <pre class="idl">
-          dictionary DeviceLightEventInit : EventInit {
+          dictionary AmbientLightSensorInit : EventInit {
               unrestricted double value;
           };
 
-          [Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)]
-          interface DeviceLightEvent : Event {
+          [Constructor (DOMString type, optional AmbientLightSensorInit eventInitDict)]
+          interface AmbientLightSensor : Event {
               readonly    attribute unrestricted double value;
           };
         </pre>
-        <p dfn-for="DeviceLightEvent">
-          The <dfn>value</dfn> attribute of the <a>DeviceLightEvent</a>
+        <p dfn-for="AmbientLightSensor">
+          The <dfn>value</dfn> attribute of the <a>AmbientLightSensor</a>
           interface MUST return the value it was initialized to. When the
           object is created, this attribute MUST be initialized to positive
           Infinity. It represents the <a>current light level</a>.
@@ -210,9 +210,9 @@
           When a <a>user agent</a> is required to <dfn>fire a device light
           event</dfn>, the <a>user agent</a> MUST run the following steps:
         </p>
-        <ol class="rule" link-for="DeviceLightEvent">
+        <ol class="rule" link-for="AmbientLightSensor">
           <li>
-            <a>Create an event</a> that uses the <a>DeviceLightEvent</a>
+            <a>Create an event</a> that uses the <a>AmbientLightSensor</a>
             interface, with the name <a>devicelight</a>, which bubbles, is not
             cancelable, and has no default action, that also meets the
             following conditions:
