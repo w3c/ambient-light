@@ -130,7 +130,7 @@
           <a>AmbientLightSensor</a> Interface
         </h2>
         <pre class="idl">
-          [Constructor(optional AmbientLightSensorOptions ambientLightSensorOptions)]
+          [Constructor(optional SensorOptions sensorOptions)]
           interface AmbientLightSensor : Sensor {
             readonly attribute AmbientLightSensorReading? reading;
           };
@@ -139,7 +139,7 @@
               readonly attribute unrestricted double illuminance;
           };
         </pre>
-        <p dfn-for="AmbientLightSensor">
+        <p>
           The <dfn>illuminance</dfn> attribute of the <a>AmbientLightSensorReading</a>
           interface represents the <a>current light level</a>.
         </p>
@@ -153,7 +153,7 @@
           event</dfn> on an <a>AmbientLightSensor</a> object,
           the <a>user agent</a> MUST run the following steps:
         </p>
-        <ol class="rule" link-for="AmbientLightSensor">
+        <ol class="rule">
           <li>
             <a>Create an event</a> that uses the <a>AmbientLightSensorReading</a>
             interface, with the name <a>change</a>, which does not bubbles, is not
