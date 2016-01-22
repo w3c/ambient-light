@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>
-      Ambient Light Events
+      AmbientLightSensor API
     </title>
     <meta charset="utf-8">
     <script src='https://www.w3.org/Tools/respec/respec-w3c-common' class=
@@ -18,8 +18,9 @@
           edDraftURI:           "https://w3c.github.io/ambient-light/",
           // crEnd:                "2014-11-01",
           editors:  [
-              { name: "Doug Turner", company: "Mozilla Corporation", companyURL: "http://mozilla.com/" },
-              { name: "Anssi Kostiainen", company: "Intel", companyURL: "http://intel.com/" }
+              { name: "Doug Turner", company: "Mozilla Corporation", companyURL: "http://mozilla.com/"},
+              { name: "Anssi Kostiainen", company: "Intel", companyURL: "http://intel.com/" },
+              { name: "Tobie Langel", company: "Intel", companyURL: "http://intel.com/", note: "from January 2016" }
           ],
           inlineCSS:    true,
           noIDLIn:      true,
@@ -38,64 +39,28 @@
               href:  "https://github.com/w3c/ambient-light/commits/"
             }]
           }],
-          localBiblio: {
-            "MEDIAQUERIES4": {
-                title:     "Media Queries Level 4",
-                href:      "http://dev.w3.org/csswg/mediaqueries/",
-                authors:  [
-                           "Florian Rivoal",
-                           "Tab Atkins Jr."
-                ],
-                status:    "ED",
-                publisher: "W3C"
-            }
-          },
           processVersion: 2015
       };
     </script>
   </head>
   <body>
     <section id="abstract">
-      This specification defines a means to receive events that correspond to a
-      light sensor detecting the presence of a light.
-    </section>
-    <section id="sotd">
-      <div class="warning">
-        <p>
-          Implementers need to be aware that this specification is not stable
-          and may change in incompatible ways. We anticipate that it will be
-          updated to be based on <a href=
-          "https://w3c.github.io/sensors/">Generic Sensor API</a>.
-        </p>
-        <p>
-          Implementers interested in implementing this specification should
-          <a href="https://github.com/w3c/ambient-light">subscribe to the
-          repository on GitHub</a> and take part in the discussions as well as
-          in the Working Group.
-        </p>
-      </div>
-      <p>
-        The functionality described in this specification was initially
-        specified as part of the <a href=
-        "http://dvcs.w3.org/hg/dap/raw-file/default/sensor-api/Overview.html">Sensor
-        API</a> but has been extracted in order to be more straightforward to
-        implement, and in order to produce a specification that could be
-        implemented on its own merits without interference with other features.
-      </p>
+      This specification defines a concrete sensor interface to monitor
+      the ambient light level or illuminance of the device's environment.
     </section>
     <section class="informative">
       <h2>
         Introduction
       </h2>
       <p>
-        The <a>DeviceLightEvent</a> interface provides information about the
-        ambient light levels, as detected by the device's light detector, in
+        The <a>AmbientLightSensor</a> interface provides information about the
+        ambient light levels, as detected by the device's light sensor, in
         terms of lux units.
       </p>
       <p>
         The <a href=
         "http://dev.w3.org/csswg/mediaqueries/#light-level">'light-level' media
-        feature</a> [[MEDIAQUERIES4]] provides more granular, less precise,
+        feature</a> [[MEDIAQUERIES-4]] provides more granular, less precise,
         information about the ambient light level.
       </p>
     </section>
@@ -118,28 +83,15 @@
       </h2>
       <p>
         The <code><a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#eventhandler">EventHandler</a></code>
-        interface represents a <a href=
-        "http://www.w3.org/TR/WebIDL/#idl-callback-functions">callback
-        function</a> used for <a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
-        handlers</a> as defined in [[!HTML5]].
+        "https://w3c.github.io/sensors/#the-sensor-interface">Sensor</a></code>
+        interface is defined in [[!GENERIC-SENSOR]].
       </p>
       <p>
         The concepts <dfn><a href=
         "http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">queue a
-        task</a></dfn>, <dfn><a href=
+        task</a></dfn>, and <dfn><a href=
         "http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">fires
-        a simple event</a></dfn>, and <dfn><a href=
-        "http://dev.w3.org/html5/spec/browsers.html#top-level-browsing-context">
-        top-level browsing context</a></dfn> are defined in [[!HTML5]].
-      </p>
-      <p>
-        The terms <dfn><a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
-        handlers</a></dfn> and <dfn><a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type">
-        event handler event types</a></dfn> are defined in [[!HTML5]].
+        a simple event</a></dfn> are defined in [[!HTML5]].
       </p>
       <p>
         Event constructor behavior is defined in <dfn><a href=
@@ -154,8 +106,10 @@
         defined in [[!DOM4]].
       </p>
       <p>
-        The <dfn>current light level</dfn> is a value that represents the
-        ambient light levels around the hosting device in lux units.
+        The <dfn>current light level</dfn> or illuminance
+        is a value that represents
+        the ambient light levels around the hosting device
+        in lux units.
       </p>
     </section>
     <section class="informative">
@@ -163,88 +117,31 @@
         Security and privacy considerations
       </h2>
       <p>
-        Privacy risks can arise when this specification is used in combination
-        with other functionality or when used over time, specifically with the
-        risk of correlation of data and user identification through
-        fingerprinting. Web application developers using these JavaScript APIs
-        should consider how this information might be correlated with other
-        information and the privacy risks that might be created. The potential
-        risks of collection of such data over a longer period of time should
-        also be considered.
-      </p>
-      <p>
-        Variations in implementation light level values as well as event firing
-        rates offer the possibility of fingerprinting to identify users.
-        Browser implementations may reduce the risk by limiting event rates
-        available to web application developers.
-      </p>
-      <p>
-        If the same JavaScript code using the API can be used simultaneously in
-        different window contexts on the same device it may be possible for
-        that code to correlate the user across those two contexts, creating
-        unanticipated tracking mechanisms.
-      </p>
-      <p>
-        Browser implementations should consider providing the user an
-        indication of when the sensor is used and allowing the user to disable
-        sensing.
-      </p>
-      <p>
-        Web application developers that use this specification should perform a
-        privacy assessment of their application taking all aspects of their
-        application into consideration.
-      </p>
-      <p>
-        The event defined in this specification is only fired in the
-        <a>top-level browsing context</a> to avoid the privacy risk of sharing
-        the information defined in this specification with contexts unfamiliar
-        to the user. For example, a mobile device will only fire the event on
-        the active tab, and not on the background tabs or within iframes.
+        There are no specific security and privacy considerations
+        beyond those describe in the Generic Sensor API [[GENERIC-SENSOR]].
       </p>
     </section>
     <section>
       <h2>
-        Device Light
+        Model
       </h2>
       <section>
         <h2>
-          Extensions to <a>Window</a> Interface
-        </h2>
-        <p>
-          The HTML5 specification [[!HTML5]] defines a <a>Window</a> interface,
-          which this specification extends:
-        </p>
-        <pre class="idl">
-          partial interface Window {
-                          attribute EventHandler ondevicelight;
-          };
-        </pre>
-        <p>
-          The <code>ondevicelight</code> event handler and its corresponding
-          event handler event type <a>devicelight</a> MUST be supported as an
-          IDL attribute by all objects implementing the <a>Window</a>
-          interface.
-        </p>
-      </section>
-      <section>
-        <h2>
-          <a>DeviceLightEvent</a> Interface
+          <a>AmbientLightSensor</a> Interface
         </h2>
         <pre class="idl">
-          dictionary DeviceLightEventInit : EventInit {
-              unrestricted double value;
+          [Constructor(optional SensorOptions sensorOptions)]
+          interface AmbientLightSensor : Sensor {
+            readonly attribute AmbientLightSensorReading? reading;
           };
 
-          [Constructor (DOMString type, optional DeviceLightEventInit eventInitDict)]
-          interface DeviceLightEvent : Event {
-              readonly    attribute unrestricted double value;
+          interface AmbientLightSensorReading : SensorReading {
+              readonly attribute unrestricted double illuminance;
           };
         </pre>
-        <p dfn-for="DeviceLightEvent">
-          The <dfn>value</dfn> attribute of the <a>DeviceLightEvent</a>
-          interface MUST return the value it was initialized to. When the
-          object is created, this attribute MUST be initialized to positive
-          Infinity. It represents the <a>current light level</a>.
+        <p>
+          The <dfn>illuminance</dfn> attribute of the <a>AmbientLightSensorReading</a>
+          interface represents the <a>current light level</a>.
         </p>
         <div class="note">
           The precise lux value reported by different devices in the same light
@@ -252,28 +149,29 @@
           construction etc.
         </div>
         <p>
-          When a <a>user agent</a> is required to <dfn>fire a device light
-          event</dfn>, the <a>user agent</a> MUST run the following steps:
+          When a <a>user agent</a> is required to <dfn>fire a change
+          event</dfn> on an <a>AmbientLightSensor</a> object,
+          the <a>user agent</a> MUST run the following steps:
         </p>
-        <ol class="rule" link-for="DeviceLightEvent">
+        <ol class="rule">
           <li>
-            <a>Create an event</a> that uses the <a>DeviceLightEvent</a>
-            interface, with the name <a>devicelight</a>, which bubbles, is not
+            <a>Create an event</a> that uses the <a>AmbientLightSensorReading</a>
+            interface, with the name <a>change</a>, which does not bubbles, is not
             cancelable, and has no default action, that also meets the
             following conditions:
             <ol>
               <li>If the implementation is unable to report the <a>current
-              light level</a>, initialize the <a>value</a> attribute to
-              positive Infinity, otherwise initialize the attribute to the <a>
-                current light level</a>.
+              light level</a>, initialize the <a>illuminance</a> attribute to
+              null, otherwise initialize the attribute to the
+              <a>current light level</a>.
               </li>
             </ol>
           </li>
         </ol>
         <p>
           When the <a>current light level</a> changes, the <a>user agent</a>
-          MUST queue a task to <a>fire a device light event</a> at the
-          <a>top-level browsing context</a>'s <a>Window</a> object.
+          MUST queue a task to <a>fire a change event</a> at all the existing
+          <a>AmbientLightSensor</a> objects.
         </p>
         <div class="note">
           The definition of granularity i.e. how often the event is fired is
@@ -281,38 +179,6 @@
           they have reason to believe that the page does not have sufficiently
           fresh data.
         </div>
-        <section>
-          <h2>
-            Event handlers
-          </h2>
-          <p>
-            The following are the <a>event handlers</a> (and their
-            corresponding <a>event handler event types</a>) that MUST be
-            supported as attributes by the <a>Window</a> object:
-          </p>
-          <table class="simple" dfn-for="Window">
-            <thead>
-              <tr>
-                <th>
-                  event handler
-                </th>
-                <th>
-                  event handler event type
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <dfn><code>ondevicelight</code></dfn>
-                </td>
-                <td>
-                  <dfn><code>devicelight</code></dfn>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
       </section>
     </section>
     <section class="appendix">
