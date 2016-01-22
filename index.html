@@ -83,28 +83,15 @@
       </h2>
       <p>
         The <code><a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#eventhandler">EventHandler</a></code>
-        interface represents a <a href=
-        "http://www.w3.org/TR/WebIDL/#idl-callback-functions">callback
-        function</a> used for <a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
-        handlers</a> as defined in [[!HTML5]].
+        "https://w3c.github.io/sensors/#the-sensor-interface">Sensor</a></code>
+        interface is defined in [[!GENERIC-SENSOR]].
       </p>
       <p>
         The concepts <dfn><a href=
         "http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">queue a
-        task</a></dfn>, <dfn><a href=
+        task</a></dfn>, and <dfn><a href=
         "http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">fires
-        a simple event</a></dfn>, and <dfn><a href=
-        "http://dev.w3.org/html5/spec/browsers.html#top-level-browsing-context">
-        top-level browsing context</a></dfn> are defined in [[!HTML5]].
-      </p>
-      <p>
-        The terms <dfn><a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#event-handlers">event
-        handlers</a></dfn> and <dfn><a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type">
-        event handler event types</a></dfn> are defined in [[!HTML5]].
+        a simple event</a></dfn> are defined in [[!HTML5]].
       </p>
       <p>
         Event constructor behavior is defined in <dfn><a href=
@@ -119,8 +106,10 @@
         defined in [[!DOM4]].
       </p>
       <p>
-        The <dfn>current light level</dfn> is a value that represents the
-        ambient light levels around the hosting device in lux units.
+        The <dfn>current light level</dfn> or illuminance
+        is a value that represents
+        the ambient light levels around the hosting device
+        in lux units.
       </p>
     </section>
     <section class="informative">
@@ -129,32 +118,30 @@
       </h2>
       <p>
         There are no specific security and privacy considerations
-        beyond those describe in the Generic Sensor API [[generic-sensor]].
+        beyond those describe in the Generic Sensor API [[GENERIC-SENSOR]].
       </p>
     </section>
     <section>
       <h2>
-        Device Light
+        Model
       </h2>
       <section>
         <h2>
           <a>AmbientLightSensor</a> Interface
         </h2>
         <pre class="idl">
-          dictionary AmbientLightSensorInit : EventInit {
-              unrestricted double value;
+          [Constructor(optional AmbientLightSensorOptions ambientLightSensorOptions)]
+          interface AmbientLightSensor : Sensor {
+            readonly attribute AmbientLightSensorReading? reading;
           };
 
-          [Constructor (DOMString type, optional AmbientLightSensorInit eventInitDict)]
-          interface AmbientLightSensor : Event {
-              readonly    attribute unrestricted double value;
+          interface AmbientLightSensorReading : SensorReading {
+              readonly attribute unrestricted double illuminance;
           };
         </pre>
         <p dfn-for="AmbientLightSensor">
-          The <dfn>value</dfn> attribute of the <a>AmbientLightSensor</a>
-          interface MUST return the value it was initialized to. When the
-          object is created, this attribute MUST be initialized to positive
-          Infinity. It represents the <a>current light level</a>.
+          The <dfn>illuminance</dfn> attribute of the <a>AmbientLightSensorReading</a>
+          interface represents the <a>current light level</a>.
         </p>
         <div class="note">
           The precise lux value reported by different devices in the same light
@@ -162,28 +149,29 @@
           construction etc.
         </div>
         <p>
-          When a <a>user agent</a> is required to <dfn>fire a device light
-          event</dfn>, the <a>user agent</a> MUST run the following steps:
+          When a <a>user agent</a> is required to <dfn>fire a change
+          event</dfn> on an <a>AmbientLightSensor</a> object,
+          the <a>user agent</a> MUST run the following steps:
         </p>
         <ol class="rule" link-for="AmbientLightSensor">
           <li>
-            <a>Create an event</a> that uses the <a>AmbientLightSensor</a>
-            interface, with the name <a>devicelight</a>, which bubbles, is not
+            <a>Create an event</a> that uses the <a>AmbientLightSensorReading</a>
+            interface, with the name <a>change</a>, which does not bubbles, is not
             cancelable, and has no default action, that also meets the
             following conditions:
             <ol>
               <li>If the implementation is unable to report the <a>current
-              light level</a>, initialize the <a>value</a> attribute to
-              positive Infinity, otherwise initialize the attribute to the <a>
-                current light level</a>.
+              light level</a>, initialize the <a>illuminance</a> attribute to
+              null, otherwise initialize the attribute to the
+              <a>current light level</a>.
               </li>
             </ol>
           </li>
         </ol>
         <p>
           When the <a>current light level</a> changes, the <a>user agent</a>
-          MUST queue a task to <a>fire a device light event</a> at the
-          <a>top-level browsing context</a>'s <a>Window</a> object.
+          MUST queue a task to <a>fire a change event</a> at all the existing
+          <a>AmbientLightSensor</a> objects.
         </p>
         <div class="note">
           The definition of granularity i.e. how often the event is fired is
