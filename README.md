@@ -1,4 +1,4 @@
-## Ambient Light Events
+## Ambient Light Sensor API
 
 This repository contains the
 [Ambient Light Sensor API](https://w3c.github.com/ambient-light/)
