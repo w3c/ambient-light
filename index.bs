@@ -95,32 +95,4 @@ Doug Turner for the initial prototype and
 Marcos Caceres for the test suite.
 
 
-      
-<!--
-
-      <p>
-        The <code><a href=
-        "https://w3c.github.io/sensors/#the-sensor-interface">Sensor</a></code>
-        interface is defined in [[!GENERIC-SENSOR]].
-      </p>
-      <p>
-        The concepts <dfn><a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#queue-a-task">queue a
-        task</a></dfn>, and <dfn><a href=
-        "http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">fires
-        a simple event</a></dfn> are defined in [[!HTML5]].
-      </p>
-      <p>
-        Event constructor behavior is defined in <dfn><a href=
-        "http://dom.spec.whatwg.org/#constructing-events">constructing
-        events</a></dfn> chapter in [[!DOM4]].
-      </p>
-      <p>
-        The concepts <dfn><a href=
-        "http://dom.spec.whatwg.org/#constructing-events">create an
-        event</a></dfn> and <dfn><a href=
-        "http://dom.spec.whatwg.org/#firing-events">fire an event</a></dfn> are
-        defined in [[!DOM4]].
-      </p>
--->
 
