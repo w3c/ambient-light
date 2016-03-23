@@ -35,7 +35,7 @@ Security and Privacy Considerations {#security-and-privacy}
 ===================================
 
 There are no specific security and privacy considerations
-beyond those describe in the Generic Sensor API [[!GENERIC-SENSOR]].
+beyond those described in the Generic Sensor API [[!GENERIC-SENSOR]].
 
 Concepts {#concepts}
 ========
