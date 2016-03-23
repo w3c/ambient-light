@@ -1,0 +1,98 @@
+<pre class="metadata">
+Title: Ambient Light Sensor
+Status: ED
+Level: 2
+ED: https://w3c.github.io/ambient-light/
+Shortname: ambient-light
+TR: http://www.w3.org/TR/ambient-light/
+Previous Version: http://www.w3.org/TR/2015/WD-ambient-light-20150903/
+Editor: Anssi Kostiainen, Intel Corporation, http://intel.com/
+Editor: Tobie Langel 78102, Intel Corporation, http://intel.com/, tobie@sensors.codespeaks.com (from December 2015)
+Editor: Doug Turner, Mozilla Corporation, http://mozilla.com/ (until January 2013)
+Group: dap
+Abstract:
+  This specification defines a concrete sensor interface to monitor
+  the ambient light level or illuminance of the device's environment.
+Version History: https://github.com/w3c/ambient-light/commits/gh-pages/index.bs
+!Bug Reports: <a href="https://www.github.com/w3c/ambient-light/issues/new">via the w3c/ambient-light repository on GitHub</a>
+Indent: 2
+Repository: w3c/ambient-light
+Markup Shorthands: markdown on
+Inline Github Issues: true
+!Issue Tracking: <a href="https://github.com/w3c/ambient-light/milestones/Level%202">Level 2 Issues</a>
+Boilerplate: omit issues-index
+</pre>
+<pre class="anchors">
+
+</pre>
+
+Introduction {#intro}
+============
+
+Intro.
+
+Security and Privacy Considerations {#security-and-privacy}
+===================================
+
+There are no specific security and privacy considerations
+beyond those described in the Generic Sensor API [[!GENERIC-SENSOR]].
+
+Concepts {#concepts}
+========
+
+The <dfn>AmbientLightSensor</dfn> interface provides information about the
+ambient light levels, as detected by the device's light <a>sensor</a>, in
+terms of lux units.
+
+<!--
+Note The <a href=
+"http://dev.w3.org/csswg/mediaqueries/#light-level">'light-level' media
+feature</a> [[MEDIAQUERIES-4]] provides more granular, less precise,
+information about the ambient light level.
+-->
+
+The <dfn>current light level</dfn> or <dfn>illuminance</dfn>
+is a value that represents the ambient light levels
+around the hosting device in lux units.
+
+API {#api}
+===
+
+The AmbientLightSensor Interface {#ambient-light-sensor-interface}
+--------------------------------
+
+<pre class="idl">
+  [Constructor(optional SensorOptions sensorOptions)]
+  interface AmbientLightSensor : Sensor {
+    readonly attribute AmbientLightSensorReading? reading;
+  };
+</pre>
+
+The AmbientLightSensorReading Interface {#ambient-light-sensor-reading-interface}
+---------------------------------------
+
+<pre class="idl">
+  interface AmbientLightSensorReading : SensorReading {
+      readonly attribute unrestricted double illuminance;
+  };
+</pre>
+
+
+### The illuminance attribute### {#ambient-light-sensor-reading-attribute}
+
+The <dfn attribute>illuminance</dfn> attribute of the <a>AmbientLightSensorReading</a>
+interface represents the <a>current light level</a>.
+
+Note: The precise lux value reported by
+different devices in the same light can be different,
+due to differences in detection method, sensor construction etc.
+
+
+Acknowledgements {#acknowledgements}
+================
+
+Doug Turner for the initial prototype and
+Marcos Caceres for the test suite.
+
+
+
