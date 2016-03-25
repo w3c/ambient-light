@@ -21,6 +21,7 @@ Markup Shorthands: markdown on
 Inline Github Issues: true
 !Issue Tracking: <a href="https://github.com/w3c/ambient-light/milestones/Level%202">Level 2 Issues</a>
 Boilerplate: omit issues-index
+Default Biblio Status: current
 </pre>
 <pre class="anchors">
 urlPrefix: https://w3c.github.io/permissions/; spec: PERMISSIONS
