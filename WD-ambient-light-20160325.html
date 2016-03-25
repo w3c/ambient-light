@@ -220,10 +220,11 @@ which would mirror the <a class="property" data-link-type="propdesc" href="https
 This sensor would _not require additional user permission to be activated_
 in user agents that exposed the <a class="property" data-link-type="propdesc" href="https://www.w3.org/TR/mediaqueries-4/#descdef-media-light-level">light-level</a> media feature.</p>
    <h2 class="heading settled" data-level="2" id="examples"><span class="secno">2. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
-   <div class="example" id="example-8b427803">
-    <a class="self-link" href="#example-8b427803"></a> 
+   <div class="example" id="example-bd59a625">
+    <a class="self-link" href="#example-bd59a625"></a> 
 <pre class="highlight"><span class="kd">let</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AmbientLightSensor</span><span class="p">();</span>
-
+<span class="nx">sensor</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+    
 <span class="nx">sensor</span><span class="p">.</span><span class="nx">onchange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">reading</span><span class="p">.</span><span class="nx">illuminance</span><span class="p">);</span>
 <span class="p">};</span>

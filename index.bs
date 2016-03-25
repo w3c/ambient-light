@@ -60,7 +60,8 @@ Examples {#examples}
 <div class="example">
     <pre highlight="js">
     let sensor = new AmbientLightSensor();
-
+    sensor.start();
+    
     sensor.onchange = function(event) {
         console.log(event.reading.illuminance);
     };
