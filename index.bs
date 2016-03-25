@@ -7,8 +7,8 @@ Shortname: ambient-light
 TR: http://www.w3.org/TR/ambient-light/
 Previous Version: http://www.w3.org/TR/2015/WD-ambient-light-20150903/
 Editor: Anssi Kostiainen, Intel Corporation, http://intel.com/
-Editor: Tobie Langel 78102, Intel Corporation, http://intel.com/, tobie@sensors.codespeaks.com (from December 2015)
-Editor: Doug Turner, Mozilla Corporation, http://mozilla.com/ (until January 2013)
+Editor: Tobie Langel 78102, Intel Corporation, http://intel.com/
+Former Editor: Doug Turner, Mozilla Corporation, http://mozilla.com/
 Group: dap
 Abstract:
   This specification defines a concrete sensor interface to monitor
@@ -23,13 +23,52 @@ Inline Github Issues: true
 Boilerplate: omit issues-index
 </pre>
 <pre class="anchors">
-
+urlPrefix: https://w3c.github.io/permissions/; spec: PERMISSIONS
+  type: dfn
+    text: permission; url: idl-def-Permission
+    text: associated PermissionDescriptor;  url: dfn-associated-permissiondescriptor
+urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
+  type: dfn
+    text: high-level
+    text: sensor subclass
+    text: sensorreading subclass
+    text: default sensor
+    text: supported reporting mode; url: supported-reporting-modes
+    text: auto 
+    text: construct a sensor object; url: construct-sensor-object
 </pre>
 
 Introduction {#intro}
 ============
 
-Intro.
+The Ambient Light Sensor extends the Generic Sensor API [[GENERIC-SENSOR]]
+to provide information about ambient light levels,
+as detected by the device's main light detector, in terms of lux units.
+
+The 'light-level' media feature [[MEDIAQUERIES-4]] provides
+less granular information about the ambient light level.
+
+Note: it might be worthwhile to provide a <a>high-level</a> Light Level Sensor
+which would mirror the 'light-level' media feature, but in JavaScript.
+This sensor would _not require additional user permission to be activated_
+in user agents that exposed the 'light-level' media feature.
+
+Examples {#examples}
+========
+
+<div class="example">
+    <pre highlight="js">
+    let sensor = new AmbientLightSensor();
+
+    sensor.onchange = function(event) {
+        console.log(event.reading.illuminance);
+    };
+
+    sensor.onerror = function(event) {
+        console.log(event.error.name, event.error.message);
+    };
+    </pre>
+</div>
 
 Security and Privacy Considerations {#security-and-privacy}
 ===================================
@@ -37,23 +76,41 @@ Security and Privacy Considerations {#security-and-privacy}
 There are no specific security and privacy considerations
 beyond those described in the Generic Sensor API [[!GENERIC-SENSOR]].
 
-Concepts {#concepts}
-========
+Model {#model}
+=====
 
-The <dfn>AmbientLightSensor</dfn> interface provides information about the
-ambient light levels, as detected by the device's light <a>sensor</a>, in
-terms of lux units.
+The Ambient Light Sensor's associated <a>Sensor subclass</a>
+is the {{AmbientLightSensor}} class.
 
-<!--
-Note The <a href=
-"http://dev.w3.org/csswg/mediaqueries/#light-level">'light-level' media
-feature</a> [[MEDIAQUERIES-4]] provides more granular, less precise,
-information about the ambient light level.
--->
+The Ambient Light Sensor's associated <a>SensorReading subclass</a>
+is the {{AmbientLightSensorReading}} class.
+
+The Ambient Light Sensor has a <a>default sensor</a>,
+which is the device's main light detector.
+
+The Ambient Light Sensor has a single <a>supported reporting mode</a>
+which is "<a>auto</a>".
+
+The Ambient Light Sensor's <a>permission</a> name is `"ambient-light"`.
+It has no <a>associated PermissionDescriptor</a>.
+
+The Ambient Light Sensor has an associated abstract operation
+to <dfn>retrieve the sensor permission</dfn> which
+must simply return a <a>permission</a> whose name is "ambient-light".
+
+The Ambient Light Sensor has an associated abstract operation
+to <dfn lt="Construct SensorReading Object">construct a SensorReading object</dfn>
+which creates a new {{AmbientLightSensorReading}} object and sets its
+<a attribute for="AmbientLightSensorReading">illuminance</a> attribute to
+the <a>current light level</a>.
 
 The <dfn>current light level</dfn> or <dfn>illuminance</dfn>
 is a value that represents the ambient light levels
-around the hosting device in lux units.
+around the hosting device. Its unit is the lux (lx) [[SI]].
+
+Note: The precise lux value reported by
+different devices in the same light can be different,
+due to differences in detection method, sensor construction, etc.
 
 API {#api}
 ===
@@ -68,31 +125,37 @@ The AmbientLightSensor Interface {#ambient-light-sensor-interface}
   };
 </pre>
 
+To <dfn>Construct an AmbientLightSensor Object</dfn> the user agent must invoke the 
+<a ls="Construct Sensor Object">construct a Sensor object</a> abstract operation.
+
 The AmbientLightSensorReading Interface {#ambient-light-sensor-reading-interface}
 ---------------------------------------
 
 <pre class="idl">
+  [Constructor(AmbientLightSensorReadingInit ambientLightSensorReadingInit)]
   interface AmbientLightSensorReading : SensorReading {
       readonly attribute unrestricted double illuminance;
   };
+  
+  dictionary AmbientLightSensorReadingInit {
+    unrestricted double illuminance;
+  };
 </pre>
 
+### The AmbientLightSensorReading constructor ### {#ambient-light-sensor-reading-constructor}
 
-### The illuminance attribute### {#ambient-light-sensor-reading-attribute}
+### The illuminance attribute ### {#ambient-light-sensor-reading-attribute}
 
-The <dfn attribute>illuminance</dfn> attribute of the <a>AmbientLightSensorReading</a>
+The <a attribute for="AmbientLightSensorReading">illuminance</a> attribute of the {{AmbientLightSensorReading}}
 interface represents the <a>current light level</a>.
-
-Note: The precise lux value reported by
-different devices in the same light can be different,
-due to differences in detection method, sensor construction etc.
-
 
 Acknowledgements {#acknowledgements}
 ================
 
 Doug Turner for the initial prototype and
 Marcos Caceres for the test suite.
+
+Paul Bakaus for the LightLevelSensor idea.
 
 
 
