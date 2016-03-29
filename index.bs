@@ -127,7 +127,7 @@ The AmbientLightSensor Interface {#ambient-light-sensor-interface}
 </pre>
 
 To <dfn>Construct an AmbientLightSensor Object</dfn> the user agent must invoke the 
-<a ls="Construct Sensor Object">construct a Sensor object</a> abstract operation.
+<a>construct a Sensor object</a> abstract operation.
 
 The AmbientLightSensorReading Interface {#ambient-light-sensor-reading-interface}
 ---------------------------------------
