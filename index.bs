@@ -5,7 +5,7 @@ ED: https://w3c.github.io/ambient-light/
 Shortname: ambient-light
 TR: http://www.w3.org/TR/ambient-light/
 Previous Version: http://www.w3.org/TR/2015/WD-ambient-light-20150903/
-Editor: Anssi Kostiainen, Intel Corporation, http://intel.com/
+Editor: Anssi Kostiainen 41974, Intel Corporation, http://intel.com/
 Editor: Tobie Langel 78102, Intel Corporation, http://intel.com/
 Former Editor: Doug Turner, Mozilla Corporation, http://mozilla.com/
 Group: dap
