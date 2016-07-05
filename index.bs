@@ -1,5 +1,6 @@
 <pre class="metadata">
 Title: Ambient Light Sensor
+Level: 1
 Status: ED
 ED: https://w3c.github.io/ambient-light/
 Shortname: ambient-light
@@ -20,7 +21,7 @@ Markup Shorthands: markdown on
 Inline Github Issues: true
 !Issue Tracking: <a href="https://github.com/w3c/ambient-light/milestones/Level%202">Level 2 Issues</a>
 !Test Suite: <a href="https://github.com/w3c/web-platform-tests/tree/master/ambient-light">web-platform-tests on GitHub</a>
-Boilerplate: omit issues-index
+Boilerplate: omit issues-index, omit conformance
 Default Biblio Status: current
 </pre>
 <pre class="anchors">
