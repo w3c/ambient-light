@@ -47,13 +47,13 @@ The Ambient Light Sensor extends the Generic Sensor API [[GENERIC-SENSOR]]
 to provide information about ambient light levels,
 as detected by the device's main light detector, in terms of lux units.
 
-The 'light-level' media feature [[MEDIAQUERIES-4]] provides
+The `light-level` media feature [[MEDIAQUERIES-4]] provides
 less granular information about the ambient light level.
 
 Note: it might be worthwhile to provide a <a>high-level</a> Light Level Sensor
-which would mirror the 'light-level' media feature, but in JavaScript.
+which would mirror the `light-level` media feature, but in JavaScript.
 This sensor would _not require additional user permission to be activated_
-in user agents that exposed the 'light-level' media feature.
+in user agents that exposed the `light-level` media feature.
 
 Examples {#examples}
 ========
@@ -160,23 +160,22 @@ Marcos Caceres for the test suite.
 
 Paul Bakaus for the LightLevelSensor idea.
 
-<h2 id="conformance" class="no-ref no-num">Conformance</h2>
+Conformance {#conformance}
+===========
 
-<h3 id="conventions" class="no-ref no-num">Document conventions</h3>
+Conformance requirements are expressed with a combination of
+descriptive assertions and RFC 2119 terminology. The key words "MUST",
+"MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
+"RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this
+document are to be interpreted as described in RFC 2119.
+However, for readability, these words do not appear in all uppercase
+letters in this specification.
 
-    <p>Conformance requirements are expressed with a combination of
-    descriptive assertions and RFC 2119 terminology. The key words "MUST",
-    "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
-    "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this
-    document are to be interpreted as described in RFC 2119.
-    However, for readability, these words do not appear in all uppercase
-    letters in this specification.
+All of the text of this specification is normative except sections
+explicitly marked as non-normative, examples, and notes. [[!RFC2119]]
 
-    <p>All of the text of this specification is normative except sections
-    explicitly marked as non-normative, examples, and notes. [[!RFC2119]]</p>
+A <dfn>conformant user agent</dfn> must implement all the requirements
+listed in this specification that are applicable to user agents.
 
-<h3 id="conformance-classes" class="no-ref no-num">Conformance Classes</h3>
-
-    <p>A <dfn>conformant user agent</dfn> must implement all the requirements
-    listed in this specification that are applicable to user agents.</p>
-
+The IDL fragments in this specification must be interpreted as required for
+conforming IDL fragments, as described in the Web IDL specification. [[!WEBIDL]]
