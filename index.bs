@@ -124,7 +124,6 @@ The AmbientLightSensor Interface {#ambient-light-sensor-interface}
 <pre class="idl">
   [Constructor(optional SensorOptions sensorOptions)]
   interface AmbientLightSensor : Sensor {
-    readonly attribute AmbientLightSensorReading? reading;
   };
 </pre>
 
