@@ -52,7 +52,7 @@ less granular information about the ambient light level.
 
 Note: it might be worthwhile to provide a <a>high-level</a> Light Level Sensor
 which would mirror the `light-level` media feature, but in JavaScript.
-This sensor would _not require additional user permission to be activated_
+This sensor would *not require additional user permission to be activated*
 in user agents that exposed the `light-level` media feature.
 
 Examples {#examples}
@@ -140,7 +140,7 @@ The AmbientLightSensorReading Interface {#ambient-light-sensor-reading-interface
   };
   
   dictionary AmbientLightSensorReadingInit {
-    unrestricted double illuminance;
+    required unrestricted double illuminance;
   };
 </pre>
 
