@@ -18,17 +18,13 @@ Version History: https://github.com/w3c/ambient-light/commits/gh-pages/index.bs
 Indent: 2
 Repository: w3c/ambient-light
 Markup Shorthands: markdown on
-Inline Github Issues: true
+Inline Github Issues: off
 !Issue Tracking: <a href="https://github.com/w3c/ambient-light/milestones/Level%202">Level 2 Issues</a>
 !Test Suite: <a href="https://github.com/w3c/web-platform-tests/tree/master/ambient-light">web-platform-tests on GitHub</a>
 Boilerplate: omit issues-index, omit conformance
 Default Biblio Status: current
 </pre>
 <pre class="anchors">
-urlPrefix: https://w3c.github.io/permissions/; spec: PERMISSIONS
-  type: dfn
-    text: permission; url: idl-def-Permission
-    text: associated PermissionDescriptor;  url: dfn-associated-permissiondescriptor
 urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
   type: dfn
     text: high-level
@@ -64,7 +60,7 @@ Examples {#examples}
     sensor.start();
     
     sensor.onchange = function(event) {
-        console.log(event.reading.illuminance);
+        console.log(sensor.illuminance);
     };
 
     sensor.onerror = function(event) {
@@ -85,27 +81,14 @@ Model {#model}
 The Ambient Light Sensor's associated <a>Sensor subclass</a>
 is the {{AmbientLightSensor}} class.
 
-The Ambient Light Sensor's associated <a>SensorReading subclass</a>
-is the {{AmbientLightSensorReading}} class.
-
 The Ambient Light Sensor has a <a>default sensor</a>,
 which is the device's main light detector.
 
 The Ambient Light Sensor has a single <a>supported reporting mode</a>
 which is "<a>auto</a>".
 
-The Ambient Light Sensor's <a>permission</a> name is `"ambient-light"`.
-It has no <a>associated PermissionDescriptor</a>.
-
-The Ambient Light Sensor has an associated abstract operation
-to <dfn>retrieve the sensor permission</dfn> which
-must simply return a <a>permission</a> whose name is "ambient-light".
-
-The Ambient Light Sensor has an associated abstract operation
-to <dfn lt="Construct SensorReading Object">construct a SensorReading object</dfn>
-which creates a new {{AmbientLightSensorReading}} object and sets its
-<a attribute for="AmbientLightSensorReading">illuminance</a> attribute to
-the <a>current light level</a>.
+The Ambient Light Sensor has an associated {{PermissionName}}
+which is <a for="PermissionName" enum-value>"ambient-light-sensor"</a>.
 
 The <dfn>current light level</dfn> or <dfn>illuminance</dfn>
 is a value that represents the ambient light levels
@@ -124,31 +107,16 @@ The AmbientLightSensor Interface {#ambient-light-sensor-interface}
 <pre class="idl">
   [Constructor(optional SensorOptions sensorOptions)]
   interface AmbientLightSensor : Sensor {
+    readonly attribute unrestricted double illuminance;
   };
 </pre>
 
 To <dfn>Construct an AmbientLightSensor Object</dfn> the user agent must invoke the 
 <a>construct a Sensor object</a> abstract operation.
 
-The AmbientLightSensorReading Interface {#ambient-light-sensor-reading-interface}
----------------------------------------
-
-<pre class="idl">
-  [Constructor(AmbientLightSensorReadingInit ambientLightSensorReadingInit)]
-  interface AmbientLightSensorReading : SensorReading {
-      readonly attribute unrestricted double illuminance;
-  };
-  
-  dictionary AmbientLightSensorReadingInit {
-    required unrestricted double illuminance;
-  };
-</pre>
-
-### The AmbientLightSensorReading constructor ### {#ambient-light-sensor-reading-constructor}
-
 ### The illuminance attribute ### {#ambient-light-sensor-reading-attribute}
 
-The <a attribute for="AmbientLightSensorReading">illuminance</a> attribute of the {{AmbientLightSensorReading}}
+The <a attribute for="AmbientLightSensor">illuminance</a> attribute of the {{AmbientLightSensor}}
 interface represents the <a>current light level</a>.
 
 Acknowledgements {#acknowledgements}
