@@ -119,6 +119,19 @@ To <dfn>Construct an AmbientLightSensor Object</dfn> the user agent must invoke 
 The <a attribute for="AmbientLightSensor">illuminance</a> attribute of the {{AmbientLightSensor}}
 interface represents the <a>current light level</a>.
 
+Use Cases and Requirements {#usecases-requirements}
+=========
+
+1. A Web application gradually updates document style based on light level changes.
+1. A Web application provides input for a smart home system to control lighting.
+1. A Web aplication checks whether light level at work space is sufficient, based on occupational
+   health regulations.
+1. A Web application monitors light level changes produced by hovering hand user gesture and
+   interprets them to control a game character.
+1. A Web application calculates settings for a camera with manual controls (apperture, shutter speed, ISO).
+
+The mentioned use cases require plain light level data, not a pre-defined set of values.
+
 Acknowledgements {#acknowledgements}
 ================
 
