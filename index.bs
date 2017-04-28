@@ -140,6 +140,8 @@ Marcos Caceres for the test suite.
 
 Paul Bakaus for the LightLevelSensor idea.
 
+Mikhail Pozdnyakov and Alexander Shalamov for the use cases and requirements.
+
 Conformance {#conformance}
 ===========
 
