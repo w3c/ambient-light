@@ -31,7 +31,8 @@ urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
     text: sensor subclass
     text: sensorreading subclass
     text: default sensor
-    text: supported reporting mode; url: supported-reporting-modes
+    text: implementation specific; url: implementation-specific
+    text: reporting mode; url: reporting-modes
     text: auto 
     text: construct a sensor object; url: construct-sensor-object
 </pre>
@@ -84,8 +85,8 @@ is the {{AmbientLightSensor}} class.
 The Ambient Light Sensor has a <a>default sensor</a>,
 which is the device's main light detector.
 
-The Ambient Light Sensor has a single <a>supported reporting mode</a>
-which is "<a>auto</a>".
+The Ambient Light Sensor's <a>reporting mode</a> is <a>implementation
+specific</a>.
 
 The Ambient Light Sensor has an associated {{PermissionName}}
 which is <a for="PermissionName" enum-value>"ambient-light-sensor"</a>.
