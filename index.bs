@@ -60,7 +60,7 @@ Examples {#examples}
     let sensor = new AmbientLightSensor();
     sensor.start();
     
-    sensor.onchange = function(event) {
+    sensor.onreading = function(event) {
         console.log(sensor.illuminance);
     };
 
