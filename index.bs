@@ -1,6 +1,6 @@
 <pre class="metadata">
 Title: Ambient Light Sensor
-Level: 1
+Level: none
 Status: ED
 ED: https://w3c.github.io/ambient-light/
 Shortname: ambient-light
