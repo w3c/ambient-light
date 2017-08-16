@@ -1549,8 +1549,39 @@ sensor<span class="p">.</span>onerror <span class="o">=</span> <span class="kd">
 </pre>
    </div>
    <h2 class="heading settled" data-level="3" id="security-and-privacy"><span class="secno">3. </span><span class="content">Security and Privacy Considerations</span><a class="self-link" href="#security-and-privacy"></a></h2>
-   <p>There are no specific security and privacy considerations
-beyond those described in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
+   <p>Ambient Light Sensor provides information about lighting conditions near
+the device environment. Potential privacy risks include:</p>
+   <ul>
+    <li data-md="">
+     <p>Information leaks about the user’s surrounding and work habits.</p>
+    <li data-md="">
+     <p>Profiling. Readout from Ambient Light Sensor can potentially induce
+information leaks about the user’s interests, web use and work
+habits, as well as the users’ surrounding. This information might be used
+to enhance the user profiling and behavioral analysis.</p>
+    <li data-md="">
+     <p>Cross-device linking and tracking. Access to sufficiently precise readouts
+of Ambient Light Sensor potentially enhance cross-device linking
+techniques. Such situation may arise if two different devices access web
+sites including same third-party scripts that compare lighting levels over
+time.</p>
+    <li data-md="">
+     <p>Cross-device communication. Verbose readout of Ambient Light Sensor could
+be applied to receive messages emitted by other devices in nearby
+location. A simple messaging method could arise by multiple devices
+flashing their screens or camera LEDs and reading out responses with
+Ambient Light Sensors.</p>
+   </ul>
+   <p>To mitigate these Ambient Light Sensor specific threats, user agents should
+use the following mitigation strategies:</p>
+   <ul>
+    <li data-md="">
+     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors#limit-max-frequency" id="ref-for-limit-max-frequency">limit maximum sampling frequency</a>, and</p>
+    <li data-md="">
+     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings.</p>
+   </ul>
+   <p>The generic <a data-link-type="dfn" href="https://w3c.github.io/sensors#mitigation-strategies" id="ref-for-mitigation-strategies">mitigation strategies</a> are described in the Generic Sensor
+API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
    <h2 class="heading settled" data-level="4" id="model"><span class="secno">4. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
    <p>The Ambient Light Sensor’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a></code> subclass
 is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
@@ -1595,6 +1626,7 @@ due to differences in detection method, sensor construction, etc.</p>
 Marcos Caceres for the test suite.</p>
    <p>Paul Bakaus for the LightLevelSensor idea.</p>
    <p>Mikhail Pozdnyakov and Alexander Shalamov for the use cases and requirements.</p>
+   <p>Lukasz Olejnik for the privacy risk assessment.</p>
    <h2 class="heading settled" data-level="8" id="conformance"><span class="secno">8. </span><span class="content">Conformance</span><a class="self-link" href="#conformance"></a></h2>
    <p>Conformance requirements are expressed with a combination of
 descriptive assertions and RFC 2119 terminology. The key words "MUST",
@@ -1638,6 +1670,9 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
      <li><a href="https://w3c.github.io/sensors#default-sensor">default sensor</a>
      <li><a href="https://w3c.github.io/sensors#high-level">high-level</a>
      <li><a href="https://w3c.github.io/sensors#implementation-specific">implementation specific</a>
+     <li><a href="https://w3c.github.io/sensors#limit-max-frequency">limit maximum sampling frequency</a>
+     <li><a href="https://w3c.github.io/sensors#mitigation-strategies">mitigation strategies</a>
+     <li><a href="https://w3c.github.io/sensors#reduce-accuracy">reduce accuracy</a>
      <li><a href="https://w3c.github.io/sensors#reporting-modes">reporting mode</a>
     </ul>
    <li>
