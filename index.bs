@@ -28,8 +28,6 @@ Default Biblio Status: current
 urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
   type: dfn
     text: high-level
-    text: sensor subclass
-    text: sensorreading subclass
     text: default sensor
     text: implementation specific; url: implementation-specific
     text: reporting mode; url: reporting-modes
@@ -79,7 +77,7 @@ beyond those described in the Generic Sensor API [[!GENERIC-SENSOR]].
 Model {#model}
 =====
 
-The Ambient Light Sensor's associated <a>Sensor subclass</a>
+The Ambient Light Sensor's associated {{Sensor}} subclass
 is the {{AmbientLightSensor}} class.
 
 The Ambient Light Sensor has a <a>default sensor</a>,

@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 63e2d3f6cc034d9b09cfdb2d391c527b191584bc" name="generator">
+  <meta content="Bikeshed version 7018a6f1ff92cfd8deb54176c6a0459be54c3896" name="generator">
   <link href="http://www.w3.org/TR/ambient-light/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1431,7 +1431,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-11">11 August 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-16">16 August 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1552,7 +1552,8 @@ sensor<span class="p">.</span>onerror <span class="o">=</span> <span class="kd">
    <p>There are no specific security and privacy considerations
 beyond those described in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
    <h2 class="heading settled" data-level="4" id="model"><span class="secno">4. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
-   <p>The Ambient Light Sensor’s associated <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-subclass" id="ref-for-sensor-subclass">Sensor subclass</a> is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
+   <p>The Ambient Light Sensor’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a></code> subclass
+is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
    <p>The Ambient Light Sensor has a <a data-link-type="dfn" href="https://w3c.github.io/sensors#default-sensor" id="ref-for-default-sensor">default sensor</a>,
 which is the device’s main light detector.</p>
    <p>The Ambient Light Sensor’s <a data-link-type="dfn" href="https://w3c.github.io/sensors#reporting-modes" id="ref-for-reporting-modes">reporting mode</a> is <a data-link-type="dfn" href="https://w3c.github.io/sensors#implementation-specific" id="ref-for-implementation-specific">implementation
@@ -1566,13 +1567,13 @@ due to differences in detection method, sensor construction, etc.</p>
    <h2 class="heading settled" data-level="5" id="api"><span class="secno">5. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="5.1" id="ambient-light-sensor-interface"><span class="secno">5.1. </span><span class="content">The AmbientLightSensor Interface</span><a class="self-link" href="#ambient-light-sensor-interface"></a></h3>
 <pre class="idl highlight def">[<dfn class="nv idl-code" data-dfn-for="AmbientLightSensor" data-dfn-type="constructor" data-export="" data-lt="AmbientLightSensor(sensorOptions)|AmbientLightSensor()" id="dom-ambientlightsensor-ambientlightsensor"><code>Constructor</code><a class="self-link" href="#dom-ambientlightsensor-ambientlightsensor"></a></dfn>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="https://w3c.github.io/sensors/#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions">SensorOptions</a> <dfn class="nv idl-code" data-dfn-for="AmbientLightSensor/AmbientLightSensor(sensorOptions)" data-dfn-type="argument" data-export="" id="dom-ambientlightsensor-ambientlightsensor-sensoroptions-sensoroptions"><code>sensorOptions</code><a class="self-link" href="#dom-ambientlightsensor-ambientlightsensor-sensoroptions-sensoroptions"></a></dfn>)]
-<span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="ambientlightsensor"><code>AmbientLightSensor</code></dfn> : <a class="n" data-link-type="idl-name" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a> {
+<span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="ambientlightsensor"><code>AmbientLightSensor</code></dfn> : <a class="n" data-link-type="idl-name" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor①">Sensor</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unrestricted-double" id="ref-for-idl-unrestricted-double"><span class="kt">unrestricted</span> <span class="kt">double</span></a>? <dfn class="nv dfn-paneled idl-code" data-dfn-for="AmbientLightSensor" data-dfn-type="attribute" data-export="" data-readonly="" data-type="unrestricted double?" id="dom-ambientlightsensor-illuminance"><code>illuminance</code></dfn>;
 };
 </pre>
    <p>To <dfn data-dfn-type="dfn" data-noexport="" id="construct-an-ambientlightsensor-object">Construct an AmbientLightSensor Object<a class="self-link" href="#construct-an-ambientlightsensor-object"></a></dfn> the user agent must invoke the <a data-link-type="dfn" href="https://w3c.github.io/sensors#construct-sensor-object" id="ref-for-construct-sensor-object">construct a Sensor object</a> abstract operation.</p>
    <h4 class="heading settled" data-level="5.1.1" id="ambient-light-sensor-reading-attribute"><span class="secno">5.1.1. </span><span class="content">The illuminance attribute</span><a class="self-link" href="#ambient-light-sensor-reading-attribute"></a></h4>
-   <p>The <a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a> attribute of the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor-0">AmbientLightSensor</a></code> interface represents the <a data-link-type="dfn" href="#current-light-level" id="ref-for-current-light-level">current light level</a>.</p>
+   <p>The <a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a> attribute of the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor①">AmbientLightSensor</a></code> interface represents the <a data-link-type="dfn" href="#current-light-level" id="ref-for-current-light-level">current light level</a>.</p>
    <h2 class="heading settled" data-level="6" id="usecases-requirements"><span class="secno">6. </span><span class="content">Use Cases and Requirements</span><a class="self-link" href="#usecases-requirements"></a></h2>
    <ol>
     <li data-md="">
@@ -1638,7 +1639,6 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
      <li><a href="https://w3c.github.io/sensors#high-level">high-level</a>
      <li><a href="https://w3c.github.io/sensors#implementation-specific">implementation specific</a>
      <li><a href="https://w3c.github.io/sensors#reporting-modes">reporting mode</a>
-     <li><a href="https://w3c.github.io/sensors#sensor-subclass">sensor subclass</a>
     </ul>
    <li>
     <a data-link-type="biblio">[permissions]</a> defines the following terms:
@@ -1656,7 +1656,7 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-generic-sensor">[GENERIC-SENSOR]
-   <dd>Tobie Langel; Rick Waldron. <a href="https://w3c.github.io/sensors/">Generic Sensor API</a>. URL: <a href="https://w3c.github.io/sensors/">https://w3c.github.io/sensors/</a>
+   <dd>Rick Waldron; et al. <a href="https://w3c.github.io/sensors/">Generic Sensor API</a>. URL: <a href="https://w3c.github.io/sensors/">https://w3c.github.io/sensors/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
    <dd>Mounir Lamouri; Marcos Caceres. <a href="https://w3c.github.io/permissions/">The Permissions API</a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
    <dt id="biblio-rfc2119">[RFC2119]
@@ -1672,9 +1672,9 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def">[<a class="nv" href="#dom-ambientlightsensor-ambientlightsensor"><code>Constructor</code></a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="https://w3c.github.io/sensors/#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions-0">SensorOptions</a> <a class="nv" href="#dom-ambientlightsensor-ambientlightsensor-sensoroptions-sensoroptions"><code>sensorOptions</code></a>)]
-<span class="kt">interface</span> <a class="nv" href="#ambientlightsensor"><code>AmbientLightSensor</code></a> : <a class="n" data-link-type="idl-name" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor-0">Sensor</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unrestricted-double" id="ref-for-idl-unrestricted-double-0"><span class="kt">unrestricted</span> <span class="kt">double</span></a>? <a class="nv" data-readonly="" data-type="unrestricted double?" href="#dom-ambientlightsensor-illuminance"><code>illuminance</code></a>;
+<pre class="idl highlight def">[<a class="nv" href="#dom-ambientlightsensor-ambientlightsensor"><code>Constructor</code></a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="https://w3c.github.io/sensors/#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions①">SensorOptions</a> <a class="nv" href="#dom-ambientlightsensor-ambientlightsensor-sensoroptions-sensoroptions"><code>sensorOptions</code></a>)]
+<span class="kt">interface</span> <a class="nv" href="#ambientlightsensor"><code>AmbientLightSensor</code></a> : <a class="n" data-link-type="idl-name" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor①①">Sensor</a> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unrestricted-double" id="ref-for-idl-unrestricted-double①"><span class="kt">unrestricted</span> <span class="kt">double</span></a>? <a class="nv" data-readonly="" data-type="unrestricted double?" href="#dom-ambientlightsensor-illuminance"><code>illuminance</code></a>;
 };
 
 </pre>
@@ -1688,7 +1688,7 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
    <b><a href="#ambientlightsensor">#ambientlightsensor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-ambientlightsensor">4. Model</a>
-    <li><a href="#ref-for-ambientlightsensor-0">5.1.1. The illuminance attribute</a>
+    <li><a href="#ref-for-ambientlightsensor①">5.1.1. The illuminance attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-ambientlightsensor-illuminance">
