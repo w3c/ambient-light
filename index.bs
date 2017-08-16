@@ -94,8 +94,8 @@ the device environment. Potential privacy risks include:
     Ambient Light Sensors.
 
 To mitigate these Ambient Light Sensor specific threats, user agents should
-use the following mitigation strategies:
-  - <a>limit maximum sampling frequency</a>, and
+use one or both of the following mitigation strategies:
+  - <a>limit maximum sampling frequency</a>
   - <a>reduce accuracy</a> of sensor readings.
 
 The generic <a>mitigation strategies</a> are described in the Generic Sensor
