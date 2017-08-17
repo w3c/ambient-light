@@ -1431,7 +1431,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-16">16 August 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-17">17 August 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1553,24 +1553,16 @@ sensor<span class="p">.</span>onerror <span class="o">=</span> <span class="kd">
 the device environment. Potential privacy risks include:</p>
    <ul>
     <li data-md="">
-     <p>Information leaks about the user’s surrounding and work habits.</p>
+     <p>Profiling. Ambient Light Sensor can leak information about user’s use
+patterns and surrounding. This information can be used to enhance user
+profiling and behavioral analysis.</p>
     <li data-md="">
-     <p>Profiling. Readout from Ambient Light Sensor can potentially induce
-information leaks about the user’s interests, web use and work
-habits, as well as the users’ surrounding. This information might be used
-to enhance the user profiling and behavioral analysis.</p>
+     <p>Cross-device linking. Two devices can access web sites that include the
+same third-party script that correlates lighting levels over time.</p>
     <li data-md="">
-     <p>Cross-device linking and tracking. Access to sufficiently precise readouts
-of Ambient Light Sensor potentially enhance cross-device linking
-techniques. Such situation may arise if two different devices access web
-sites including same third-party scripts that compare lighting levels over
-time.</p>
-    <li data-md="">
-     <p>Cross-device communication. Verbose readout of Ambient Light Sensor could
-be applied to receive messages emitted by other devices in nearby
-location. A simple messaging method could arise by multiple devices
-flashing their screens or camera LEDs and reading out responses with
-Ambient Light Sensors.</p>
+     <p>Cross-device communication. A simple broadcast communication method can
+use device screen or camera LED flashes to broadcast messages read
+out with an Ambient Light Sensor in a close by device.</p>
    </ul>
    <p>To mitigate these Ambient Light Sensor specific threats, user agents should
 use one or both of the following mitigation strategies:</p>
@@ -1578,7 +1570,7 @@ use one or both of the following mitigation strategies:</p>
     <li data-md="">
      <p><a data-link-type="dfn" href="https://w3c.github.io/sensors#limit-max-frequency" id="ref-for-limit-max-frequency">limit maximum sampling frequency</a></p>
     <li data-md="">
-     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings.</p>
+     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings</p>
    </ul>
    <p>The generic <a data-link-type="dfn" href="https://w3c.github.io/sensors#mitigation-strategies" id="ref-for-mitigation-strategies">mitigation strategies</a> are described in the Generic Sensor
 API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>

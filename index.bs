@@ -77,26 +77,19 @@ Security and Privacy Considerations {#security-and-privacy}
 Ambient Light Sensor provides information about lighting conditions near
 the device environment. Potential privacy risks include:
 
-  - Information leaks about the user’s surrounding and work habits.
-  - Profiling. Readout from Ambient Light Sensor can potentially induce
-    information leaks about the user’s interests, web use and work
-    habits, as well as the users’ surrounding. This information might be used
-    to enhance the user profiling and behavioral analysis.
-  - Cross-device linking and tracking. Access to sufficiently precise readouts
-    of Ambient Light Sensor potentially enhance cross-device linking
-    techniques. Such situation may arise if two different devices access web
-    sites including same third-party scripts that compare lighting levels over
-    time.
-  - Cross-device communication. Verbose readout of Ambient Light Sensor could
-    be applied to receive messages emitted by other devices in nearby
-    location. A simple messaging method could arise by multiple devices
-    flashing their screens or camera LEDs and reading out responses with
-    Ambient Light Sensors.
+  - Profiling. Ambient Light Sensor can leak information about user's use
+    patterns and surrounding. This information can be used to enhance user
+    profiling and behavioral analysis.
+  - Cross-device linking. Two devices can access web sites that include the
+    same third-party script that correlates lighting levels over time.
+  - Cross-device communication. A simple broadcast communication method can
+    use device screen or camera LED flashes to broadcast messages read
+    out with an Ambient Light Sensor in a close by device.
 
 To mitigate these Ambient Light Sensor specific threats, user agents should
 use one or both of the following mitigation strategies:
   - <a>limit maximum sampling frequency</a>
-  - <a>reduce accuracy</a> of sensor readings.
+  - <a>reduce accuracy</a> of sensor readings
 
 The generic <a>mitigation strategies</a> are described in the Generic Sensor
 API [[!GENERIC-SENSOR]].
