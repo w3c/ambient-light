@@ -33,6 +33,9 @@ urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
     text: reporting mode; url: reporting-modes
     text: auto 
     text: construct a sensor object; url: construct-sensor-object
+    text: limit maximum sampling frequency; url: limit-max-frequency
+    text: reduce accuracy; url: reduce-accuracy
+    text: mitigation strategies; url: mitigation-strategies
 </pre>
 
 Introduction {#intro}
@@ -71,8 +74,25 @@ Examples {#examples}
 Security and Privacy Considerations {#security-and-privacy}
 ===================================
 
-There are no specific security and privacy considerations
-beyond those described in the Generic Sensor API [[!GENERIC-SENSOR]].
+Ambient Light Sensor provides information about lighting conditions near
+the device environment. Potential privacy risks include:
+
+  - Profiling. Ambient Light Sensor can leak information about user's use
+    patterns and surrounding cross-origin. This information can be used to
+    enhance user profiling and behavioral analysis.
+  - Cross-device linking. Two devices can access web sites that include the
+    same third-party script that correlates lighting levels over time.
+  - Cross-device communication. A simple broadcast communication method can
+    use device screen or camera LED flashes to broadcast messages read
+    out with an Ambient Light Sensor in a close by device.
+
+To mitigate these Ambient Light Sensor specific threats, user agents should
+use one or both of the following mitigation strategies:
+  - <a>limit maximum sampling frequency</a>
+  - <a>reduce accuracy</a> of sensor readings
+
+The generic <a>mitigation strategies</a> are described in the Generic Sensor
+API [[!GENERIC-SENSOR]].
 
 Model {#model}
 =====
@@ -140,6 +160,8 @@ Marcos Caceres for the test suite.
 Paul Bakaus for the LightLevelSensor idea.
 
 Mikhail Pozdnyakov and Alexander Shalamov for the use cases and requirements.
+
+Lukasz Olejnik for the privacy risk assessment.
 
 Conformance {#conformance}
 ===========
