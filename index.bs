@@ -46,9 +46,6 @@ The Ambient Light Sensor extends the Generic Sensor API [[GENERIC-SENSOR]]
 to provide information about ambient light levels,
 as detected by the device's main light detector, in terms of lux units.
 
-The `light-level` media feature [[MEDIAQUERIES-4]] provides
-less granular information about the ambient light level.
-
 Note: it might be worthwhile to provide a <a>high-level</a> Light Level Sensor
 which would mirror the `light-level` media feature, but in JavaScript.
 This sensor would *not require additional user permission to be activated*
@@ -151,6 +148,11 @@ Use Cases and Requirements {#usecases-requirements}
 While some of the use cases may benefit from obtaining precise ambient light measurements, the use
 cases that convert ambient light level fluctuations to user input events, would benefit from
 higher [=sampling frequency|sampling frequencies=].
+
+Note: For document styling use cases that do not require accuracy, low latency, and high frequency,
+the `light-level` CSS media feature [[MEDIAQUERIES-4]] can be more appropriate. The `light-level`
+media feature has a set of pre-defined values that represents a composite of screen brightness,
+screen technology, ambient light level, and possibly other factors depending on implementation.
 
 Acknowledgements {#acknowledgements}
 ================
