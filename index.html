@@ -1183,7 +1183,7 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 7018a6f1ff92cfd8deb54176c6a0459be54c3896" name="generator">
+  <meta content="Bikeshed version 47cdb2827beffb8d4912759c29bec11efe778210" name="generator">
   <link href="http://www.w3.org/TR/ambient-light/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1431,7 +1431,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-17">17 August 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-18">18 August 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1598,21 +1598,20 @@ due to differences in detection method, sensor construction, etc.</p>
    <h4 class="heading settled" data-level="5.1.1" id="ambient-light-sensor-reading-attribute"><span class="secno">5.1.1. </span><span class="content">The illuminance attribute</span><a class="self-link" href="#ambient-light-sensor-reading-attribute"></a></h4>
    <p>The <a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a> attribute of the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor①">AmbientLightSensor</a></code> interface represents the <a data-link-type="dfn" href="#current-light-level" id="ref-for-current-light-level">current light level</a>.</p>
    <h2 class="heading settled" data-level="6" id="usecases-requirements"><span class="secno">6. </span><span class="content">Use Cases and Requirements</span><a class="self-link" href="#usecases-requirements"></a></h2>
-   <ol>
-    <li data-md="">
-     <p>A Web application gradually updates document style based on light level changes.</p>
+   <ul>
     <li data-md="">
      <p>A Web application provides input for a smart home system to control lighting.</p>
     <li data-md="">
-     <p>A Web aplication checks whether light level at work space is sufficient, based on occupational
- health regulations.</p>
-    <li data-md="">
-     <p>A Web application monitors light level changes produced by hovering hand user gesture and
- interprets them to control a game character.</p>
+     <p>A Web aplication checks whether light level at work space is sufficient.</p>
     <li data-md="">
      <p>A Web application calculates settings for a camera with manual controls (apperture, shutter speed, ISO).</p>
-   </ol>
-   <p>The mentioned use cases require plain light level data, not a pre-defined set of values.</p>
+    <li data-md="">
+     <p>A Web application monitors light level changes produced by hovering hand user gesture and
+interprets them to control a game character.</p>
+   </ul>
+   <p>While some of the use cases may benefit from obtaining precise ambient light measurements, the use
+cases that convert ambient light level fluctuations to user input events, would benefit from
+higher <a data-link-type="dfn" href="https://w3c.github.io/sensors#sampling-frequency" id="ref-for-sampling-frequency">sampling frequencies</a>.</p>
    <h2 class="heading settled" data-level="7" id="acknowledgements"><span class="secno">7. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>Doug Turner for the initial prototype and
 Marcos Caceres for the test suite.</p>
@@ -1656,8 +1655,6 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
    <li>
     <a data-link-type="biblio">[GENERIC-SENSOR]</a> defines the following terms:
     <ul>
-     <li><a href="https://w3c.github.io/sensors/#sensor">Sensor</a>
-     <li><a href="https://w3c.github.io/sensors/#dictdef-sensoroptions">SensorOptions</a>
      <li><a href="https://w3c.github.io/sensors#construct-sensor-object">construct a sensor object</a>
      <li><a href="https://w3c.github.io/sensors#default-sensor">default sensor</a>
      <li><a href="https://w3c.github.io/sensors#high-level">high-level</a>
@@ -1666,12 +1663,23 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
      <li><a href="https://w3c.github.io/sensors#mitigation-strategies">mitigation strategies</a>
      <li><a href="https://w3c.github.io/sensors#reduce-accuracy">reduce accuracy</a>
      <li><a href="https://w3c.github.io/sensors#reporting-modes">reporting mode</a>
+     <li><a href="https://w3c.github.io/sensors#sampling-frequency">sampling frequency</a>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[generic-sensor-1]</a> defines the following terms:
+    <ul>
+     <li><a href="https://w3c.github.io/sensors/#sensor">Sensor</a>
+     <li><a href="https://w3c.github.io/sensors/#dictdef-sensoroptions">SensorOptions</a>
     </ul>
    <li>
     <a data-link-type="biblio">[permissions]</a> defines the following terms:
     <ul>
-     <li><a href="https://w3c.github.io/permissions/#dom-permissionname-ambient-light-sensor">"ambient-light-sensor"</a>
      <li><a href="https://w3c.github.io/permissions/#enumdef-permissionname">PermissionName</a>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[permissions-1]</a> defines the following terms:
+    <ul>
+     <li><a href="https://w3c.github.io/permissions/#dom-permissionname-ambient-light-sensor">"ambient-light-sensor"</a>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
