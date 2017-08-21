@@ -1533,9 +1533,10 @@ the ambient light level or illuminance of the device’s environment.</p>
    <p>The Ambient Light Sensor extends the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a> to provide information about ambient light levels,
 as detected by the device’s main light detector, in terms of lux units.</p>
    <h3 class="heading settled" data-level="1.1" id="scope"><span class="secno">1.1. </span><span class="content">Scope</span><a class="self-link" href="#scope"></a></h3>
-   <p>For document styling use cases that do not require accuracy, low latency, and high frequency,
-the <code>light-level</code> CSS media feature <span>[MEDIAQUERIES-5]</span> can be more appropriate. The <code>light-level</code> media feature has a set of pre-defined values that represents a composite of screen brightness,
-screen technology, ambient light level, and possibly other factors depending on implementation.</p>
+   <p>This document specifies an API designed for <a href="#usecases-requirements">use cases</a> which require fine grained illuminance data, with low latency, and possibly
+sampled at high frequencies.</p>
+   <p>Common use cases relying on a small set of illuminance values, such as styling
+webpages according to ambient light levels are best served by the the <code>light-level</code> CSS media feature <span>[MEDIAQUERIES-5]</span> and its accompanying <code>matchMedia</code> API <a data-link-type="biblio" href="#biblio-cssom">[CSSOM]</a> and are out of scope of this API.</p>
    <p class="note" role="note"><span>Note:</span> it might be worthwhile to provide a <a data-link-type="dfn" href="https://w3c.github.io/sensors#high-level" id="ref-for-high-level">high-level</a> Light Level Sensor
 which would mirror the <code>light-level</code> media feature, but in JavaScript.
 This sensor would <em>not require additional user permission to be activated</em> in user agents that exposed the <code>light-level</code> media feature.</p>
@@ -1699,6 +1700,8 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
+   <dt id="biblio-cssom">[CSSOM]
+   <dd>Simon Pieters; Glenn Adams. <a href="https://drafts.csswg.org/cssom/">CSS Object Model (CSSOM)</a>. URL: <a href="https://drafts.csswg.org/cssom/">https://drafts.csswg.org/cssom/</a>
    <dt id="biblio-si">[SI]
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
   </dl>

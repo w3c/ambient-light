@@ -49,10 +49,14 @@ as detected by the device's main light detector, in terms of lux units.
 Scope {#scope}
 -----
 
-For document styling use cases that do not require accuracy, low latency, and high frequency,
-the `light-level` CSS media feature [[MEDIAQUERIES-5]] can be more appropriate. The `light-level`
-media feature has a set of pre-defined values that represents a composite of screen brightness,
-screen technology, ambient light level, and possibly other factors depending on implementation.
+This document specifies an API designed for [[#usecases-requirements|use cases]]
+which require fine grained illuminance data, with low latency, and possibly
+sampled at high frequencies.
+
+Common use cases relying on a small set of illuminance values, such as styling
+webpages according to ambient light levels are best served by the the
+`light-level` CSS media feature [[MEDIAQUERIES-5]] and its accompanying
+`matchMedia` API [[CSSOM]] and are out of scope of this API.
 
 Note: it might be worthwhile to provide a <a>high-level</a> Light Level Sensor
 which would mirror the `light-level` media feature, but in JavaScript.
