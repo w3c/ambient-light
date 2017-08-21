@@ -1431,7 +1431,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-18">18 August 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-21">21 August 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1493,7 +1493,11 @@ the ambient light level or illuminance of the device’s environment.</p>
   <nav data-fill-with="table-of-contents" id="toc">
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
-    <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
+    <li>
+     <a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
+     <ol class="toc">
+      <li><a href="#scope"><span class="secno">1.1</span> <span class="content">Scope</span></a>
+     </ol>
     <li><a href="#examples"><span class="secno">2</span> <span class="content">Examples</span></a>
     <li><a href="#security-and-privacy"><span class="secno">3</span> <span class="content">Security and Privacy Considerations</span></a>
     <li><a href="#model"><span class="secno">4</span> <span class="content">Model</span></a>
@@ -1528,6 +1532,11 @@ the ambient light level or illuminance of the device’s environment.</p>
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
    <p>The Ambient Light Sensor extends the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a> to provide information about ambient light levels,
 as detected by the device’s main light detector, in terms of lux units.</p>
+   <h3 class="heading settled" data-level="1.1" id="scope"><span class="secno">1.1. </span><span class="content">Scope</span><a class="self-link" href="#scope"></a></h3>
+   <p>This document specifies an API designed for <a href="#usecases-requirements">use cases</a> which require fine grained illuminance data, with low latency, and possibly
+sampled at high frequencies.</p>
+   <p>Common use cases relying on a small set of illuminance values, such as styling
+webpages according to ambient light levels are best served by the the <code>light-level</code> CSS media feature <span>[MEDIAQUERIES-5]</span> and its accompanying <code>matchMedia</code> API <a data-link-type="biblio" href="#biblio-cssom">[CSSOM]</a> and are out of scope of this API.</p>
    <p class="note" role="note"><span>Note:</span> it might be worthwhile to provide a <a data-link-type="dfn" href="https://w3c.github.io/sensors#high-level" id="ref-for-high-level">high-level</a> Light Level Sensor
 which would mirror the <code>light-level</code> media feature, but in JavaScript.
 This sensor would <em>not require additional user permission to be activated</em> in user agents that exposed the <code>light-level</code> media feature.</p>
@@ -1610,9 +1619,6 @@ interprets them to control a game character.</p>
    <p>While some of the use cases may benefit from obtaining precise ambient light measurements, the use
 cases that convert ambient light level fluctuations to user input events, would benefit from
 higher <a data-link-type="dfn" href="https://w3c.github.io/sensors#sampling-frequency" id="ref-for-sampling-frequency">sampling frequencies</a>.</p>
-   <p class="note" role="note"><span>Note:</span> For document styling use cases that do not require accuracy, low latency, and high frequency,
-the <code>light-level</code> CSS media feature <a data-link-type="biblio" href="#biblio-mediaqueries-4">[MEDIAQUERIES-4]</a> can be more appropriate. The <code>light-level</code> media feature has a set of pre-defined values that represents a composite of screen brightness,
-screen technology, ambient light level, and possibly other factors depending on implementation.</p>
    <h2 class="heading settled" data-level="7" id="acknowledgements"><span class="secno">7. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>Doug Turner for the initial prototype and
 Marcos Caceres for the test suite.</p>
@@ -1694,8 +1700,8 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
-   <dt id="biblio-mediaqueries-4">[MEDIAQUERIES-4]
-   <dd>Florian Rivoal; Tab Atkins Jr.. <a href="https://drafts.csswg.org/mediaqueries-4/">Media Queries Level 4</a>. URL: <a href="https://drafts.csswg.org/mediaqueries-4/">https://drafts.csswg.org/mediaqueries-4/</a>
+   <dt id="biblio-cssom">[CSSOM]
+   <dd>Simon Pieters; Glenn Adams. <a href="https://drafts.csswg.org/cssom/">CSS Object Model (CSSOM)</a>. URL: <a href="https://drafts.csswg.org/cssom/">https://drafts.csswg.org/cssom/</a>
    <dt id="biblio-si">[SI]
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
   </dl>
