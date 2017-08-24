@@ -88,8 +88,8 @@ Ambient Light Sensor provides information about lighting conditions near
 the device environment. Potential privacy risks include:
 
   - Profiling. Ambient Light Sensor can leak information about user's use
-    patterns and surrounding cross-origin. This information can be used to
-    enhance user profiling and behavioral analysis.
+    patterns and surrounding. This information can be used to enhance user
+    profiling and behavioral analysis.
   - Cross-device linking. Two devices can access web sites that include the
     same third-party script that correlates lighting levels over time.
   - Cross-device communication. A simple broadcast communication method can
