@@ -95,6 +95,13 @@ the device environment. Potential privacy risks include:
   - Cross-device communication. A simple broadcast communication method can
     use device screen or camera LED flashes to broadcast messages read
     out with an Ambient Light Sensor in a close by device.
+  - Cross-origin leaks. Light emitted from the screen can be reflected back to
+    the sensor from nearby reflective surfaces. Malicious sites can embed
+    resources from different origins and scale the content to display
+    particular pixels to allow distinguish the contents, pixel by pixel.
+  - Hijacking browsing history. Styling visited links to allow distinguish the
+    light levels associated with visited and unvisited links i.e. visited
+    links styled as a block of black screen; white for unvisited.
 
 To mitigate these Ambient Light Sensor specific threats, user agents should
 use one or both of the following mitigation strategies:

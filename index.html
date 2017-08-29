@@ -1431,7 +1431,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-21">21 August 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-08-29">29 August 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1570,6 +1570,15 @@ same third-party script that correlates lighting levels over time.</p>
      <p>Cross-device communication. A simple broadcast communication method can
 use device screen or camera LED flashes to broadcast messages read
 out with an Ambient Light Sensor in a close by device.</p>
+    <li data-md="">
+     <p>Cross-origin leaks. Light emitted from the screen can be reflected back to
+the sensor from nearby reflective surfaces. Malicious sites can embed
+resources from different origins and scale the content to display
+particular pixels to allow distinguish the contents, pixel by pixel.</p>
+    <li data-md="">
+     <p>Hijacking browsing history. Styling visited links to allow distinguish the
+light levels associated with visited and unvisited links i.e. visited
+links styled as a block of black screen; white for unvisited.</p>
    </ul>
    <p>To mitigate these Ambient Light Sensor specific threats, user agents should
 use one or both of the following mitigation strategies:</p>
