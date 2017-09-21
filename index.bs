@@ -37,6 +37,7 @@ urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
     text: reduce accuracy; url: reduce-accuracy
     text: mitigation strategies; url: mitigation-strategies
     text: sampling frequency
+    text: sensor type
 </pre>
 
 Introduction {#intro}
@@ -114,16 +115,13 @@ API [[!GENERIC-SENSOR]].
 Model {#model}
 =====
 
-The Ambient Light Sensor's associated {{Sensor}} subclass
-is the {{AmbientLightSensor}} class.
+The <dfn>Ambient Light Sensor</dfn> <a>sensor type</a>'s associated {{Sensor}}
+subclass is the {{AmbientLightSensor}} class.
 
-The Ambient Light Sensor has a <a>default sensor</a>,
+The <a>Ambient Light Sensor</a> has a <a>default sensor</a>,
 which is the device's main light detector.
 
-The Ambient Light Sensor's <a>reporting mode</a> is <a>implementation
-specific</a>.
-
-The Ambient Light Sensor has an associated {{PermissionName}}
+The <a>Ambient Light Sensor</a> has an associated {{PermissionName}}
 which is <a for="PermissionName" enum-value>"ambient-light-sensor"</a>.
 
 The <dfn>current light level</dfn> or <dfn>illuminance</dfn>
