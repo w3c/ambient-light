@@ -121,9 +121,6 @@ subclass is the {{AmbientLightSensor}} class.
 The <a>Ambient Light Sensor</a> has a <a>default sensor</a>,
 which is the device's main light detector.
 
-The <a>Ambient Light Sensor</a>'s <a>reporting mode</a> is <a>implementation
-specific</a>.
-
 The <a>Ambient Light Sensor</a> has an associated {{PermissionName}}
 which is <a for="PermissionName" enum-value>"ambient-light-sensor"</a>.
 

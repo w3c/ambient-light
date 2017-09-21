@@ -1185,7 +1185,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version df778ba2d9793f77f64705dbba65d0c50f68e0d9" name="generator">
   <link href="http://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="ef2c07e872c4d7122d9029d56466c6da1e633f78" name="document-revision">
+  <meta content="8cfcd370793c7eb02aeb933b954b237a060d2da9" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1595,9 +1595,7 @@ API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="ambient-light-sensor">Ambient Light Sensor</dfn> <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a></code> subclass is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
    <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor">Ambient Light Sensor</a> has a <a data-link-type="dfn" href="https://w3c.github.io/sensors#default-sensor" id="ref-for-default-sensor">default sensor</a>,
 which is the device’s main light detector.</p>
-   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor①">Ambient Light Sensor</a>’s <a data-link-type="dfn" href="https://w3c.github.io/sensors#reporting-modes" id="ref-for-reporting-modes">reporting mode</a> is <a data-link-type="dfn" href="https://w3c.github.io/sensors#implementation-specific" id="ref-for-implementation-specific">implementation
-specific</a>.</p>
-   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor②">Ambient Light Sensor</a> has an associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname">PermissionName</a></code> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/permissions/#dom-permissionname-ambient-light-sensor" id="ref-for-dom-permissionname-ambient-light-sensor">"ambient-light-sensor"</a>.</p>
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor①">Ambient Light Sensor</a> has an associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#enumdef-permissionname" id="ref-for-enumdef-permissionname">PermissionName</a></code> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/permissions/#dom-permissionname-ambient-light-sensor" id="ref-for-dom-permissionname-ambient-light-sensor">"ambient-light-sensor"</a>.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-light-level">current light level</dfn> or <dfn data-dfn-type="dfn" data-noexport="" id="illuminance">illuminance<a class="self-link" href="#illuminance"></a></dfn> is a value that represents the ambient light levels
 around the hosting device. Its unit is the lux (lx) <a data-link-type="biblio" href="#biblio-si">[SI]</a>.</p>
    <p class="note" role="note"><span>Note:</span> The precise lux value reported by
@@ -1675,11 +1673,9 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
      <li><a href="https://w3c.github.io/sensors#construct-sensor-object">construct a sensor object</a>
      <li><a href="https://w3c.github.io/sensors#default-sensor">default sensor</a>
      <li><a href="https://w3c.github.io/sensors#high-level">high-level</a>
-     <li><a href="https://w3c.github.io/sensors#implementation-specific">implementation specific</a>
      <li><a href="https://w3c.github.io/sensors#limit-max-frequency">limit maximum sampling frequency</a>
      <li><a href="https://w3c.github.io/sensors#mitigation-strategies">mitigation strategies</a>
      <li><a href="https://w3c.github.io/sensors#reduce-accuracy">reduce accuracy</a>
-     <li><a href="https://w3c.github.io/sensors#reporting-modes">reporting mode</a>
      <li><a href="https://w3c.github.io/sensors#sampling-frequency">sampling frequency</a>
      <li><a href="https://w3c.github.io/sensors#sensor-type">sensor type</a>
     </ul>
@@ -1735,7 +1731,7 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
   <aside class="dfn-panel" data-for="ambient-light-sensor">
    <b><a href="#ambient-light-sensor">#ambient-light-sensor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-ambient-light-sensor">4. Model</a> <a href="#ref-for-ambient-light-sensor①">(2)</a> <a href="#ref-for-ambient-light-sensor②">(3)</a>
+    <li><a href="#ref-for-ambient-light-sensor">4. Model</a> <a href="#ref-for-ambient-light-sensor①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="current-light-level">
