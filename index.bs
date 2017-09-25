@@ -125,7 +125,7 @@ The <a>Ambient Light Sensor</a> has an associated {{PermissionName}}
 which is <a for="PermissionName" enum-value>"ambient-light-sensor"</a>.
 
 The <dfn>current light level</dfn> or <dfn>illuminance</dfn>
-is a value that represents the ambient light levels
+is a value that represents the ambient light level
 around the hosting device. Its unit is the lux (lx) [[SI]].
 
 Note: The precise lux value reported by
@@ -141,7 +141,7 @@ The AmbientLightSensor Interface {#ambient-light-sensor-interface}
 <pre class="idl">
   [Constructor(optional SensorOptions sensorOptions), Exposed=Window]
   interface AmbientLightSensor : Sensor {
-    readonly attribute unrestricted double? illuminance;
+    readonly attribute double? illuminance;
   };
 </pre>
 
@@ -151,7 +151,8 @@ To <dfn>Construct an AmbientLightSensor Object</dfn> the user agent must invoke 
 ### The illuminance attribute ### {#ambient-light-sensor-reading-attribute}
 
 The <a attribute for="AmbientLightSensor">illuminance</a> attribute of the {{AmbientLightSensor}}
-interface represents the <a>current light level</a>.
+interface represents the [=current light level=] and returns the result of invoking
+[=get value from latest reading=] with `this` and "illuminance" as arguments.
 
 Use Cases and Requirements {#usecases-requirements}
 =========
