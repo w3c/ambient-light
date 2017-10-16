@@ -1541,18 +1541,75 @@ webpages according to ambient light levels are best served by the the <code>ligh
 which would mirror the <code>light-level</code> media feature, but in JavaScript.
 This sensor would <em>not require additional user permission to be activated</em> in user agents that exposed the <code>light-level</code> media feature.</p>
    <h2 class="heading settled" data-level="2" id="examples"><span class="secno">2. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
-   <div class="example" id="example-b2dbcc77">
-    <a class="self-link" href="#example-b2dbcc77"></a> 
-<pre class="highlight"><span class="kd">let</span> sensor <span class="o">=</span> <span class="k">new</span> AmbientLightSensor<span class="p">();</span>
+   <div class="example" id="example-9df8033e">
+    <a class="self-link" href="#example-9df8033e"></a> In this simple example, ambient light sensor is created with
+    default configuration. Whenever new <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings">reading</a> is available,
+    it is printed to the console. 
+<pre class="highlight"><span class="kr">const</span> sensor <span class="o">=</span> <span class="k">new</span> AmbientLightSensor<span class="p">();</span>
+sensor<span class="p">.</span>onreading <span class="o">=</span> <span class="p">()</span> <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>illuminance<span class="p">);</span>
+sensor<span class="p">.</span>onerror <span class="o">=</span> event <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>event<span class="p">.</span>error<span class="p">.</span>name<span class="p">,</span> event<span class="p">.</span>error<span class="p">.</span>message<span class="p">);</span>
 sensor<span class="p">.</span>start<span class="p">();</span>
-    
-sensor<span class="p">.</span>onreading <span class="o">=</span> <span class="kd">function</span><span class="p">(</span>event<span class="p">)</span> <span class="p">{</span>
-    console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>illuminance<span class="p">);</span>
+</pre>
+   </div>
+   <div class="example" id="example-65bd329c">
+    <a class="self-link" href="#example-65bd329c"></a> In this example, exposure value (EV) at ISO 100 is calculated from
+    the ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings①">sensor readings</a>. Initially, we check that the user
+    agent has permissions to access ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings②">sensor readings</a>. Then, <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a></code> value is converted to the
+    closest exposure value. 
+<pre class="highlight">navigator<span class="p">.</span>permissions<span class="p">.</span>query<span class="p">({</span> name<span class="o">:</span> <span class="s1">'ambient-light-sensor'</span> <span class="p">}).</span>then<span class="p">(</span>result <span class="p">=></span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span>result<span class="p">.</span>state <span class="o">===</span> <span class="s1">'denied'</span><span class="p">)</span> <span class="p">{</span>
+        console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Permission to use ambient light sensor is denied.'</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kr">const</span> als <span class="o">=</span> <span class="k">new</span> AmbientLightSensor<span class="p">({</span>frequency<span class="o">:</span> <span class="mi">20</span><span class="p">});</span>
+    als<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="s1">'Ready to measure EV.'</span><span class="p">));</span>
+    als<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> event <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span><span class="sb">`Error: </span><span class="si">${</span>event<span class="p">.</span>error<span class="p">.</span>name<span class="si">}</span><span class="sb">`</span><span class="p">));</span>
+    als<span class="p">.</span>addEventListener<span class="p">(</span><span class="s1">'reading'</span><span class="p">,</span> <span class="p">()</span> <span class="p">=></span> <span class="p">{</span>
+        <span class="c1">// Defaut ISO value.</span>
+<span class="c1"></span>        <span class="kr">const</span> ISO <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+        <span class="c1">// Incident-light calibration constant.</span>
+<span class="c1"></span>        <span class="kr">const</span> C <span class="o">=</span> <span class="mi">250</span><span class="p">;</span>
+
+        <span class="kd">let</span> EV <span class="o">=</span> Math<span class="p">.</span>round<span class="p">(</span>Math<span class="p">.</span>log2<span class="p">((</span>als<span class="p">.</span>illuminance <span class="o">*</span> ISO<span class="p">)</span> <span class="o">/</span> C<span class="p">));</span>
+        console<span class="p">.</span>log<span class="p">(</span><span class="sb">`Exposure Value (EV) is: </span><span class="si">${</span>EV<span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    als<span class="p">.</span>start<span class="p">();</span>
+<span class="p">});</span>
+</pre>
+   </div>
+   <div class="example" id="example-ebb26391">
+    <a class="self-link" href="#example-ebb26391"></a> This example demonstrates how ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings③">sensor readings</a> can be mapped
+    to recommended workplace light levels. 
+<pre class="highlight"><span class="kr">const</span> als <span class="o">=</span> <span class="k">new</span> AmbientLightSensor<span class="p">();</span>
+
+als<span class="p">.</span>onreading <span class="o">=</span> <span class="p">()</span> <span class="p">=></span> <span class="p">{</span>
+    <span class="kd">let</span> str <span class="o">=</span> luxToWorkplaceLevel<span class="p">(</span>als<span class="p">.</span>illuminance<span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span>str<span class="p">)</span> <span class="p">{</span>
+        console<span class="p">.</span>log<span class="p">(</span><span class="sb">`Light level is suitable for: </span><span class="si">${</span>str<span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">};</span>
 
-sensor<span class="p">.</span>onerror <span class="o">=</span> <span class="kd">function</span><span class="p">(</span>event<span class="p">)</span> <span class="p">{</span>
-    console<span class="p">.</span>log<span class="p">(</span>event<span class="p">.</span>error<span class="p">.</span>name<span class="p">,</span> event<span class="p">.</span>error<span class="p">.</span>message<span class="p">);</span>
-<span class="p">};</span>
+als<span class="p">.</span>start<span class="p">();</span>
+
+<span class="kd">function</span> luxToWorkplaceLevel<span class="p">(</span>lux<span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span>lux <span class="o">></span> <span class="mi">20</span> <span class="o">&amp;&amp;</span> lux <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">'public areas, short visits'</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span>lux <span class="o">></span> <span class="mi">100</span> <span class="o">&amp;&amp;</span> lux <span class="o">&lt;</span> <span class="mi">150</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">'occasionally performed visual tasks'</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span>lux <span class="o">></span> <span class="mi">150</span> <span class="o">&amp;&amp;</span> lux <span class="o">&lt;</span> <span class="mi">250</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">'easy office work, classes, homes, theaters'</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span>lux <span class="o">></span> <span class="mi">250</span> <span class="o">&amp;&amp;</span> lux <span class="o">&lt;</span> <span class="mi">500</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">'normal office work, groceries, laboratories'</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span>lux <span class="o">></span> <span class="mi">500</span> <span class="o">&amp;&amp;</span> lux <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">'mechanical workshops, drawing, supermarkets'</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span>lux <span class="o">></span> <span class="mi">1000</span> <span class="o">&amp;&amp;</span> lux <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">'detailed drawing work, visual tasks of low contrast'</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
 </pre>
    </div>
    <h2 class="heading settled" data-level="3" id="security-and-privacy"><span class="secno">3. </span><span class="content">Security and Privacy Considerations</span><a class="self-link" href="#security-and-privacy"></a></h2>
@@ -1609,7 +1666,7 @@ due to differences in detection method, sensor construction, etc.</p>
 </pre>
    <p>To <dfn data-dfn-type="dfn" data-noexport="" id="construct-an-ambientlightsensor-object">Construct an AmbientLightSensor Object<a class="self-link" href="#construct-an-ambientlightsensor-object"></a></dfn> the user agent must invoke the <a data-link-type="dfn" href="https://w3c.github.io/sensors#construct-sensor-object" id="ref-for-construct-sensor-object">construct a Sensor object</a> abstract operation.</p>
    <h4 class="heading settled" data-level="5.1.1" id="ambient-light-sensor-reading-attribute"><span class="secno">5.1.1. </span><span class="content">The illuminance attribute</span><a class="self-link" href="#ambient-light-sensor-reading-attribute"></a></h4>
-   <p>The <a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a> attribute of the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor①">AmbientLightSensor</a></code> interface represents the <a data-link-type="dfn" href="#current-light-level" id="ref-for-current-light-level">current light level</a> and returns the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading">get value from latest reading</a> with <code>this</code> and "illuminance" as arguments.</p>
+   <p>The <a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance①">illuminance</a> attribute of the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor①">AmbientLightSensor</a></code> interface represents the <a data-link-type="dfn" href="#current-light-level" id="ref-for-current-light-level">current light level</a> and returns the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading">get value from latest reading</a> with <code>this</code> and "illuminance" as arguments.</p>
    <h2 class="heading settled" data-level="6" id="usecases-requirements"><span class="secno">6. </span><span class="content">Use Cases and Requirements</span><a class="self-link" href="#usecases-requirements"></a></h2>
    <ul>
     <li data-md="">
@@ -1679,6 +1736,7 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
      <li><a href="https://w3c.github.io/sensors#mitigation-strategies">mitigation strategies</a>
      <li><a href="https://w3c.github.io/sensors#reduce-accuracy">reduce accuracy</a>
      <li><a href="https://w3c.github.io/sensors#sampling-frequency">sampling frequency</a>
+     <li><a href="https://w3c.github.io/sensors#sensor-readings">sensor readings</a>
      <li><a href="https://w3c.github.io/sensors#sensor-type">sensor type</a>
     </ul>
    <li>
@@ -1743,7 +1801,8 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
   <aside class="dfn-panel" data-for="dom-ambientlightsensor-illuminance">
    <b><a href="#dom-ambientlightsensor-illuminance">#dom-ambientlightsensor-illuminance</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-ambientlightsensor-illuminance">5.1.1. The illuminance attribute</a>
+    <li><a href="#ref-for-dom-ambientlightsensor-illuminance">2. Examples</a>
+    <li><a href="#ref-for-dom-ambientlightsensor-illuminance①">5.1.1. The illuminance attribute</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
