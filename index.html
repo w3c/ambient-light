@@ -1183,8 +1183,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version ba473502a120361710488ab9b7f538b47858631e" name="generator">
+  <meta content="Bikeshed version 2d63ad75df4c3282ed7d8d3fb42b0c483a131ce1" name="generator">
   <link href="http://www.w3.org/TR/ambient-light/" rel="canonical">
+  <meta content="7a2c0a5224eebe7c5eaddd7214ae1c40c0be21c4" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1431,7 +1432,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-16">16 October 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-18">18 October 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1439,7 +1440,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <dt>Latest published version:
      <dd><a href="http://www.w3.org/TR/ambient-light/">http://www.w3.org/TR/ambient-light/</a>
      <dt>Previous Versions:
-     <dd><a href="https://www.w3.org/TR/2017/WD-ambient-light-20170522/" rel="prev">https://www.w3.org/TR/2017/WD-ambient-light-20170522/</a>
+     <dd><a href="https://www.w3.org/TR/2017/WD-ambient-light-20170814/" rel="prev">https://www.w3.org/TR/2017/WD-ambient-light-20170814/</a>
      <dt>Version History:
      <dd><a href="https://github.com/w3c/ambient-light/commits/gh-pages/index.bs">https://github.com/w3c/ambient-light/commits/gh-pages/index.bs</a>
      <dt>Feedback:
@@ -1536,7 +1537,7 @@ as detected by the device’s main light detector, in terms of lux units.</p>
    <p>This document specifies an API designed for <a href="#usecases-requirements">use cases</a> which require fine grained illuminance data, with low latency, and possibly
 sampled at high frequencies.</p>
    <p>Common use cases relying on a small set of illuminance values, such as styling
-webpages according to ambient light levels are best served by the the <code>light-level</code> CSS media feature <span>[MEDIAQUERIES-5]</span> and its accompanying <code>matchMedia</code> API <a data-link-type="biblio" href="#biblio-cssom">[CSSOM]</a> and are out of scope of this API.</p>
+webpages according to ambient light levels are best served by the the <code>light-level</code> CSS media feature <a data-link-type="biblio" href="#biblio-mediaqueries-5">[MEDIAQUERIES-5]</a> and its accompanying <code>matchMedia</code> API <a data-link-type="biblio" href="#biblio-cssom">[CSSOM]</a> and are out of scope of this API.</p>
    <p class="note" role="note"><span>Note:</span> it might be worthwhile to provide a <a data-link-type="dfn" href="https://w3c.github.io/sensors#high-level" id="ref-for-high-level">high-level</a> Light Level Sensor
 which would mirror the <code>light-level</code> media feature, but in JavaScript.
 This sensor would <em>not require additional user permission to be activated</em> in user agents that exposed the <code>light-level</code> media feature.</p>
@@ -1769,6 +1770,8 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
   <dl>
    <dt id="biblio-cssom">[CSSOM]
    <dd>Simon Pieters; Glenn Adams. <a href="https://drafts.csswg.org/cssom/">CSS Object Model (CSSOM)</a>. URL: <a href="https://drafts.csswg.org/cssom/">https://drafts.csswg.org/cssom/</a>
+   <dt id="biblio-mediaqueries-5">[MEDIAQUERIES-5]
+   <dd>Dean Jackson; Florian Rivoal; Tab Atkins. <a href="https://drafts.csswg.org/mediaqueries-5/">Media Queries Level 5</a>. ED. URL: <a href="https://drafts.csswg.org/mediaqueries-5/">https://drafts.csswg.org/mediaqueries-5/</a>
    <dt id="biblio-si">[SI]
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/">SI Brochure: The International System of Units (SI), 8th edition</a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
   </dl>
