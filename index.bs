@@ -196,8 +196,8 @@ use one or both of the following mitigation strategies:
   - <a>limit maximum sampling frequency</a>
   - <a>reduce accuracy</a> of sensor readings
 
-The generic <a>mitigation strategies</a> are described in the Generic Sensor
-API [[!GENERIC-SENSOR]].
+These mitigation strategies complement the [=mitigation strategies|generic mitigations=]
+defined in the Generic Sensor API [[!GENERIC-SENSOR]].
 
 Model {#model}
 =====
