@@ -1183,9 +1183,8 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 6aa3aaa1336714f1530c976b6df9a86c683d5968" name="generator">
+  <meta content="Bikeshed version 66a76cd06d4fa9e491630583356008a71a166760" name="generator">
   <link href="http://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="dc8a7953c125d5863e5337c541839e3805690bad" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1432,7 +1431,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-02-26">26 February 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-02-28">28 February 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1483,11 +1482,11 @@ the ambient light level or illuminance of the device’s environment.</p>
 	All comments are welcome. </p>
    <p> This document was produced by the <a href="https://www.w3.org/2009/dap/">Device and Sensors Working Group</a>. </p>
    <p> This document was produced by a group operating under
-	the <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>.
+	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
-	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2017/Process-20170301/" id="w3c_process_revision">1 March 2017 W3C Process Document</a>. </p>
+	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2018/Process-20180201/" id="w3c_process_revision">1 February 2018 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1547,8 +1546,8 @@ webpages according to ambient light levels are best served by the the <code>ligh
 which would mirror the <code>light-level</code> media feature, but in JavaScript.
 This sensor would <em>not require additional user permission to be activated</em> in user agents that exposed the <code>light-level</code> media feature.</p>
    <h2 class="heading settled" data-level="2" id="examples"><span class="secno">2. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
-   <div class="example" id="example-9df8033e">
-    <a class="self-link" href="#example-9df8033e"></a> In this simple example, ambient light sensor is created with
+   <div class="example" id="example-67e29d5f">
+    <a class="self-link" href="#example-67e29d5f"></a> In this simple example, ambient light sensor is created with
     default configuration. Whenever new <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings">reading</a> is available,
     it is printed to the console. 
 <pre class="highlight"><span class="kr">const</span> sensor <span class="o">=</span> <span class="k">new</span> AmbientLightSensor<span class="p">();</span>
@@ -1557,8 +1556,8 @@ sensor<span class="p">.</span>onerror <span class="o">=</span> event <span class
 sensor<span class="p">.</span>start<span class="p">();</span>
 </pre>
    </div>
-   <div class="example" id="example-65bd329c">
-    <a class="self-link" href="#example-65bd329c"></a> In this example, exposure value (EV) at ISO 100 is calculated from
+   <div class="example" id="example-ae3465bd">
+    <a class="self-link" href="#example-ae3465bd"></a> In this example, exposure value (EV) at ISO 100 is calculated from
     the ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings①">sensor readings</a>. Initially, we check that the user
     agent has permissions to access ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings②">sensor readings</a>. Then, <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a></code> value is converted to the
     closest exposure value. 
@@ -1585,8 +1584,8 @@ sensor<span class="p">.</span>start<span class="p">();</span>
 <span class="p">});</span>
 </pre>
    </div>
-   <div class="example" id="example-ebb26391">
-    <a class="self-link" href="#example-ebb26391"></a> This example demonstrates how ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings③">sensor readings</a> can be mapped
+   <div class="example" id="example-67979230">
+    <a class="self-link" href="#example-67979230"></a> This example demonstrates how ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings③">sensor readings</a> can be mapped
     to recommended workplace light levels. 
 <pre class="highlight"><span class="kr">const</span> als <span class="o">=</span> <span class="k">new</span> AmbientLightSensor<span class="p">();</span>
 
@@ -1651,8 +1650,7 @@ use one or both of the following mitigation strategies:</p>
     <li data-md="">
      <p><a data-link-type="dfn" href="https://w3c.github.io/sensors#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings</p>
    </ul>
-   <p>The generic <a data-link-type="dfn" href="https://w3c.github.io/sensors#mitigation-strategies" id="ref-for-mitigation-strategies">mitigation strategies</a> are described in the Generic Sensor
-API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
+   <p>These mitigation strategies complement the <a data-link-type="dfn" href="https://w3c.github.io/sensors#mitigation-strategies" id="ref-for-mitigation-strategies">generic mitigations</a> defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
    <h2 class="heading settled" data-level="4" id="model"><span class="secno">4. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="ambient-light-sensor">Ambient Light Sensor</dfn> <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a></code> subclass is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
    <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor">Ambient Light Sensor</a> has a <a data-link-type="dfn" href="https://w3c.github.io/sensors#default-sensor" id="ref-for-default-sensor">default sensor</a>,
