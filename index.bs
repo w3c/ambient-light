@@ -1,11 +1,17 @@
 <pre class="metadata">
 Title: Ambient Light Sensor
 Level: none
-Status: ED
+Status: CR
+Date: 2018-03-20
+Deadline: 2018-05-01
+Status Text:
+  <p>The CR exit criterion is two interoperable deployed implementations of each feature.</p>
+  <p>For changes since the previous version, see the <a href="https://services.w3.org/htmldiff?doc1=https%3A%2F%2Fwww.w3.org%2FTR%2F2017%2FWD-ambient-light-20171018%2F&doc2=https%3A%2F%2Fwww.w3.org%2FTR%2F2018%2FCR-ambient-light-20180320%2F">online HTML diff tool</a>.</p>
+At Risk: none
 ED: https://w3c.github.io/ambient-light/
 Shortname: ambient-light
-TR: http://www.w3.org/TR/ambient-light/
-Previous Version: https://www.w3.org/TR/2017/WD-ambient-light-20170814/
+TR: https://www.w3.org/TR/ambient-light/
+Previous Version: https://www.w3.org/TR/2017/WD-ambient-light-20171018/
 Editor: Anssi Kostiainen 41974, Intel Corporation, http://intel.com/
 Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, http://tobie.me, tobie@codespeaks.com
 Former Editor: Doug Turner, Mozilla Corporation, http://mozilla.com/
