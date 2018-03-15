@@ -1185,7 +1185,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version 66a76cd06d4fa9e491630583356008a71a166760" name="generator">
   <link href="http://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="261780999fcbe190d71b212b326409b8e90c78be" name="document-revision">
+  <meta content="33ef27609211224c7c615532d22f6d5c4f804f2f" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1432,7 +1432,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-03-01">1 March 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-03-15">15 March 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1543,13 +1543,13 @@ as detected by the device’s main light detector, in terms of lux units.</p>
 sampled at high frequencies.</p>
    <p>Common use cases relying on a small set of illuminance values, such as styling
 webpages according to ambient light levels are best served by the the <code>light-level</code> CSS media feature <a data-link-type="biblio" href="#biblio-mediaqueries-5">[MEDIAQUERIES-5]</a> and its accompanying <code>matchMedia</code> API <a data-link-type="biblio" href="#biblio-cssom">[CSSOM]</a> and are out of scope of this API.</p>
-   <p class="note" role="note"><span>Note:</span> it might be worthwhile to provide a <a data-link-type="dfn" href="https://w3c.github.io/sensors#high-level" id="ref-for-high-level">high-level</a> Light Level Sensor
+   <p class="note" role="note"><span>Note:</span> it might be worthwhile to provide a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#high-level" id="ref-for-high-level">high-level</a> Light Level Sensor
 which would mirror the <code>light-level</code> media feature, but in JavaScript.
 This sensor would <em>not require additional user permission to be activated</em> in user agents that exposed the <code>light-level</code> media feature.</p>
    <h2 class="heading settled" data-level="2" id="examples"><span class="secno">2. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
    <div class="example" id="example-67e29d5f">
     <a class="self-link" href="#example-67e29d5f"></a> In this simple example, ambient light sensor is created with
-    default configuration. Whenever new <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings">reading</a> is available,
+    default configuration. Whenever new <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">reading</a> is available,
     it is printed to the console. 
 <pre class="highlight"><span class="kr">const</span> sensor <span class="o">=</span> <span class="k">new</span> AmbientLightSensor<span class="p">();</span>
 sensor<span class="p">.</span>onreading <span class="o">=</span> <span class="p">()</span> <span class="p">=></span> console<span class="p">.</span>log<span class="p">(</span>sensor<span class="p">.</span>illuminance<span class="p">);</span>
@@ -1559,8 +1559,8 @@ sensor<span class="p">.</span>start<span class="p">();</span>
    </div>
    <div class="example" id="example-ae3465bd">
     <a class="self-link" href="#example-ae3465bd"></a> In this example, exposure value (EV) at ISO 100 is calculated from
-    the ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings①">sensor readings</a>. Initially, we check that the user
-    agent has permissions to access ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings②">sensor readings</a>. Then, <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a></code> value is converted to the
+    the ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading①">sensor readings</a>. Initially, we check that the user
+    agent has permissions to access ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading②">sensor readings</a>. Then, <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a></code> value is converted to the
     closest exposure value. 
 <pre class="highlight">navigator<span class="p">.</span>permissions<span class="p">.</span>query<span class="p">({</span> name<span class="o">:</span> <span class="s1">'ambient-light-sensor'</span> <span class="p">}).</span>then<span class="p">(</span>result <span class="p">=></span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span>result<span class="p">.</span>state <span class="o">===</span> <span class="s1">'denied'</span><span class="p">)</span> <span class="p">{</span>
@@ -1586,7 +1586,7 @@ sensor<span class="p">.</span>start<span class="p">();</span>
 </pre>
    </div>
    <div class="example" id="example-67979230">
-    <a class="self-link" href="#example-67979230"></a> This example demonstrates how ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-readings" id="ref-for-sensor-readings③">sensor readings</a> can be mapped
+    <a class="self-link" href="#example-67979230"></a> This example demonstrates how ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading③">sensor readings</a> can be mapped
     to recommended workplace light levels. 
 <pre class="highlight"><span class="kr">const</span> als <span class="o">=</span> <span class="k">new</span> AmbientLightSensor<span class="p">();</span>
 
@@ -1647,16 +1647,16 @@ links styled as a block of black screen; white for unvisited.</p>
 use one or both of the following mitigation strategies:</p>
    <ul>
     <li data-md="">
-     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors#limit-max-frequency" id="ref-for-limit-max-frequency">limit maximum sampling frequency</a></p>
+     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors/#limit-max-frequency" id="ref-for-limit-max-frequency">limit maximum sampling frequency</a></p>
     <li data-md="">
-     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings</p>
+     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors/#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings</p>
    </ul>
-   <p>These mitigation strategies complement the <a data-link-type="dfn" href="https://w3c.github.io/sensors#mitigation-strategies" id="ref-for-mitigation-strategies">generic mitigations</a> defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
+   <p>These mitigation strategies complement the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mitigation-strategies" id="ref-for-mitigation-strategies">generic mitigations</a> defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
    <h2 class="heading settled" data-level="4" id="model"><span class="secno">4. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="ambient-light-sensor">Ambient Light Sensor</dfn> <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a></code> subclass is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
-   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor">Ambient Light Sensor</a> has a <a data-link-type="dfn" href="https://w3c.github.io/sensors#default-sensor" id="ref-for-default-sensor">default sensor</a>,
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="ambient-light-sensor">Ambient Light Sensor</dfn> <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a></code> subclass is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor">Ambient Light Sensor</a> has a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#default-sensor" id="ref-for-default-sensor">default sensor</a>,
 which is the device’s main light detector.</p>
-   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor①">Ambient Light Sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors#sensor-permission-names" id="ref-for-sensor-permission-names">sensor permission name</a> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/permissions/#dom-permissionname-ambient-light-sensor" id="ref-for-dom-permissionname-ambient-light-sensor">"ambient-light-sensor"</a>.</p>
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor①">Ambient Light Sensor</a> has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-permission-names" id="ref-for-sensor-permission-names">sensor permission name</a> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/permissions/#dom-permissionname-ambient-light-sensor" id="ref-for-dom-permissionname-ambient-light-sensor">"ambient-light-sensor"</a>.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="current-light-level">current light level</dfn> or <dfn data-dfn-type="dfn" data-noexport="" id="illuminance">illuminance<a class="self-link" href="#illuminance"></a></dfn> is a value that represents the ambient light level
 around the hosting device. Its unit is the lux (lx) <a data-link-type="biblio" href="#biblio-si">[SI]</a>.</p>
    <p class="note" role="note"><span>Note:</span> The precise lux value reported by
@@ -1685,7 +1685,7 @@ due to differences in detection method, sensor construction, etc.</p>
     </dl>
     <ol>
      <li data-md="">
-      <p>Let <var>allowed</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors#check-sensor-policy-controlled-features" id="ref-for-check-sensor-policy-controlled-features">check sensor policy-controlled features</a> with <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor④">AmbientLightSensor</a></code>.</p>
+      <p>Let <var>allowed</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#check-sensor-policy-controlled-features" id="ref-for-check-sensor-policy-controlled-features">check sensor policy-controlled features</a> with <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor④">AmbientLightSensor</a></code>.</p>
      <li data-md="">
       <p>If <var>allowed</var> is false, then:</p>
       <ol>
@@ -1695,7 +1695,7 @@ due to differences in detection method, sensor construction, etc.</p>
      <li data-md="">
       <p>Let <var>ambient_light_sensor</var> be the new <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑤">AmbientLightSensor</a></code> object.</p>
      <li data-md="">
-      <p>Invoke <a data-link-type="dfn" href="https://w3c.github.io/sensors#initialize-a-sensor-object" id="ref-for-initialize-a-sensor-object">initialize a sensor object</a> with <var>ambient_light_sensor</var> and <var>options</var>.</p>
+      <p>Invoke <a data-link-type="dfn" href="https://w3c.github.io/sensors/#initialize-a-sensor-object" id="ref-for-initialize-a-sensor-object">initialize a sensor object</a> with <var>ambient_light_sensor</var> and <var>options</var>.</p>
      <li data-md="">
       <p>Return <var>ambient_light_sensor</var>.</p>
     </ol>
@@ -1714,7 +1714,7 @@ interprets them to control a game character.</p>
    </ul>
    <p>While some of the use cases may benefit from obtaining precise ambient light measurements, the use
 cases that convert ambient light level fluctuations to user input events, would benefit from
-higher <a data-link-type="dfn" href="https://w3c.github.io/sensors#sampling-frequency" id="ref-for-sampling-frequency">sampling frequencies</a>.</p>
+higher <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sampling-frequency" id="ref-for-sampling-frequency">sampling frequencies</a>.</p>
    <h2 class="heading settled" data-level="8" id="acknowledgements"><span class="secno">8. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    <p>Doug Turner for the initial prototype and
 Marcos Caceres for the test suite.</p>
@@ -1761,18 +1761,18 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
     <ul>
      <li><a href="https://w3c.github.io/sensors/#sensor">Sensor</a>
      <li><a href="https://w3c.github.io/sensors/#dictdef-sensoroptions">SensorOptions</a>
-     <li><a href="https://w3c.github.io/sensors#check-sensor-policy-controlled-features">check sensor policy-controlled features</a>
-     <li><a href="https://w3c.github.io/sensors#default-sensor">default sensor</a>
+     <li><a href="https://w3c.github.io/sensors/#check-sensor-policy-controlled-features">check sensor policy-controlled features</a>
+     <li><a href="https://w3c.github.io/sensors/#default-sensor">default sensor</a>
      <li><a href="https://w3c.github.io/sensors/#get-value-from-latest-reading">get value from latest reading</a>
-     <li><a href="https://w3c.github.io/sensors#high-level">high-level</a>
-     <li><a href="https://w3c.github.io/sensors#initialize-a-sensor-object">initialize a sensor object</a>
-     <li><a href="https://w3c.github.io/sensors#limit-max-frequency">limit maximum sampling frequency</a>
-     <li><a href="https://w3c.github.io/sensors#mitigation-strategies">mitigation strategies</a>
-     <li><a href="https://w3c.github.io/sensors#reduce-accuracy">reduce accuracy</a>
-     <li><a href="https://w3c.github.io/sensors#sampling-frequency">sampling frequency</a>
-     <li><a href="https://w3c.github.io/sensors#sensor-permission-names">sensor permission name</a>
-     <li><a href="https://w3c.github.io/sensors#sensor-readings">sensor readings</a>
-     <li><a href="https://w3c.github.io/sensors#sensor-type">sensor type</a>
+     <li><a href="https://w3c.github.io/sensors/#high-level">high-level</a>
+     <li><a href="https://w3c.github.io/sensors/#initialize-a-sensor-object">initialize a sensor object</a>
+     <li><a href="https://w3c.github.io/sensors/#limit-max-frequency">limit maximum sampling frequency</a>
+     <li><a href="https://w3c.github.io/sensors/#mitigation-strategies">mitigation strategies</a>
+     <li><a href="https://w3c.github.io/sensors/#reduce-accuracy">reduce accuracy</a>
+     <li><a href="https://w3c.github.io/sensors/#sampling-frequency">sampling frequency</a>
+     <li><a href="https://w3c.github.io/sensors/#sensor-permission-names">sensor permission name</a>
+     <li><a href="https://w3c.github.io/sensors/#sensor-reading">sensor reading</a>
+     <li><a href="https://w3c.github.io/sensors/#sensor-type">sensor type</a>
     </ul>
    <li>
     <a data-link-type="biblio">[permissions]</a> defines the following terms:

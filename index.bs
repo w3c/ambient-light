@@ -25,7 +25,7 @@ Boilerplate: omit issues-index, omit conformance
 Default Biblio Status: current
 </pre>
 <pre class="anchors">
-urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
+urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
   type: dfn
     text: high-level
     text: default sensor
@@ -39,7 +39,7 @@ urlPrefix: https://w3c.github.io/sensors; spec: GENERIC-SENSOR
     text: mitigation strategies; url: mitigation-strategies
     text: sampling frequency
     text: sensor type
-    text: sensor readings
+    text: sensor reading
     text: check sensor policy-controlled features; url: check-sensor-policy-controlled-features
     text: sensor permission name; url: sensor-permission-names
 </pre>
