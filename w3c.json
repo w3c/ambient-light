@@ -1,5 +1,9 @@
- {
-    "group":      ["43696"]
-,   "contacts":   ["dontcallmedom"]
-,   "shortName":  "ambient-light"
+{
+  "group": 43696,
+  "contacts": [
+    "xfq"
+  ],
+  "shortName": "ambient-light",
+  "repo-type": "rec-track",
+  "policy": "open"
 }
