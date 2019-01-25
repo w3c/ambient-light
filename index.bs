@@ -276,7 +276,7 @@ implementation of [=Ambient Light Sensor=].
 
 <h3 id="mock-ambient-light-sensor-type">Mock Sensor Type</h3>
 
-The [=Ambient Light Sensor=] has an associated [=mock sensor type=] which is
+The {{AmbientLightSensor}} class has an associated [=mock sensor type=] which is
 <a for="MockSensorType" enum-value>"ambient-light"</a>, its [=mock sensor reading values=]
 dictionary is defined as follow:
 
