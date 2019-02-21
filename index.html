@@ -1219,9 +1219,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 9c6ae748322940994300e90a77c34437364b40a6" name="generator">
+  <meta content="Bikeshed version 0da7328bb90ef81993146377e4e0fed236969c4c" name="generator">
   <link href="http://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="9183ae5cb1bf9ab5ad6069c56f1a5b0517b8dfba" name="document-revision">
+  <meta content="39bea48088de9d74d70ddd1b2783f099888d8fe9" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1479,7 +1479,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-01-25">25 January 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-21">21 February 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1487,7 +1487,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dt>Latest published version:
      <dd><a href="http://www.w3.org/TR/ambient-light/">http://www.w3.org/TR/ambient-light/</a>
      <dt>Previous Versions:
-     <dd><a href="https://www.w3.org/TR/2017/WD-ambient-light-20170814/" rel="prev">https://www.w3.org/TR/2017/WD-ambient-light-20170814/</a>
+     <dd><a href="https://www.w3.org/TR/2018/CR-ambient-light-20180320/" rel="prev">https://www.w3.org/TR/2018/CR-ambient-light-20180320/</a>
      <dt>Version History:
      <dd><a href="https://github.com/w3c/ambient-light/commits/gh-pages/index.bs">https://github.com/w3c/ambient-light/commits/gh-pages/index.bs</a>
      <dt>Feedback:
@@ -1604,8 +1604,8 @@ This sensor would <em>not require additional user permission to be activated</em
     default configuration. Whenever a new <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">reading</a> is available,
     it is printed to the console. 
 <pre class="highlight"><c- kr>const</c-> sensor <c- o>=</c-> <c- k>new</c-> AmbientLightSensor<c- p>();</c->
-sensor<c- p>.</c->onreading <c- o>=</c-> <c- p>()</c-> <c- o>=></c-> console<c- p>.</c->log<c- p>(</c->sensor<c- p>.</c->illuminance<c- p>);</c->
-sensor<c- p>.</c->onerror <c- o>=</c-> event <c- o>=></c-> console<c- p>.</c->log<c- p>(</c->event<c- p>.</c->error<c- p>.</c->name<c- p>,</c-> event<c- p>.</c->error<c- p>.</c->message<c- p>);</c->
+sensor<c- p>.</c->onreading <c- o>=</c-> <c- p>()</c-> <c- p>=></c-> console<c- p>.</c->log<c- p>(</c->sensor<c- p>.</c->illuminance<c- p>);</c->
+sensor<c- p>.</c->onerror <c- o>=</c-> event <c- p>=></c-> console<c- p>.</c->log<c- p>(</c->event<c- p>.</c->error<c- p>.</c->name<c- p>,</c-> event<c- p>.</c->error<c- p>.</c->message<c- p>);</c->
 sensor<c- p>.</c->start<c- p>();</c->
 </pre>
    </div>
@@ -1615,16 +1615,16 @@ sensor<c- p>.</c->start<c- p>();</c->
     agent has permissions to access ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading②">sensor readings</a>. Then,
     the <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance">illuminance</a></code> value is converted to the
     closest exposure value. 
-<pre class="highlight">navigator<c- p>.</c->permissions<c- p>.</c->query<c- p>({</c-> name<c- o>:</c-> <c- t>'ambient-light-sensor'</c-> <c- p>}).</c->then<c- p>(</c->result <c- o>=></c-> <c- p>{</c->
+<pre class="highlight">navigator<c- p>.</c->permissions<c- p>.</c->query<c- p>({</c-> name<c- o>:</c-> <c- t>'ambient-light-sensor'</c-> <c- p>}).</c->then<c- p>(</c->result <c- p>=></c-> <c- p>{</c->
     <c- k>if</c-> <c- p>(</c->result<c- p>.</c->state <c- o>===</c-> <c- t>'denied'</c-><c- p>)</c-> <c- p>{</c->
         console<c- p>.</c->log<c- p>(</c-><c- t>'Permission to use ambient light sensor is denied.'</c-><c- p>);</c->
         <c- k>return</c-><c- p>;</c->
     <c- p>}</c->
 
     <c- kr>const</c-> als <c- o>=</c-> <c- k>new</c-> AmbientLightSensor<c- p>({</c->frequency<c- o>:</c-> <c- mi>20</c-><c- p>});</c->
-    als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'activate'</c-><c- p>,</c-> <c- p>()</c-> <c- o>=></c-> console<c- p>.</c->log<c- p>(</c-><c- t>'Ready to measure EV.'</c-><c- p>));</c->
-    als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'error'</c-><c- p>,</c-> event <c- o>=></c-> console<c- p>.</c->log<c- p>(</c-><c- sb>`Error: </c-><c- si>${</c->event<c- p>.</c->error<c- p>.</c->name<c- si>}</c-><c- sb>`</c-><c- p>));</c->
-    als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'reading'</c-><c- p>,</c-> <c- p>()</c-> <c- o>=></c-> <c- p>{</c->
+    als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'activate'</c-><c- p>,</c-> <c- p>()</c-> <c- p>=></c-> console<c- p>.</c->log<c- p>(</c-><c- t>'Ready to measure EV.'</c-><c- p>));</c->
+    als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'error'</c-><c- p>,</c-> event <c- p>=></c-> console<c- p>.</c->log<c- p>(</c-><c- sb>`Error: </c-><c- si>${</c->event<c- p>.</c->error<c- p>.</c->name<c- si>}</c-><c- sb>`</c-><c- p>));</c->
+    als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'reading'</c-><c- p>,</c-> <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
         <c- c1>// Defaut ISO value.</c->
         <c- kr>const</c-> ISO <c- o>=</c-> <c- mi>100</c-><c- p>;</c->
         <c- c1>// Incident-light calibration constant.</c->
@@ -1643,7 +1643,7 @@ sensor<c- p>.</c->start<c- p>();</c->
     to recommended workplace light levels. 
 <pre class="highlight"><c- kr>const</c-> als <c- o>=</c-> <c- k>new</c-> AmbientLightSensor<c- p>();</c->
 
-als<c- p>.</c->onreading <c- o>=</c-> <c- p>()</c-> <c- o>=></c-> <c- p>{</c->
+als<c- p>.</c->onreading <c- o>=</c-> <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
     <c- a>let</c-> str <c- o>=</c-> luxToWorkplaceLevel<c- p>(</c->als<c- p>.</c->illuminance<c- p>);</c->
     <c- k>if</c-> <c- p>(</c->str<c- p>)</c-> <c- p>{</c->
         console<c- p>.</c->log<c- p>(</c-><c- sb>`Light level is suitable for: </c-><c- si>${</c->str<c- si>}</c-><c- sb>.`</c-><c- p>);</c->
@@ -1757,7 +1757,7 @@ due to differences in detection method, sensor construction, etc.</p>
     This section extends the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#automation" id="ref-for-automation">automation</a> section defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a> to provide mocking information about the ambient light levels for the purposes of testing a user agent’s
 implementation of <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor②">Ambient Light Sensor</a>. 
    <h3 class="heading settled" data-level="7.1" id="mock-ambient-light-sensor-type"><span class="secno">7.1. </span><span class="content">Mock Sensor Type</span><a class="self-link" href="#mock-ambient-light-sensor-type"></a></h3>
-   <p>The <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑥">AmbientLightSensor</a></code> class has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a> which is <a class="idl-code" data-link-type="enum-value">"ambient-light"</a>, its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values">mock sensor reading values</a> dictionary is defined as follow:</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑥">AmbientLightSensor</a></code> class has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light">"ambient-light"</a>, its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values">mock sensor reading values</a> dictionary is defined as follow:</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-ambientlightreadingvalues"><code><c- g>AmbientLightReadingValues</c-></code><a class="self-link" href="#dictdef-ambientlightreadingvalues"></a></dfn> {
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="AmbientLightReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-ambientlightreadingvalues-illuminance"><code><c- g>illuminance</c-></code><a class="self-link" href="#dom-ambientlightreadingvalues-illuminance"></a></dfn>;
 };
@@ -1818,6 +1818,12 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
      <li><a href="#dom-ambientlightreadingvalues-illuminance">dict-member for AmbientLightReadingValues</a><span>, in §7.1</span>
     </ul>
   </ul>
+  <aside class="dfn-panel" data-for="term-for-dom-mocksensortype-ambient-light">
+   <a href="https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light">https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-mocksensortype-ambient-light">7.1. Mock Sensor Type</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-sensor">
    <a href="https://w3c.github.io/sensors/#sensor">https://w3c.github.io/sensors/#sensor</a><b>Referenced in:</b>
    <ul>
@@ -1970,6 +1976,7 @@ conforming IDL fragments, as described in the Web IDL specification. <a data-lin
    <li>
     <a data-link-type="biblio">[GENERIC-SENSOR]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-dom-mocksensortype-ambient-light" style="color:initial">"ambient-light"</span>
      <li><span class="dfn-paneled" id="term-for-sensor" style="color:initial">Sensor</span>
      <li><span class="dfn-paneled" id="term-for-dictdef-sensoroptions" style="color:initial">SensorOptions</span>
      <li><span class="dfn-paneled" id="term-for-automation" style="color:initial">automation</span>
