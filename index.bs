@@ -5,7 +5,6 @@ Status: ED
 ED: https://w3c.github.io/ambient-light/
 Shortname: ambient-light
 TR: http://www.w3.org/TR/ambient-light/
-Previous Version: https://www.w3.org/TR/2018/CR-ambient-light-20180320/
 Editor: Anssi Kostiainen 41974, Intel Corporation, https://intel.com/
 Editor: Rijubrata Bhaumik 80407, Intel Corporation, https://intel.com/
 Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, http://tobie.me, tobie@codespeaks.com
