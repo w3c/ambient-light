@@ -13,7 +13,7 @@ Group: dap
 Abstract:
   This specification defines a concrete sensor interface to monitor
   the ambient light level or illuminance of the device's environment.
-Version History: https://github.com/w3c/ambient-light/commits/gh-pages/index.bs
+Version History: https://github.com/w3c/ambient-light/commits/main/index.bs
 !Bug Reports: <a href="https://www.github.com/w3c/ambient-light/issues/new">via the w3c/ambient-light repository on GitHub</a>
 Indent: 2
 Repository: w3c/ambient-light
