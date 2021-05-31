@@ -4,11 +4,11 @@ Level: none
 Status: ED
 ED: https://w3c.github.io/ambient-light/
 Shortname: ambient-light
-TR: http://www.w3.org/TR/ambient-light/
+TR: https://www.w3.org/TR/ambient-light/
 Editor: Anssi Kostiainen 41974, Intel Corporation, https://intel.com/
 Editor: Rijubrata Bhaumik 80407, Intel Corporation, https://intel.com/
-Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, http://tobie.me, tobie@codespeaks.com
-Former Editor: Doug Turner, Mozilla Corporation, http://mozilla.com/
+Former Editor: Tobie Langel 60809, Codespeaks&#44; formerly on behalf of Intel Corporation, https://tobie.me, tobie@codespeaks.com
+Former Editor: Doug Turner, Mozilla Corporation, https://mozilla.com/
 Group: dap
 Abstract:
   This specification defines a concrete sensor interface to monitor
