@@ -17,9 +17,11 @@ Status Text:
   The Devices and Sensors Working Group is pursuing modern security and privacy
   reviews for this specification in consideration of the amount of change in both
   this specification and in privacy and security review practices since the
-  horizontal reviews took place. Similarly, the group is pursuing an update to the
-  Technical Architecture Group review for this specification to account for the
-  latest architectural review practices.
+  horizontal reviews <a
+  href="https://github.com/w3c/sensors/issues/299#issue-262392533">took place
+  on 3 October 2017</a>. Similarly, the group is pursuing an update to the Technical
+  Architecture Group review for this specification to account for the latest
+  architectural review practices.
 Version History: https://github.com/w3c/ambient-light/commits/main/index.bs
 !Bug Reports: <a href="https://www.github.com/w3c/ambient-light/issues/new">via the w3c/ambient-light repository on GitHub</a>
 Indent: 2
