@@ -225,6 +225,8 @@ which is the device's main light detector.
 The <a>Ambient Light Sensor</a> has an associated [=sensor permission name=]
 which is <a for="PermissionName" enum-value>"ambient-light-sensor"</a>.
 
+The <a>Ambient Light Sensor</a> is a [=policy-controlled feature=] identified by the string "ambient-light-sensor". Its [=default allowlist=] is `'self'`.
+
 The <dfn>current light level</dfn> or <dfn>illuminance</dfn>
 is a value that represents the ambient light level
 around the hosting device. Its unit is the lux (lx) [[SI]].
