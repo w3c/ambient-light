@@ -70,14 +70,18 @@ which require fine grained illuminance data, with low latency, and possibly
 sampled at high frequencies.
 
 Common use cases relying on a small set of illuminance values, such as styling
-webpages according to ambient light levels are best served by the the
-`light-level` CSS media feature [[MEDIAQUERIES-5]] and its accompanying
-`matchMedia` API [[CSSOM]] and are out of scope of this API.
+webpages according to contrast level or preferred color scheme that may be
+influenced a device's measured ambient light level are best served by the the
+`prefers-contrast` and `prefers-color-scheme` CSS media features
+[[MEDIAQUERIES-5]] as well as the accompanying `matchMedia` API
+[[CSSOM-VIEW-1]] and are out of scope of this API.
 
-Note: it might be worthwhile to provide a <a>high-level</a> Light Level Sensor
-which would mirror the `light-level` media feature, but in JavaScript.
-This sensor would *not require additional user permission to be activated*
-in user agents that exposed the `light-level` media feature.
+Note: The [[MEDIAQUERIES-5]] specification used to contain a `light-level`
+media feature that was more directly tied to ambient light readings. It has
+since been <a
+href="https://github.com/w3c/csswg-drafts/commit/f5b663c27d5a2715239633f4916880563969d770">dropped</a>
+from the specification in favor of the higher-level `prefers-color-scheme` and
+`prefers-contrast` media features.
 
 Examples {#examples}
 ========
