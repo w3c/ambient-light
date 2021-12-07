@@ -59,24 +59,6 @@ urlPrefix: https://www.w3.org/TR/permissions/; spec: PERMISSIONS
   type: dfn
     text: name; url: dfn-name
 </pre>
-<pre class=biblio>
-{
-	"MEDIAQUERIES-5": {
-		"authors": [
-            "Dean Jackson",
-			"Florian Rivoal",
-			"Tab Atkins"
-		],
-		"href": "https://drafts.csswg.org/mediaqueries-5/",
-		"title": "Media Queries Level 5",
-		"status": "ED",
-		"publisher": "W3C",
-		"deliveredBy": [
-			"https://www.w3.org/Style/CSS/members"
-		]
-	}
-}
-</pre>
 
 Introduction {#intro}
 ============
