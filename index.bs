@@ -71,7 +71,7 @@ sampled at high frequencies.
 
 Common use cases relying on a small set of illuminance values, such as styling
 webpages according to contrast level or preferred color scheme that may be
-influenced a device's measured ambient light level are best served by the the
+influenced by a device's measured ambient light level are best served by the the
 `prefers-contrast` and `prefers-color-scheme` CSS media features
 [[MEDIAQUERIES-5]] as well as the accompanying `matchMedia` API
 [[CSSOM-VIEW-1]] and are out of scope of this API.
