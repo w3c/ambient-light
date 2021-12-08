@@ -23,14 +23,12 @@ Status Text:
   Architecture Group review for this specification to account for the latest
   architectural review practices.
 Version History: https://github.com/w3c/ambient-light/commits/main/index.bs
-!Bug Reports: <a href="https://www.github.com/w3c/ambient-light/issues/new">via the w3c/ambient-light repository on GitHub</a>
 Indent: 2
 Repository: w3c/ambient-light
 Markup Shorthands: markdown on
 Inline Github Issues: off
 !Issue Tracking: <a href="https://github.com/w3c/ambient-light/milestones/Level%202">Level 2 Issues</a>
-!Test Suite: <a href="https://github.com/web-platform-tests/wpt/tree/master/ambient-light">web-platform-tests on GitHub</a>
-Boilerplate: omit issues-index, omit conformance
+Test Suite: https://github.com/web-platform-tests/wpt/tree/master/ambient-light
 Default Biblio Status: current
 </pre>
 <pre class="anchors">
@@ -307,23 +305,3 @@ Paul Bakaus for the LightLevelSensor idea.
 Mikhail Pozdnyakov and Alexander Shalamov for the use cases and requirements.
 
 Lukasz Olejnik for the privacy risk assessment.
-
-Conformance {#conformance}
-===========
-
-Conformance requirements are expressed with a combination of
-descriptive assertions and RFC 2119 terminology. The key words "MUST",
-"MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
-"RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this
-document are to be interpreted as described in RFC 2119.
-However, for readability, these words do not appear in all uppercase
-letters in this specification.
-
-All of the text of this specification is normative except sections
-explicitly marked as non-normative, examples, and notes. [[!RFC2119]]
-
-A <dfn>conformant user agent</dfn> must implement all the requirements
-listed in this specification that are applicable to user agents.
-
-The IDL fragments in this specification must be interpreted as required for
-conforming IDL fragments, as described in the Web IDL specification. [[!WEBIDL]]
