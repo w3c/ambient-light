@@ -35,20 +35,16 @@ Default Biblio Status: current
 urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
   type: dfn
     text: high-level
-    text: default sensor
     text: implementation specific; url: implementation-specific
     text: reporting mode; url: reporting-modes
     text: auto
     text: construct a sensor object; url: construct-sensor-object
-    text: initialize a sensor object; url: initialize-a-sensor-object
     text: limit maximum sampling frequency; url: limit-max-frequency
     text: reduce accuracy; url: reduce-accuracy
     text: mitigation strategies; url: mitigation-strategies
     text: sampling frequency
     text: sensor type
     text: sensor reading
-    text: check sensor policy-controlled features; url: check-sensor-policy-controlled-features
-    text: sensor permission name; url: sensor-permission-names
     text: automation
     text: mock sensor type
     text: MockSensorType
