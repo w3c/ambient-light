@@ -4,10 +4,10 @@
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <title>Ambient Light Sensor</title>
   <meta content="ED" name="w3c-status">
-  <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version cace53f8c, updated Tue Dec 7 12:12:54 2021 -0800" name="generator">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
+  <meta content="Bikeshed version fdd5936bf, updated Tue May 24 14:57:39 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="b91297a49f6fc9ab1420cb9f1ccce576592681ae" name="document-revision">
+  <meta content="632fa605026261b300126b0b663c5fc8b14baccf" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -589,7 +589,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2021-12-14">14 December 2021</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-05-27">27 May 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -614,7 +614,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -723,7 +723,7 @@ since been <a href="https://github.com/w3c/csswg-drafts/commit/f5b663c27d5a27152
     <a class="self-link" href="#example-cdf5e857"></a> In this simple example, ambient light sensor is created with
     default configuration. Whenever a new <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">reading</a> is available,
     it is printed to the console. 
-<pre class="highlight"><c- a>const</c-> sensor <c- o>=</c-> <c- k>new</c-> AmbientLightSensor<c- p>();</c->
+<pre class="highlight"><c- a>const</c-> sensor <c- o>=</c-> <c- ow>new</c-> AmbientLightSensor<c- p>();</c->
 sensor<c- p>.</c->onreading <c- o>=</c-> <c- p>()</c-> <c- p>=></c-> console<c- p>.</c->log<c- p>(</c->sensor<c- p>.</c->illuminance<c- p>);</c->
 sensor<c- p>.</c->onerror <c- o>=</c-> event <c- p>=></c-> console<c- p>.</c->log<c- p>(</c->event<c- p>.</c->error<c- p>.</c->name<c- p>,</c-> event<c- p>.</c->error<c- p>.</c->message<c- p>);</c->
 sensor<c- p>.</c->start<c- p>();</c->
@@ -741,7 +741,7 @@ sensor<c- p>.</c->start<c- p>();</c->
         <c- k>return</c-><c- p>;</c->
     <c- p>}</c->
 
-    <c- a>const</c-> als <c- o>=</c-> <c- k>new</c-> AmbientLightSensor<c- p>({</c->frequency<c- o>:</c-> <c- mf>20</c-><c- p>});</c->
+    <c- a>const</c-> als <c- o>=</c-> <c- ow>new</c-> AmbientLightSensor<c- p>({</c->frequency<c- o>:</c-> <c- mf>20</c-><c- p>});</c->
     als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'activate'</c-><c- p>,</c-> <c- p>()</c-> <c- p>=></c-> console<c- p>.</c->log<c- p>(</c-><c- t>'Ready to measure EV.'</c-><c- p>));</c->
     als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'error'</c-><c- p>,</c-> event <c- p>=></c-> console<c- p>.</c->log<c- p>(</c-><c- sb>`Error: </c-><c- si>${</c->event<c- p>.</c->error<c- p>.</c->name<c- si>}</c-><c- sb>`</c-><c- p>));</c->
     als<c- p>.</c->addEventListener<c- p>(</c-><c- t>'reading'</c-><c- p>,</c-> <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
@@ -761,7 +761,7 @@ sensor<c- p>.</c->start<c- p>();</c->
    <div class="example" id="example-ad1f42be">
     <a class="self-link" href="#example-ad1f42be"></a> This example demonstrates how ambient light <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading③">sensor readings</a> can be mapped
     to recommended workplace light levels. 
-<pre class="highlight"><c- a>const</c-> als <c- o>=</c-> <c- k>new</c-> AmbientLightSensor<c- p>();</c->
+<pre class="highlight"><c- a>const</c-> als <c- o>=</c-> <c- ow>new</c-> AmbientLightSensor<c- p>();</c->
 
 als<c- p>.</c->onreading <c- o>=</c-> <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
     <c- a>let</c-> str <c- o>=</c-> luxToWorkplaceLevel<c- p>(</c->als<c- p>.</c->illuminance<c- p>);</c->
@@ -833,7 +833,7 @@ which is the device’s main light detector.</p>
 result of calling the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#generic-sensor-permission-revocation-algorithm" id="ref-for-generic-sensor-permission-revocation-algorithm">generic sensor permission revocation algorithm</a> with
 "ambient-light-sensor".</p>
    <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor②">Ambient Light Sensor</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> identified by the string "ambient-light-sensor". Its <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> is <code>'self'</code>.</p>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="current-light-level">current light level</dfn> or <dfn data-dfn-type="dfn" data-noexport id="illuminance">illuminance<a class="self-link" href="#illuminance"></a></dfn> is a value that represents the ambient light level
+   <p>The <dfn data-dfn-type="dfn" data-noexport id="current-light-level">current light level<a class="self-link" href="#current-light-level"></a></dfn> or <dfn data-dfn-type="dfn" data-noexport id="illuminance">illuminance<a class="self-link" href="#illuminance"></a></dfn> is a value that represents the ambient light level
 around the hosting device. Its unit is the lux (lx) <a data-link-type="biblio" href="#biblio-si">[SI]</a>.</p>
    <p class="note" role="note"><span>Note:</span> The precise lux value reported by
 different devices in the same light can be different,
@@ -848,7 +848,14 @@ due to differences in detection method, sensor construction, etc.</p>
 </pre>
    <p>To construct an <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor①">AmbientLightSensor</a></code> object the user agent must invoke the <a data-link-type="dfn" href="#construct-an-ambient-light-sensor-object" id="ref-for-construct-an-ambient-light-sensor-object">construct an ambient light sensor object</a> abstract operation.</p>
    <h4 class="heading settled" data-level="5.1.1" id="ambient-light-sensor-reading-attribute"><span class="secno">5.1.1. </span><span class="content">The illuminance attribute</span><a class="self-link" href="#ambient-light-sensor-reading-attribute"></a></h4>
-   <p>The <a class="idl-code" data-link-type="attribute" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance①">illuminance</a> attribute of the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor②">AmbientLightSensor</a></code> interface represents the <a data-link-type="dfn" href="#current-light-level" id="ref-for-current-light-level">current light level</a> and returns the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading">get value from latest reading</a> with <code>this</code> and "illuminance" as arguments.</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#dom-ambientlightsensor-illuminance" id="ref-for-dom-ambientlightsensor-illuminance①">illuminance</a></code> getter steps are:</p>
+   <ol>
+    <li data-md>
+     <p>Let <var>illuminance</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#get-value-from-latest-reading" id="ref-for-get-value-from-latest-reading">get value from latest
+ reading</a> with <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a> and "illuminance" as arguments.</p>
+    <li data-md>
+     <p>Return <var>illuminance</var>.</p>
+   </ol>
    <h2 class="heading settled" data-level="6" id="abstract-operations"><span class="secno">6. </span><span class="content">Abstract Operations</span><a class="self-link" href="#abstract-operations"></a></h2>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-export data-level="6.1" data-lt="Construct an ambient light sensor object" id="construct-an-ambient-light-sensor-object"><span class="secno">6.1. </span><span class="content">Construct an ambient light sensor object</span><a class="self-link" href="#construct-an-ambient-light-sensor-object" id="ref-for-construct-an-ambient-light-sensor-object①"></a></h3>
    <div class="algorithm" data-algorithm="construct an ambient light sensor object">
@@ -858,11 +865,11 @@ due to differences in detection method, sensor construction, etc.</p>
       <p><var>options</var>, a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#dictdef-sensoroptions" id="ref-for-dictdef-sensoroptions①">SensorOptions</a></code> object.</p>
      <dt data-md>output
      <dd data-md>
-      <p>An <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor③">AmbientLightSensor</a></code> object.</p>
+      <p>An <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor②">AmbientLightSensor</a></code> object.</p>
     </dl>
     <ol>
      <li data-md>
-      <p>Let <var>allowed</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#check-sensor-policy-controlled-features" id="ref-for-check-sensor-policy-controlled-features">check sensor policy-controlled features</a> with <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor④">AmbientLightSensor</a></code>.</p>
+      <p>Let <var>allowed</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#check-sensor-policy-controlled-features" id="ref-for-check-sensor-policy-controlled-features">check sensor policy-controlled features</a> with <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor③">AmbientLightSensor</a></code>.</p>
      <li data-md>
       <p>If <var>allowed</var> is false, then:</p>
       <ol>
@@ -870,7 +877,7 @@ due to differences in detection method, sensor construction, etc.</p>
         <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
       </ol>
      <li data-md>
-      <p>Let <var>ambient_light_sensor</var> be the new <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑤">AmbientLightSensor</a></code> object.</p>
+      <p>Let <var>ambient_light_sensor</var> be the new <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor④">AmbientLightSensor</a></code> object.</p>
      <li data-md>
       <p>Invoke <a data-link-type="dfn" href="https://w3c.github.io/sensors/#initialize-a-sensor-object" id="ref-for-initialize-a-sensor-object">initialize a sensor object</a> with <var>ambient_light_sensor</var> and <var>options</var>.</p>
      <li data-md>
@@ -881,7 +888,7 @@ due to differences in detection method, sensor construction, etc.</p>
     This section extends the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#automation" id="ref-for-automation">automation</a> section defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a> to provide mocking information about the ambient light levels for the purposes of testing a user agent’s
 implementation of <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor③">Ambient Light Sensor</a>. 
    <h3 class="heading settled" data-level="7.1" id="mock-ambient-light-sensor-type"><span class="secno">7.1. </span><span class="content">Mock Sensor Type</span><a class="self-link" href="#mock-ambient-light-sensor-type"></a></h3>
-   <p>The <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑥">AmbientLightSensor</a></code> class has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light">"ambient-light"</a>, its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values">mock sensor reading values</a> dictionary is defined as follows:</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑤">AmbientLightSensor</a></code> class has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light">"ambient-light"</a>, its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values">mock sensor reading values</a> dictionary is defined as follows:</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-ambientlightreadingvalues"><code><c- g>AmbientLightReadingValues</c-></code><a class="self-link" href="#dictdef-ambientlightreadingvalues"></a></dfn> {
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="AmbientLightReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-ambientlightreadingvalues-illuminance"><code><c- g>illuminance</c-></code><a class="self-link" href="#dom-ambientlightreadingvalues-illuminance"></a></dfn>;
 };
@@ -1141,6 +1148,12 @@ Marcos Caceres for the test suite.</p>
     <li><a href="#ref-for-idl-double①">7.1. Mock Sensor Type</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-this">
+   <a href="https://webidl.spec.whatwg.org/#this">https://webidl.spec.whatwg.org/#this</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-this">5.1.1. The illuminance attribute</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-throw">
    <a href="https://webidl.spec.whatwg.org/#dfn-throw">https://webidl.spec.whatwg.org/#dfn-throw</a><b>Referenced in:</b>
    <ul>
@@ -1192,6 +1205,7 @@ Marcos Caceres for the test suite.</p>
      <li><span class="dfn-paneled" id="term-for-SecureContext">SecureContext</span>
      <li><span class="dfn-paneled" id="term-for-securityerror">SecurityError</span>
      <li><span class="dfn-paneled" id="term-for-idl-double">double</span>
+     <li><span class="dfn-paneled" id="term-for-this">this</span>
      <li><span class="dfn-paneled" id="term-for-dfn-throw">throw</span>
     </ul>
   </ul>
@@ -1214,7 +1228,7 @@ Marcos Caceres for the test suite.</p>
    <dt id="biblio-cssom-view-1">[CSSOM-VIEW-1]
    <dd>Simon Pieters. <a href="https://drafts.csswg.org/cssom-view/"><cite>CSSOM View Module</cite></a>. URL: <a href="https://drafts.csswg.org/cssom-view/">https://drafts.csswg.org/cssom-view/</a>
    <dt id="biblio-mediaqueries-5">[MEDIAQUERIES-5]
-   <dd>Dean Jackson; Florian Rivoal; Tab Atkins Jr.. <a href="https://drafts.csswg.org/mediaqueries-5/"><cite>Media Queries Level 5</cite></a>. URL: <a href="https://drafts.csswg.org/mediaqueries-5/">https://drafts.csswg.org/mediaqueries-5/</a>
+   <dd>Dean Jackson; et al. <a href="https://drafts.csswg.org/mediaqueries-5/"><cite>Media Queries Level 5</cite></a>. URL: <a href="https://drafts.csswg.org/mediaqueries-5/">https://drafts.csswg.org/mediaqueries-5/</a>
    <dt id="biblio-si">[SI]
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/"><cite>SI Brochure: The International System of Units (SI), 8th edition</cite></a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
   </dl>
@@ -1237,20 +1251,13 @@ Marcos Caceres for the test suite.</p>
     <li><a href="#ref-for-ambient-light-sensor③">7. Automation</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="current-light-level">
-   <b><a href="#current-light-level">#current-light-level</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-current-light-level">5.1.1. The illuminance attribute</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="ambientlightsensor">
    <b><a href="#ambientlightsensor">#ambientlightsensor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-ambientlightsensor">4. Model</a>
     <li><a href="#ref-for-ambientlightsensor①">5.1. The AmbientLightSensor Interface</a>
-    <li><a href="#ref-for-ambientlightsensor②">5.1.1. The illuminance attribute</a>
-    <li><a href="#ref-for-ambientlightsensor③">6.1. Construct an ambient light sensor object</a> <a href="#ref-for-ambientlightsensor④">(2)</a> <a href="#ref-for-ambientlightsensor⑤">(3)</a>
-    <li><a href="#ref-for-ambientlightsensor⑥">7.1. Mock Sensor Type</a>
+    <li><a href="#ref-for-ambientlightsensor②">6.1. Construct an ambient light sensor object</a> <a href="#ref-for-ambientlightsensor③">(2)</a> <a href="#ref-for-ambientlightsensor④">(3)</a>
+    <li><a href="#ref-for-ambientlightsensor⑤">7.1. Mock Sensor Type</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-ambientlightsensor-illuminance">
