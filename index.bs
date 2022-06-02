@@ -214,7 +214,7 @@ Examples {#examples}
 Security and Privacy Considerations {#security-and-privacy}
 ===================================
 
-Ambient Light Sensor provides information about lighting conditions near
+<p tracking-vector>Ambient Light Sensor provides information about lighting conditions near
 the device environment. Potential privacy risks include:
 
   - Profiling. Ambient Light Sensor can leak information about user's use
