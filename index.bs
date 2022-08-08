@@ -289,8 +289,9 @@ Use Cases and Requirements {#usecases-requirements}
 - A Web application provides input for a smart home system to control lighting.
 - A Web aplication checks whether light level at work space is sufficient.
 - A Web application calculates settings for a camera with manual controls (aperture, shutter speed, ISO).
-- A Web application monitors light level changes produced by hovering hand user gesture and
-  interprets them to control a game character.
+- A Web application checks the current light level to determine whether a
+  camera stream will contain data that is accurate enough for its purposes
+  (e.g. human presence verification).
 
 While some of the use cases may benefit from obtaining precise ambient light measurements, the use
 cases that convert ambient light level fluctuations to user input events would benefit from
