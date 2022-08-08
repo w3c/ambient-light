@@ -5,9 +5,9 @@
   <title>Ambient Light Sensor</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version fdd5936bf, updated Tue May 24 14:57:39 2022 -0700" name="generator">
+  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="632fa605026261b300126b0b663c5fc8b14baccf" name="document-revision">
+  <meta content="08d5001db901313060088d8b61171a62192dffdc" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -589,7 +589,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-05-27">27 May 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-08-08">8 August 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -902,8 +902,9 @@ implementation of <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-f
     <li data-md>
      <p>A Web application calculates settings for a camera with manual controls (aperture, shutter speed, ISO).</p>
     <li data-md>
-     <p>A Web application monitors light level changes produced by hovering hand user gesture and
-interprets them to control a game character.</p>
+     <p>A Web application checks the current light level to determine whether a
+camera stream will contain data that is accurate enough for its purposes
+(e.g. human presence verification).</p>
    </ul>
    <p>While some of the use cases may benefit from obtaining precise ambient light measurements, the use
 cases that convert ambient light level fluctuations to user input events would benefit from
@@ -940,7 +941,7 @@ Marcos Caceres for the test suite.</p>
     and are set apart from the normative text
     with <code>class="note"</code>,
     like this: </p>
-   <p class="note" role="note">Note, this is an informative note. </p>
+   <p class="note" role="note">Note, this is an informative note.</p>
    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
@@ -1185,14 +1186,14 @@ Marcos Caceres for the test suite.</p>
      <li><span class="dfn-paneled" id="term-for-sensor-type">sensor type</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[permissions]</a> defines the following terms:
+    <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-dfn-name">name</span>
      <li><span class="dfn-paneled" id="term-for-dfn-permission-revocation-algorithm">permission revocation algorithm</span>
      <li><span class="dfn-paneled" id="term-for-dfn-powerful-feature">powerful feature</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[permissions-policy-1]</a> defines the following terms:
+    <a data-link-type="biblio">[PERMISSIONS-POLICY-1]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-default-allowlist">default allowlist</span>
      <li><span class="dfn-paneled" id="term-for-policy-controlled-feature">policy-controlled feature</span>
