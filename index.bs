@@ -49,6 +49,54 @@ urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
     text: mock sensor type
     text: MockSensorType
     text: mock sensor reading values
+    text: threshold check algorithm
+    text: reading quantization algorithm
+    text: latest reading
+urlPrefix: https://tc39.es/ecma262/; spec: ECMA-262
+  type: abstract-op
+    text: abs; url: eqn-abs
+</pre>
+
+<pre class=biblio>
+{
+  "ALSPRIVACYANALYSIS": {
+    "title": "Privacy analysis of Ambient Light Sensors",
+    "authors": [
+      "Lukasz Olejnik"
+    ],
+    "href": "https://blog.lukaszolejnik.com/privacy-of-ambient-light-sensors/",
+    "id": "ALSPRIVACYANALYSIS",
+    "date": "31 August 2016"
+  },
+  "PINSKIMMINGVIASENSOR": {
+    "title": "PIN Skimming: Exploiting the Ambient-Light Sensor in Mobile Devices",
+    "authors": [
+      "Raphael Spreitzer"
+    ],
+    "href": "https://arxiv.org/abs/1405.3760",
+    "id": "PINSKIMMINGVIASENSOR",
+    "date": "15 May 2014"
+  },
+  "STEALINGSENSITIVEDATA": {
+    "title": "Stealing sensitive browser data with the W3C Ambient Light Sensor API",
+    "authors": [
+      "Lukasz Olejnik"
+    ],
+    "href": "https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/",
+    "id": "STEALINGSENSITIVEDATA",
+    "date": "19 April 2017"
+  },
+  "VIDEORECOGNITIONAMBIENTLIGHT": {
+    "title": "Video recognition using ambient light sensors",
+    "authors": [
+      "Raphael Spreitzer"
+    ],
+    "href": "https://doi.org/10.1109/PERCOM.2016.7456511",
+    "id": "VIDEORECOGNITIONAMBIENTLIGHT",
+    "publisher": "IEEE",
+    "date": "21 April 2016"
+  }
+}
 </pre>
 
 Introduction {#intro}
@@ -166,7 +214,7 @@ Examples {#examples}
 Security and Privacy Considerations {#security-and-privacy}
 ===================================
 
-Ambient Light Sensor provides information about lighting conditions near
+<p tracking-vector>Ambient Light Sensor provides information about lighting conditions near
 the device environment. Potential privacy risks include:
 
   - Profiling. Ambient Light Sensor can leak information about user's use
@@ -185,13 +233,55 @@ the device environment. Potential privacy risks include:
     the light levels associated with visited and unvisited links i.e. visited
     links styled as a block of black screen; white for unvisited.
 
-To mitigate these Ambient Light Sensor specific threats, user agents should
-use one or both of the following mitigation strategies:
-  - <a>limit maximum sampling frequency</a>
-  - <a>reduce accuracy</a> of sensor readings
+Works such as [[ALSPRIVACYANALYSIS]], [[PINSKIMMINGVIASENSOR]],
+[[STEALINGSENSITIVEDATA]], and [[VIDEORECOGNITIONAMBIENTLIGHT]] delve further
+into these issues.
+
+To mitigate these threats specific to Ambient Light Sensor, user agents must
+<a>reduce accuracy</a> of sensor readings. User agents may also <a>limit
+maximum sampling frequency</a>.
 
 These mitigation strategies complement the [=mitigation strategies|generic mitigations=]
 defined in the Generic Sensor API [[!GENERIC-SENSOR]].
+
+Reducing sensor readings accuracy {#reduce-sensor-accuracy}
+-----
+
+In order to [=reduce accuracy=] of sensor readings, this specification defines
+a [=threshold check algorithm=] (the [=ambient light threshold check
+algorithm=]) and a [=reading quantization algorithm=] (the [=ambient light
+reading quantization algorithm=]).
+
+These algorithms make use of the [=illuminance rounding multiple=] and the
+[=illuminance threshold value=]. Implementations must adhere to the following
+requirements for their values:
+
+  - The [=illuminance rounding multiple=] must be at least 50 lux.
+  - The [=illuminance threshold value=] should be at least half of the
+    [=illuminance rounding multiple=].
+
+Note: Choosing an [=illuminance rounding multiple=] requires balancing not
+exposing readouts that are too precise while also providing readouts that are
+still useful for API users. The value of 50 lux as a minimum for the
+[=illuminance rounding multiple=] was determined in <a
+href="https://github.com/w3c/ambient-light/issues/13#issuecomment-302393458">GitHub
+issue #13</a> after different ambient light level measurements under different
+lighting conditions were <a
+href="https://docs.google.com/spreadsheets/d/1vUojkaaif6AmftQmtqra1w9Z7CH00Cn9pb0Ci6v5_Jk">gathered
+</a> and shown to thwart the attack described in [[STEALINGSENSITIVEDATA]]. 50
+lux is also higher than the 5 lux required to make video recognition using
+ambient light sensor readings ([[VIDEORECOGNITIONAMBIENTLIGHT]]) infeasible.
+
+Note: The [=illuminance threshold value=] is used to prevent leaking the fact
+that readings are hovering around a particular value but getting quantized to
+different values. For example, if [=illuminance rounding multiple=] is 50, this
+prevents switching the illuminance value between 0 and 50 if the raw readouts
+switch between 24 and 26. The efficacy of the [=threshold check algorithm=] as
+an auxiliary fingerprinting mitigation strategy has not been mathematically
+proven, but it has been added to this specification based on implementation
+experience. <a href="https://crbug.com/1332536">Chromium bug 1332536</a> and <a
+href="https://crrev.com/c/3666917">Chromium review 3666917</a> contain more
+information about this.
 
 Model {#model}
 =====
@@ -217,6 +307,17 @@ around the hosting device. Its unit is the lux (lx) [[SI]].
 Note: The precise lux value reported by
 different devices in the same light can be different,
 due to differences in detection method, sensor construction, etc.
+
+The <a>Ambient Light Sensor</a> has an <dfn>illuminance rounding
+multiple</dfn>, measured in lux, which represents a number whose multiples the
+illuminance readings will be rounded up to.
+
+The <a>Ambient Light Sensor</a> has an <dfn>illuminance threshold value</dfn>,
+measured in lux, which is used in the [=ambient light threshold check
+algorithm=].
+
+Note: see [[#reduce-sensor-accuracy]] for minimum requirements for the values
+described above.
 
 API {#api}
 ===
@@ -262,6 +363,58 @@ Abstract Operations {#abstract-operations}
     1.  Let |ambient_light_sensor| be the new {{AmbientLightSensor}} object.
     1.  Invoke [=initialize a sensor object=] with |ambient_light_sensor| and |options|.
     1.  Return |ambient_light_sensor|.
+</div>
+
+<h3 dfn>Ambient light threshold check algorithm</h3>
+
+The [=Ambient Light Sensor=] [=sensor type=] defines the following [=threshold
+check algorithm=]:
+
+<div algorithm="ambient light threshold check">
+  : input
+  :: |newReading|, a [=sensor reading=]
+  :: |latestReading|, a [=sensor reading=]
+  : output
+  :: A [=boolean=] indicating whether the difference in readings is
+     significant enough.
+
+  1. If |newReading|["illuminance"] is null, return true.
+  1. If |latestReading|["illuminance"] is null, return true.
+  1. Let |newIlluminance| be |newReading|["illuminance"].
+  1. Let |latestIlluminance| be |latestReading|["illuminance"].
+  1. If [$abs$](|latestIlluminance| - |newIlluminance|) < [=illuminance
+     threshold value=], return false.
+  1. Let |roundedNewIlluminance| be the result of invoking the [=ambient light
+     reading quantization algorithm=] algorithm with |newIlluminance|.
+  1. Let |roundedLatestIlluminance| be the result of invoking the [=ambient
+     light reading quantization algorithm=] algorithm with |latestIlluminance|.
+  1. If |roundedNewIlluminance| and |roundedLatestIlluminance| are equal,
+     return false.
+  1. Otherwise, return true.
+</div>
+
+Note: This algorithm invokes the [=ambient light reading quantization
+algorithm=] to ensure that readings that round up to the same value do not
+trigger an update in the main [=update latest reading=] algorithm. Not doing so
+would indicate to users that the raw illuminance readings are within a range
+where they differ by at least the [=illuminance threshold value=] but do not
+round up to different [=illuminance rounding multiple=].
+
+<h3 dfn>Ambient light reading quantization algorithm</h3>
+
+The [=Ambient Light Sensor=] [=sensor type=] defines the following [=reading
+quantization algorithm=]:
+
+<div algorithm="ambient light reading quantization">
+  : input
+  :: |reading|, a [=sensor reading=]
+  : output
+  :: A [=sensor reading=]
+
+  1. Let |quantizedReading| be |reading|.
+  1. Set |quantizedReading|["illuminance"] to the multiple of the [=illuminance
+     rounding multiple=] that |reading|["illuminance"] is closest to.
+  1. Return |quantizedReading|.
 </div>
 
 Automation {#automation}
