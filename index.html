@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="08d5001db901313060088d8b61171a62192dffdc" name="document-revision">
+  <meta content="2fbaa74312f65563d18344dc0992b5df57beeaf9" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -589,7 +589,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-08-08">8 August 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-08-22">22 August 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -662,7 +662,11 @@ architectural review practices.</p>
       <li><a href="#scope"><span class="secno">1.1</span> <span class="content">Scope</span></a>
      </ol>
     <li><a href="#examples"><span class="secno">2</span> <span class="content">Examples</span></a>
-    <li><a href="#security-and-privacy"><span class="secno">3</span> <span class="content">Security and Privacy Considerations</span></a>
+    <li>
+     <a href="#security-and-privacy"><span class="secno">3</span> <span class="content">Security and Privacy Considerations</span></a>
+     <ol class="toc">
+      <li><a href="#reduce-sensor-accuracy"><span class="secno">3.1</span> <span class="content">Reducing sensor readings accuracy</span></a>
+     </ol>
     <li><a href="#model"><span class="secno">4</span> <span class="content">Model</span></a>
     <li>
      <a href="#api"><span class="secno">5</span> <span class="content">API</span></a>
@@ -677,6 +681,8 @@ architectural review practices.</p>
      <a href="#abstract-operations"><span class="secno">6</span> <span class="content">Abstract Operations</span></a>
      <ol class="toc">
       <li><a href="#construct-an-ambient-light-sensor-object"><span class="secno">6.1</span> <span class="content">Construct an ambient light sensor object</span></a>
+      <li><a href="#ambient-light-threshold-check-algorithm"><span class="secno">6.2</span> <span class="content">Ambient light threshold check algorithm</span></a>
+      <li><a href="#ambient-light-reading-quantization-algorithm"><span class="secno">6.3</span> <span class="content">Ambient light reading quantization algorithm</span></a>
      </ol>
     <li>
      <a href="#automation"><span class="secno">7</span> <span class="content">Automation</span></a>
@@ -792,8 +798,8 @@ als<c- p>.</c->start<c- p>();</c->
 </pre>
    </div>
    <h2 class="heading settled" data-level="3" id="security-and-privacy"><span class="secno">3. </span><span class="content">Security and Privacy Considerations</span><a class="self-link" href="#security-and-privacy"></a></h2>
-   <p>Ambient Light Sensor provides information about lighting conditions near
-the device environment. Potential privacy risks include:</p>
+   <p><a class="tracking-vector" href="https://infra.spec.whatwg.org/#tracking-vector"><svg aria-label="(This is a tracking vector.)" height="64" role="img" width="46"><title>There is a tracking vector here.</title><use href="#b732b3fe"></use></svg></a> Ambient Light Sensor provides information about lighting conditions near
+the device environment. Potential privacy risks include: </p>
    <ul>
     <li data-md>
      <p>Profiling. Ambient Light Sensor can leak information about user’s use
@@ -816,15 +822,40 @@ particular pixels to allow distinguishing the contents, pixel by pixel.</p>
 the light levels associated with visited and unvisited links i.e. visited
 links styled as a block of black screen; white for unvisited.</p>
    </ul>
-   <p>To mitigate these Ambient Light Sensor specific threats, user agents should
-use one or both of the following mitigation strategies:</p>
+   <p>Works such as <a data-link-type="biblio" href="#biblio-alsprivacyanalysis">[ALSPRIVACYANALYSIS]</a>, <a data-link-type="biblio" href="#biblio-pinskimmingviasensor">[PINSKIMMINGVIASENSOR]</a>, <a data-link-type="biblio" href="#biblio-stealingsensitivedata">[STEALINGSENSITIVEDATA]</a>, and <a data-link-type="biblio" href="#biblio-videorecognitionambientlight">[VIDEORECOGNITIONAMBIENTLIGHT]</a> delve further
+into these issues.</p>
+   <p>To mitigate these threats specific to Ambient Light Sensor, user agents must <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings. User agents may also <a data-link-type="dfn" href="https://w3c.github.io/sensors/#limit-max-frequency" id="ref-for-limit-max-frequency">limit
+maximum sampling frequency</a>.</p>
+   <p>These mitigation strategies complement the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mitigation-strategies" id="ref-for-mitigation-strategies">generic mitigations</a> defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
+   <h3 class="heading settled" data-level="3.1" id="reduce-sensor-accuracy"><span class="secno">3.1. </span><span class="content">Reducing sensor readings accuracy</span><a class="self-link" href="#reduce-sensor-accuracy"></a></h3>
+   <p>In order to <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reduce-accuracy" id="ref-for-reduce-accuracy①">reduce accuracy</a> of sensor readings, this specification defines
+a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#threshold-check-algorithm" id="ref-for-threshold-check-algorithm">threshold check algorithm</a> (the <a data-link-type="dfn" href="#ambient-light-threshold-check-algorithm" id="ref-for-ambient-light-threshold-check-algorithm">ambient light threshold check
+algorithm</a>) and a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reading-quantization-algorithm" id="ref-for-reading-quantization-algorithm">reading quantization algorithm</a> (the <a data-link-type="dfn" href="#ambient-light-reading-quantization-algorithm" id="ref-for-ambient-light-reading-quantization-algorithm">ambient light
+reading quantization algorithm</a>).</p>
+   <p>These algorithms make use of the <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple">illuminance rounding multiple</a> and the <a data-link-type="dfn" href="#illuminance-threshold-value" id="ref-for-illuminance-threshold-value">illuminance threshold value</a>. Implementations must adhere to the following
+requirements for their values:</p>
    <ul>
     <li data-md>
-     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors/#limit-max-frequency" id="ref-for-limit-max-frequency">limit maximum sampling frequency</a></p>
+     <p>The <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple①">illuminance rounding multiple</a> must be at least 50 lux.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="https://w3c.github.io/sensors/#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings</p>
+     <p>The <a data-link-type="dfn" href="#illuminance-threshold-value" id="ref-for-illuminance-threshold-value①">illuminance threshold value</a> should be at least half of the <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple②">illuminance rounding multiple</a>.</p>
    </ul>
-   <p>These mitigation strategies complement the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mitigation-strategies" id="ref-for-mitigation-strategies">generic mitigations</a> defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
+   <p class="note" role="note"><span>Note:</span> Choosing an <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple③">illuminance rounding multiple</a> requires balancing not
+exposing readouts that are too precise while also providing readouts that are
+still useful for API users. The value of 50 lux as a minimum for the <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple④">illuminance rounding multiple</a> was determined in <a href="https://github.com/w3c/ambient-light/issues/13#issuecomment-302393458">GitHub
+issue #13</a> after different ambient light level measurements under different
+lighting conditions were <a href="https://docs.google.com/spreadsheets/d/1vUojkaaif6AmftQmtqra1w9Z7CH00Cn9pb0Ci6v5_Jk">gathered </a> and shown to thwart the attack described in <a data-link-type="biblio" href="#biblio-stealingsensitivedata">[STEALINGSENSITIVEDATA]</a>. 50
+lux is also higher than the 5 lux required to make video recognition using
+ambient light sensor readings (<a data-link-type="biblio" href="#biblio-videorecognitionambientlight">[VIDEORECOGNITIONAMBIENTLIGHT]</a>) infeasible.</p>
+   <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#illuminance-threshold-value" id="ref-for-illuminance-threshold-value②">illuminance threshold value</a> is used to prevent leaking the fact
+that readings are hovering around a particular value but getting quantized to
+different values. For example, if <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple⑤">illuminance rounding multiple</a> is 50, this
+prevents switching the illuminance value between 0 and 50 if the raw readouts
+switch between 24 and 26. The efficacy of the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#threshold-check-algorithm" id="ref-for-threshold-check-algorithm①">threshold check algorithm</a> as
+an auxiliary fingerprinting mitigation strategy has not been mathematically
+proven, but it has been added to this specification based on implementation
+experience. <a href="https://crbug.com/1332536">Chromium bug 1332536</a> and <a href="https://crrev.com/c/3666917">Chromium review 3666917</a> contain more
+information about this.</p>
    <h2 class="heading settled" data-level="4" id="model"><span class="secno">4. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ambient-light-sensor">Ambient Light Sensor</dfn> <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a></code> subclass is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
    <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor">Ambient Light Sensor</a> has a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#default-sensor" id="ref-for-default-sensor">default sensor</a>,
@@ -838,6 +869,14 @@ around the hosting device. Its unit is the lux (lx) <a data-link-type="biblio" h
    <p class="note" role="note"><span>Note:</span> The precise lux value reported by
 different devices in the same light can be different,
 due to differences in detection method, sensor construction, etc.</p>
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor③">Ambient Light Sensor</a> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="illuminance rounding multiple" data-noexport id="illuminance-rounding-multiple">illuminance rounding
+multiple</dfn>, measured in lux, which represents a number whose multiples the
+illuminance readings will be rounded up to.</p>
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor④">Ambient Light Sensor</a> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="illuminance-threshold-value">illuminance threshold value</dfn>,
+measured in lux, which is used in the <a data-link-type="dfn" href="#ambient-light-threshold-check-algorithm" id="ref-for-ambient-light-threshold-check-algorithm①">ambient light threshold check
+algorithm</a>.</p>
+   <p class="note" role="note"><span>Note:</span> see <a href="#reduce-sensor-accuracy">§ 3.1 Reducing sensor readings accuracy</a> for minimum requirements for the values
+described above.</p>
    <h2 class="heading settled" data-level="5" id="api"><span class="secno">5. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="5.1" id="ambient-light-sensor-interface"><span class="secno">5.1. </span><span class="content">The AmbientLightSensor Interface</span><a class="self-link" href="#ambient-light-sensor-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -884,9 +923,77 @@ due to differences in detection method, sensor construction, etc.</p>
       <p>Return <var>ambient_light_sensor</var>.</p>
     </ol>
    </div>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="6.2" data-lt="Ambient light threshold check algorithm" data-noexport id="ambient-light-threshold-check-algorithm"><span class="secno">6.2. </span><span class="content">Ambient light threshold check algorithm</span><a class="self-link" href="#ambient-light-threshold-check-algorithm" id="ref-for-ambient-light-threshold-check-algorithm②"></a></h3>
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor⑤">Ambient Light Sensor</a> <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type①">sensor type</a> defines the following <a data-link-type="dfn" href="https://w3c.github.io/sensors/#threshold-check-algorithm" id="ref-for-threshold-check-algorithm②">threshold
+check algorithm</a>:</p>
+   <div class="algorithm" data-algorithm="ambient light threshold check">
+    <dl>
+     <dt data-md>input
+     <dd data-md>
+      <p><var>newReading</var>, a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading④">sensor reading</a></p>
+     <dd data-md>
+      <p><var>latestReading</var>, a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading⑤">sensor reading</a></p>
+     <dt data-md>output
+     <dd data-md>
+      <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#boolean" id="ref-for-boolean">boolean</a> indicating whether the difference in readings is
+ significant enough.</p>
+    </dl>
+    <ol>
+     <li data-md>
+      <p>If <var>newReading</var>["illuminance"] is null, return true.</p>
+     <li data-md>
+      <p>If <var>latestReading</var>["illuminance"] is null, return true.</p>
+     <li data-md>
+      <p>Let <var>newIlluminance</var> be <var>newReading</var>["illuminance"].</p>
+     <li data-md>
+      <p>Let <var>latestIlluminance</var> be <var>latestReading</var>["illuminance"].</p>
+     <li data-md>
+      <p>If <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#eqn-abs" id="ref-for-eqn-abs">abs</a>(<var>latestIlluminance</var> - <var>newIlluminance</var>) &lt; <a data-link-type="dfn" href="#illuminance-threshold-value" id="ref-for-illuminance-threshold-value③">illuminance
+ threshold value</a>, return false.</p>
+     <li data-md>
+      <p>Let <var>roundedNewIlluminance</var> be the result of invoking the <a data-link-type="dfn" href="#ambient-light-reading-quantization-algorithm" id="ref-for-ambient-light-reading-quantization-algorithm①">ambient light
+ reading quantization algorithm</a> algorithm with <var>newIlluminance</var>.</p>
+     <li data-md>
+      <p>Let <var>roundedLatestIlluminance</var> be the result of invoking the <a data-link-type="dfn" href="#ambient-light-reading-quantization-algorithm" id="ref-for-ambient-light-reading-quantization-algorithm②">ambient
+ light reading quantization algorithm</a> algorithm with <var>latestIlluminance</var>.</p>
+     <li data-md>
+      <p>If <var>roundedNewIlluminance</var> and <var>roundedLatestIlluminance</var> are equal,
+ return false.</p>
+     <li data-md>
+      <p>Otherwise, return true.</p>
+    </ol>
+   </div>
+   <p class="note" role="note"><span>Note:</span> This algorithm invokes the <a data-link-type="dfn" href="#ambient-light-reading-quantization-algorithm" id="ref-for-ambient-light-reading-quantization-algorithm③">ambient light reading quantization
+algorithm</a> to ensure that readings that round up to the same value do not
+trigger an update in the main <a data-link-type="dfn" href="https://w3c.github.io/sensors/#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> algorithm. Not doing so
+would indicate to users that the raw illuminance readings are within a range
+where they differ by at least the <a data-link-type="dfn" href="#illuminance-threshold-value" id="ref-for-illuminance-threshold-value④">illuminance threshold value</a> but do not
+round up to different <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple⑥">illuminance rounding multiple</a>.</p>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="6.3" data-lt="Ambient light reading quantization algorithm" data-noexport id="ambient-light-reading-quantization-algorithm"><span class="secno">6.3. </span><span class="content">Ambient light reading quantization algorithm</span><a class="self-link" href="#ambient-light-reading-quantization-algorithm" id="ref-for-ambient-light-reading-quantization-algorithm④"></a></h3>
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor⑥">Ambient Light Sensor</a> <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type②">sensor type</a> defines the following <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reading-quantization-algorithm" id="ref-for-reading-quantization-algorithm①">reading
+quantization algorithm</a>:</p>
+   <div class="algorithm" data-algorithm="ambient light reading quantization">
+    <dl>
+     <dt data-md>input
+     <dd data-md>
+      <p><var>reading</var>, a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading⑥">sensor reading</a></p>
+     <dt data-md>output
+     <dd data-md>
+      <p>A <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading⑦">sensor reading</a></p>
+    </dl>
+    <ol>
+     <li data-md>
+      <p>Let <var>quantizedReading</var> be <var>reading</var>.</p>
+     <li data-md>
+      <p>Set <var>quantizedReading</var>["illuminance"] to the multiple of the <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple⑦">illuminance
+ rounding multiple</a> that <var>reading</var>["illuminance"] is closest to.</p>
+     <li data-md>
+      <p>Return <var>quantizedReading</var>.</p>
+    </ol>
+   </div>
    <h2 class="heading settled" data-level="7" id="automation"><span class="secno">7. </span><span class="content">Automation</span><a class="self-link" href="#automation"></a></h2>
     This section extends the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#automation" id="ref-for-automation">automation</a> section defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a> to provide mocking information about the ambient light levels for the purposes of testing a user agent’s
-implementation of <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor③">Ambient Light Sensor</a>. 
+implementation of <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor⑦">Ambient Light Sensor</a>. 
    <h3 class="heading settled" data-level="7.1" id="mock-ambient-light-sensor-type"><span class="secno">7.1. </span><span class="content">Mock Sensor Type</span><a class="self-link" href="#mock-ambient-light-sensor-type"></a></h3>
    <p>The <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑤">AmbientLightSensor</a></code> class has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light">"ambient-light"</a>, its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values">mock sensor reading values</a> dictionary is defined as follows:</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-ambientlightreadingvalues"><code><c- g>AmbientLightReadingValues</c-></code><a class="self-link" href="#dictdef-ambientlightreadingvalues"></a></dfn> {
@@ -961,11 +1068,13 @@ Marcos Caceres for the test suite.</p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
+   <li><a href="#ambient-light-reading-quantization-algorithm">Ambient light reading quantization algorithm</a><span>, in § 6.2</span>
    <li><a href="#dictdef-ambientlightreadingvalues">AmbientLightReadingValues</a><span>, in § 7.1</span>
    <li><a href="#ambient-light-sensor">Ambient Light Sensor</a><span>, in § 4</span>
    <li><a href="#ambientlightsensor">AmbientLightSensor</a><span>, in § 5.1</span>
    <li><a href="#dom-ambientlightsensor-ambientlightsensor">AmbientLightSensor()</a><span>, in § 5.1</span>
    <li><a href="#dom-ambientlightsensor-ambientlightsensor">AmbientLightSensor(sensorOptions)</a><span>, in § 5.1</span>
+   <li><a href="#ambient-light-threshold-check-algorithm">Ambient light threshold check algorithm</a><span>, in § 6.1</span>
    <li><a href="#construct-an-ambient-light-sensor-object">Construct an ambient light sensor object</a><span>, in § 6</span>
    <li><a href="#dom-ambientlightsensor-ambientlightsensor">constructor()</a><span>, in § 5.1</span>
    <li><a href="#dom-ambientlightsensor-ambientlightsensor">constructor(sensorOptions)</a><span>, in § 5.1</span>
@@ -977,7 +1086,15 @@ Marcos Caceres for the test suite.</p>
      <li><a href="#illuminance">definition of</a><span>, in § 4</span>
      <li><a href="#dom-ambientlightreadingvalues-illuminance">dict-member for AmbientLightReadingValues</a><span>, in § 7.1</span>
     </ul>
+   <li><a href="#illuminance-rounding-multiple">illuminance rounding multiple</a><span>, in § 4</span>
+   <li><a href="#illuminance-threshold-value">illuminance threshold value</a><span>, in § 4</span>
   </ul>
+  <aside class="dfn-panel" data-for="term-for-eqn-abs">
+   <a href="https://tc39.es/ecma262/#eqn-abs">https://tc39.es/ecma262/#eqn-abs</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-eqn-abs">6.2. Ambient light threshold check algorithm</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-dom-mocksensortype-ambient-light">
    <a href="https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light">https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light</a><b>Referenced in:</b>
    <ul>
@@ -1058,10 +1175,18 @@ Marcos Caceres for the test suite.</p>
     <li><a href="#ref-for-mock-sensor-type">7.1. Mock Sensor Type</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-reading-quantization-algorithm">
+   <a href="https://w3c.github.io/sensors/#reading-quantization-algorithm">https://w3c.github.io/sensors/#reading-quantization-algorithm</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-reading-quantization-algorithm">3.1. Reducing sensor readings accuracy</a>
+    <li><a href="#ref-for-reading-quantization-algorithm①">6.3. Ambient light reading quantization algorithm</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-reduce-accuracy">
    <a href="https://w3c.github.io/sensors/#reduce-accuracy">https://w3c.github.io/sensors/#reduce-accuracy</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-reduce-accuracy">3. Security and Privacy Considerations</a>
+    <li><a href="#ref-for-reduce-accuracy①">3.1. Reducing sensor readings accuracy</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-sampling-frequency">
@@ -1080,12 +1205,35 @@ Marcos Caceres for the test suite.</p>
    <a href="https://w3c.github.io/sensors/#sensor-reading">https://w3c.github.io/sensors/#sensor-reading</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-sensor-reading">2. Examples</a> <a href="#ref-for-sensor-reading①">(2)</a> <a href="#ref-for-sensor-reading②">(3)</a> <a href="#ref-for-sensor-reading③">(4)</a>
+    <li><a href="#ref-for-sensor-reading④">6.2. Ambient light threshold check algorithm</a> <a href="#ref-for-sensor-reading⑤">(2)</a>
+    <li><a href="#ref-for-sensor-reading⑥">6.3. Ambient light reading quantization algorithm</a> <a href="#ref-for-sensor-reading⑦">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-sensor-type">
    <a href="https://w3c.github.io/sensors/#sensor-type">https://w3c.github.io/sensors/#sensor-type</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-sensor-type">4. Model</a>
+    <li><a href="#ref-for-sensor-type①">6.2. Ambient light threshold check algorithm</a>
+    <li><a href="#ref-for-sensor-type②">6.3. Ambient light reading quantization algorithm</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-threshold-check-algorithm">
+   <a href="https://w3c.github.io/sensors/#threshold-check-algorithm">https://w3c.github.io/sensors/#threshold-check-algorithm</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-threshold-check-algorithm">3.1. Reducing sensor readings accuracy</a> <a href="#ref-for-threshold-check-algorithm①">(2)</a>
+    <li><a href="#ref-for-threshold-check-algorithm②">6.2. Ambient light threshold check algorithm</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-update-latest-reading">
+   <a href="https://w3c.github.io/sensors/#update-latest-reading">https://w3c.github.io/sensors/#update-latest-reading</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-update-latest-reading">6.2. Ambient light threshold check algorithm</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-boolean">
+   <a href="https://infra.spec.whatwg.org/#boolean">https://infra.spec.whatwg.org/#boolean</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-boolean">6.2. Ambient light threshold check algorithm</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-name">
@@ -1164,6 +1312,11 @@ Marcos Caceres for the test suite.</p>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
+    <a data-link-type="biblio">[ECMASCRIPT]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-eqn-abs">abs</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[GENERIC-SENSOR]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-dom-mocksensortype-ambient-light">"ambient-light"</span>
@@ -1179,11 +1332,19 @@ Marcos Caceres for the test suite.</p>
      <li><span class="dfn-paneled" id="term-for-mitigation-strategies">mitigation strategies</span>
      <li><span class="dfn-paneled" id="term-for-mock-sensor-reading-values">mock sensor reading values</span>
      <li><span class="dfn-paneled" id="term-for-mock-sensor-type">mock sensor type</span>
+     <li><span class="dfn-paneled" id="term-for-reading-quantization-algorithm">reading quantization algorithm</span>
      <li><span class="dfn-paneled" id="term-for-reduce-accuracy">reduce accuracy</span>
      <li><span class="dfn-paneled" id="term-for-sampling-frequency">sampling frequency</span>
      <li><span class="dfn-paneled" id="term-for-sensor-permission-names">sensor permission names</span>
      <li><span class="dfn-paneled" id="term-for-sensor-reading">sensor reading</span>
      <li><span class="dfn-paneled" id="term-for-sensor-type">sensor type</span>
+     <li><span class="dfn-paneled" id="term-for-threshold-check-algorithm">threshold check algorithm</span>
+     <li><span class="dfn-paneled" id="term-for-update-latest-reading">update latest reading</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[INFRA]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-boolean">boolean</span>
     </ul>
    <li>
     <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
@@ -1213,8 +1374,12 @@ Marcos Caceres for the test suite.</p>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
+   <dt id="biblio-ecmascript">[ECMASCRIPT]
+   <dd><a href="https://tc39.es/ecma262/multipage/"><cite>ECMAScript Language Specification</cite></a>. URL: <a href="https://tc39.es/ecma262/multipage/">https://tc39.es/ecma262/multipage/</a>
    <dt id="biblio-generic-sensor">[GENERIC-SENSOR]
    <dd>Rick Waldron. <a href="https://w3c.github.io/sensors/"><cite>Generic Sensor API</cite></a>. URL: <a href="https://w3c.github.io/sensors/">https://w3c.github.io/sensors/</a>
+   <dt id="biblio-infra">[INFRA]
+   <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
    <dd>Marcos Caceres; Mike Taylor. <a href="https://w3c.github.io/permissions/"><cite>Permissions</cite></a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
    <dt id="biblio-permissions-policy-1">[PERMISSIONS-POLICY-1]
@@ -1226,12 +1391,20 @@ Marcos Caceres for the test suite.</p>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
+   <dt id="biblio-alsprivacyanalysis">[ALSPRIVACYANALYSIS]
+   <dd>Lukasz Olejnik. <a href="https://blog.lukaszolejnik.com/privacy-of-ambient-light-sensors/"><cite>Privacy analysis of Ambient Light Sensors</cite></a>. 31 August 2016. URL: <a href="https://blog.lukaszolejnik.com/privacy-of-ambient-light-sensors/">https://blog.lukaszolejnik.com/privacy-of-ambient-light-sensors/</a>
    <dt id="biblio-cssom-view-1">[CSSOM-VIEW-1]
    <dd>Simon Pieters. <a href="https://drafts.csswg.org/cssom-view/"><cite>CSSOM View Module</cite></a>. URL: <a href="https://drafts.csswg.org/cssom-view/">https://drafts.csswg.org/cssom-view/</a>
    <dt id="biblio-mediaqueries-5">[MEDIAQUERIES-5]
    <dd>Dean Jackson; et al. <a href="https://drafts.csswg.org/mediaqueries-5/"><cite>Media Queries Level 5</cite></a>. URL: <a href="https://drafts.csswg.org/mediaqueries-5/">https://drafts.csswg.org/mediaqueries-5/</a>
+   <dt id="biblio-pinskimmingviasensor">[PINSKIMMINGVIASENSOR]
+   <dd>Raphael Spreitzer. <a href="https://arxiv.org/abs/1405.3760"><cite>PIN Skimming: Exploiting the Ambient-Light Sensor in Mobile Devices</cite></a>. 15 May 2014. URL: <a href="https://arxiv.org/abs/1405.3760">https://arxiv.org/abs/1405.3760</a>
    <dt id="biblio-si">[SI]
    <dd><a href="http://www.bipm.org/en/publications/si-brochure/"><cite>SI Brochure: The International System of Units (SI), 8th edition</cite></a>. 2014. URL: <a href="http://www.bipm.org/en/publications/si-brochure/">http://www.bipm.org/en/publications/si-brochure/</a>
+   <dt id="biblio-stealingsensitivedata">[STEALINGSENSITIVEDATA]
+   <dd>Lukasz Olejnik. <a href="https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/"><cite>Stealing sensitive browser data with the W3C Ambient Light Sensor API</cite></a>. 19 April 2017. URL: <a href="https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/">https://blog.lukaszolejnik.com/stealing-sensitive-browser-data-with-the-w3c-ambient-light-sensor-api/</a>
+   <dt id="biblio-videorecognitionambientlight">[VIDEORECOGNITIONAMBIENTLIGHT]
+   <dd>Raphael Spreitzer. <a href="https://doi.org/10.1109/PERCOM.2016.7456511"><cite>Video recognition using ambient light sensors</cite></a>. 21 April 2016. URL: <a href="https://doi.org/10.1109/PERCOM.2016.7456511">https://doi.org/10.1109/PERCOM.2016.7456511</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -1248,8 +1421,25 @@ Marcos Caceres for the test suite.</p>
   <aside class="dfn-panel" data-for="ambient-light-sensor">
    <b><a href="#ambient-light-sensor">#ambient-light-sensor</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-ambient-light-sensor">4. Model</a> <a href="#ref-for-ambient-light-sensor①">(2)</a> <a href="#ref-for-ambient-light-sensor②">(3)</a>
-    <li><a href="#ref-for-ambient-light-sensor③">7. Automation</a>
+    <li><a href="#ref-for-ambient-light-sensor">4. Model</a> <a href="#ref-for-ambient-light-sensor①">(2)</a> <a href="#ref-for-ambient-light-sensor②">(3)</a> <a href="#ref-for-ambient-light-sensor③">(4)</a> <a href="#ref-for-ambient-light-sensor④">(5)</a>
+    <li><a href="#ref-for-ambient-light-sensor⑤">6.2. Ambient light threshold check algorithm</a>
+    <li><a href="#ref-for-ambient-light-sensor⑥">6.3. Ambient light reading quantization algorithm</a>
+    <li><a href="#ref-for-ambient-light-sensor⑦">7. Automation</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="illuminance-rounding-multiple">
+   <b><a href="#illuminance-rounding-multiple">#illuminance-rounding-multiple</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-illuminance-rounding-multiple">3.1. Reducing sensor readings accuracy</a> <a href="#ref-for-illuminance-rounding-multiple①">(2)</a> <a href="#ref-for-illuminance-rounding-multiple②">(3)</a> <a href="#ref-for-illuminance-rounding-multiple③">(4)</a> <a href="#ref-for-illuminance-rounding-multiple④">(5)</a> <a href="#ref-for-illuminance-rounding-multiple⑤">(6)</a>
+    <li><a href="#ref-for-illuminance-rounding-multiple⑥">6.2. Ambient light threshold check algorithm</a>
+    <li><a href="#ref-for-illuminance-rounding-multiple⑦">6.3. Ambient light reading quantization algorithm</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="illuminance-threshold-value">
+   <b><a href="#illuminance-threshold-value">#illuminance-threshold-value</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-illuminance-threshold-value">3.1. Reducing sensor readings accuracy</a> <a href="#ref-for-illuminance-threshold-value①">(2)</a> <a href="#ref-for-illuminance-threshold-value②">(3)</a>
+    <li><a href="#ref-for-illuminance-threshold-value③">6.2. Ambient light threshold check algorithm</a> <a href="#ref-for-illuminance-threshold-value④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="ambientlightsensor">
@@ -1273,6 +1463,22 @@ Marcos Caceres for the test suite.</p>
    <ul>
     <li><a href="#ref-for-construct-an-ambient-light-sensor-object">5.1. The AmbientLightSensor Interface</a>
     <li><a href="#ref-for-construct-an-ambient-light-sensor-object">6.1. Construct an ambient light sensor object</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="ambient-light-threshold-check-algorithm">
+   <b><a href="#ambient-light-threshold-check-algorithm">#ambient-light-threshold-check-algorithm</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-ambient-light-threshold-check-algorithm">3.1. Reducing sensor readings accuracy</a>
+    <li><a href="#ref-for-ambient-light-threshold-check-algorithm①">4. Model</a>
+    <li><a href="#ref-for-ambient-light-threshold-check-algorithm">6.2. Ambient light threshold check algorithm</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="ambient-light-reading-quantization-algorithm">
+   <b><a href="#ambient-light-reading-quantization-algorithm">#ambient-light-reading-quantization-algorithm</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-ambient-light-reading-quantization-algorithm">3.1. Reducing sensor readings accuracy</a>
+    <li><a href="#ref-for-ambient-light-reading-quantization-algorithm①">6.2. Ambient light threshold check algorithm</a> <a href="#ref-for-ambient-light-reading-quantization-algorithm②">(2)</a> <a href="#ref-for-ambient-light-reading-quantization-algorithm③">(3)</a>
+    <li><a href="#ref-for-ambient-light-reading-quantization-algorithm">6.3. Ambient light reading quantization algorithm</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
@@ -1415,3 +1621,8 @@ document.body.addEventListener("click", function(e) {
         }
     }
     </script>
+  <svg style="display:none" viewBox="0 0 46 64">
+   <defs>
+    <path d="M2 23Q17 -16 40 12M1 35Q17 -20 43 20M2 40Q18 -19 44 25M3 43Q19 -16 45 29M5 46Q20 -12 45 32M5 49Q11 40 15 27T27 16T45 37M5 49Q15 38 19 25T34 27T44 41M6 52Q17 40 21 28T32 29T43 44M6 52Q21 42 23 31T30 32T42 47M7 54Q23 47 24 36T28 34T41 50M8 56Q26 50 26 35Q28 48 40 53M10 58Q24 54 27 45Q30 52 38 55M27 50Q28 53 36 57M25 52Q28 56 31 57M22 55L26 57M10 58L37 57M13 60L32 60M16 62L28 63" fill="none" id="b732b3fe" stroke="black" stroke-dasharray="3,2,35,2,20,2" stroke-linecap="round" stroke-linejoin="round"></path>
+   </defs>
+  </svg>
