@@ -440,7 +440,7 @@ Use Cases and Requirements {#usecases-requirements}
 =========
 
 - A Web application provides input for a smart home system to control lighting.
-- A Web aplication checks whether light level at work space is sufficient.
+- A Web application checks whether light level at work space is sufficient.
 - A Web application calculates settings for a camera with manual controls (aperture, shutter speed, ISO).
 - A Web application checks the current light level to determine whether a
   camera stream will contain data that is accurate enough for its purposes
