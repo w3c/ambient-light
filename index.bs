@@ -292,10 +292,11 @@ subclass is the {{AmbientLightSensor}} class.
 The <a>Ambient Light Sensor</a> has a <a>default sensor</a>,
 which is the device's main light detector.
 
-The <a>Ambient Light Sensor</a> is a [=powerful feature=] that is identified by the
-[=powerful feature/name=] "ambient-light-sensor", which is also its associated
-[=sensor permission name=]. Its [=powerful feature/permission revocation algorithm=] is the
-result of calling the [=generic sensor permission revocation algorithm=] with
+The <a>Ambient Light Sensor</a> is a [=powerful feature=] that is identified by
+the [=powerful feature/name=] "<dfn permission export>ambient-light-sensor</dfn>",
+which is also its associated [=sensor permission name=]. Its
+[=powerful feature/permission revocation algorithm=] is the result of calling
+the [=generic sensor permission revocation algorithm=] with
 "ambient-light-sensor".
 
 The <a>Ambient Light Sensor</a> is a [=policy-controlled feature=] identified by the string "ambient-light-sensor". Its [=default allowlist=] is `'self'`.
