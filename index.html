@@ -5,9 +5,9 @@
   <title>Ambient Light Sensor</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
+  <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="8983c22b028d2225bc260092ccd18daf0702712a" name="document-revision">
+  <meta content="2f4a4e2b180bfff8befc56af88d119461463d991" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -589,7 +589,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-08-31">31 August 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-10-18">18 October 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -860,8 +860,10 @@ information about this.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ambient-light-sensor">Ambient Light Sensor</dfn> <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-type" id="ref-for-sensor-type">sensor type</a>’s associated <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/sensors/#sensor" id="ref-for-sensor">Sensor</a></code> subclass is the <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor">AmbientLightSensor</a></code> class.</p>
    <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor">Ambient Light Sensor</a> has a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#default-sensor" id="ref-for-default-sensor">default sensor</a>,
 which is the device’s main light detector.</p>
-   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor①">Ambient Light Sensor</a> is a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-powerful-feature" id="ref-for-dfn-powerful-feature">powerful feature</a> that is identified by the <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-name" id="ref-for-dfn-name">name</a> "ambient-light-sensor", which is also its associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-permission-names" id="ref-for-sensor-permission-names">sensor permission name</a>. Its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission-revocation-algorithm" id="ref-for-dfn-permission-revocation-algorithm">permission revocation algorithm</a> is the
-result of calling the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#generic-sensor-permission-revocation-algorithm" id="ref-for-generic-sensor-permission-revocation-algorithm">generic sensor permission revocation algorithm</a> with
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor①">Ambient Light Sensor</a> is a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-powerful-feature" id="ref-for-dfn-powerful-feature">powerful feature</a> that is identified by
+the <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-name" id="ref-for-dfn-name">name</a> "<dfn class="idl-code" data-dfn-type="permission" data-export id="permissiondef-ambient-light-sensor"><code>ambient-light-sensor</code><a class="self-link" href="#permissiondef-ambient-light-sensor"></a></dfn>",
+which is also its associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-permission-names" id="ref-for-sensor-permission-names">sensor permission name</a>. Its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission-revocation-algorithm" id="ref-for-dfn-permission-revocation-algorithm">permission revocation algorithm</a> is the result of calling
+the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#generic-sensor-permission-revocation-algorithm" id="ref-for-generic-sensor-permission-revocation-algorithm">generic sensor permission revocation algorithm</a> with
 "ambient-light-sensor".</p>
    <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor②">Ambient Light Sensor</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> identified by the string "ambient-light-sensor". Its <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> is <code>'self'</code>.</p>
    <p>The <dfn data-dfn-type="dfn" data-noexport id="current-light-level">current light level<a class="self-link" href="#current-light-level"></a></dfn> or <dfn data-dfn-type="dfn" data-noexport id="illuminance">illuminance<a class="self-link" href="#illuminance"></a></dfn> is a value that represents the ambient light level
@@ -1071,6 +1073,7 @@ Marcos Caceres for the test suite.</p>
    <li><a href="#ambient-light-reading-quantization-algorithm">Ambient light reading quantization algorithm</a><span>, in § 6.2</span>
    <li><a href="#dictdef-ambientlightreadingvalues">AmbientLightReadingValues</a><span>, in § 7.1</span>
    <li><a href="#ambient-light-sensor">Ambient Light Sensor</a><span>, in § 4</span>
+   <li><a href="#permissiondef-ambient-light-sensor">ambient-light-sensor</a><span>, in § 4</span>
    <li><a href="#ambientlightsensor">AmbientLightSensor</a><span>, in § 5.1</span>
    <li><a href="#dom-ambientlightsensor-ambientlightsensor">AmbientLightSensor()</a><span>, in § 5.1</span>
    <li><a href="#dom-ambientlightsensor-ambientlightsensor">AmbientLightSensor(sensorOptions)</a><span>, in § 5.1</span>
