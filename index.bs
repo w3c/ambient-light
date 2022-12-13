@@ -55,6 +55,13 @@ urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
 urlPrefix: https://tc39.es/ecma262/; spec: ECMA-262
   type: abstract-op
     text: abs; url: eqn-abs
+urlPrefix: https://w3c.github.io/mediacapture-main/; spec: MEDIACAPTURE-STREAMS
+  type: dfn
+    text: stopped; url: source-stopped
+</pre>
+<pre class=link-defaults>
+spec:generic-sensor; type:attribute; text:[[state]]
+spec:mediacapture-streams; type:dfn; text:source
 </pre>
 
 <pre class=biblio>
@@ -237,9 +244,13 @@ Works such as [[ALSPRIVACYANALYSIS]], [[PINSKIMMINGVIASENSOR]],
 [[STEALINGSENSITIVEDATA]], and [[VIDEORECOGNITIONAMBIENTLIGHT]] delve further
 into these issues.
 
-To mitigate these threats specific to Ambient Light Sensor, user agents must
-<a>reduce accuracy</a> of sensor readings. User agents may also <a>limit
-maximum sampling frequency</a>.
+To mitigate these threats specific to Ambient Light Sensor, user agents must:
+- [=Reduce accuracy=] of sensor readings. See [[#reduce-sensor-accuracy]].
+- Obtain user consent before providing sensor readings. This is done by
+  integrating with the [[MEDIACAPTURE-STREAMS]] specification. See
+  [[#local-video-source-requirement]].
+
+User agents may also <a>limit maximum sampling frequency</a>.
 
 These mitigation strategies complement the [=mitigation strategies|generic mitigations=]
 defined in the Generic Sensor API [[!GENERIC-SENSOR]].
@@ -283,6 +294,39 @@ experience. <a href="https://crbug.com/1332536">Chromium bug 1332536</a> and <a
 href="https://crrev.com/c/3666917">Chromium review 3666917</a> contain more
 information about this.
 
+Active local video source requirement {#local-video-source-requirement}
+-----
+
+Many of the attacks on Ambient Light sensors referenced above rely on being
+able to access illuminance readouts for a certain amount of time without a user
+being aware that the data is being read.
+
+[[STEALINGSENSITIVEDATA]] and [[ALSPRIVACYANALYSIS]] specifically recommend
+requesting user permission before allowing access to illuminance readouts as a
+privacy measure. On the other hand, it can be argued that conveying to users
+what an Ambient Light Sensor is so that they can make an informed choice to
+grant or deny access to it can be difficult.
+
+What this specification does instead is consider an Ambient Light Sensor to be
+a 1x1 grayscale camera, integrate with the [[MEDIACAPTURE-STREAMS]]
+specification and require there to be at least one local video [=source=] that
+is not [=muted=] or [=stopped=] in order for illuminance readouts to be
+provided. In other words, an Ambient Light Sensor only provides readings if a
+local video source (such as a camera) is currently active and being used in the
+same window as the {{AmbientLightSensor}} instance.
+
+Per the [[MEDIACAPTURE-STREAMS]] specification, this is only possible if script
+has called {{MediaDevices/getUserMedia()}} and granted the <a
+permission>"camera"</a> permission. This also means the User Agent has at least
+indicated to the user that a local video source has started being used as per
+[[MEDIACAPTURE-STREAMS#privacy-indicator-requirements]].
+
+The goal of this model is to treat an Ambient Light Sensor as potentially as
+invasive as an actual camera device and subject it to the same strict privacy
+requirements together with the Generic Sensor mitigations described in
+[[GENERIC-SENSOR#security-and-privacy]] and the other Ambient Light
+Sensor-specific measures described in this section.
+
 Model {#model}
 =====
 
@@ -292,12 +336,12 @@ subclass is the {{AmbientLightSensor}} class.
 The <a>Ambient Light Sensor</a> has a <a>default sensor</a>,
 which is the device's main light detector.
 
-The <a>Ambient Light Sensor</a> is a [=powerful feature=] that is identified by
-the [=powerful feature/name=] "<dfn permission export>ambient-light-sensor</dfn>",
-which is also its associated [=sensor permission name=]. Its
-[=powerful feature/permission revocation algorithm=] is the result of calling
-the [=generic sensor permission revocation algorithm=] with
-"ambient-light-sensor".
+The <a>Ambient Light Sensor</a>'s [=sensor permission names=] is an
+[=set/empty=] [=ordered set|set=].
+
+Note: See [[#local-video-source-requirement]]. This specification relies on the
+permission model specified in the [[MEDIACAPTURE-STREAMS]] specification
+instead.
 
 The <a>Ambient Light Sensor</a> is a [=policy-controlled feature=] identified by the string "ambient-light-sensor". Its [=default allowlist=] is `'self'`.
 
@@ -344,6 +388,35 @@ The {{AmbientLightSensor/illuminance}} getter steps are:
 1. Let |illuminance| be the result of invoking [=get value from latest
    reading=] with [=this=] and "illuminance" as arguments.
 1. Return |illuminance|.
+
+### Media Capture and Streams integration ### {#media-capture-and-streams-integration}
+
+As discussed in [[#local-video-source-requirement]], illuminance readouts are
+provided only if the same {{Window}} with an {{AmbientLightSensor}} object has
+at least one local video [=source=] that is not [=muted=] or [=stopped=].
+
+The [=ambient light pre-activation checks algorithm=] is invoked by
+{{Sensor/start()}} as specified in [[GENERIC-SENSOR]].
+
+Furthermore, whenever an item is added to the {{Window}}.\[[devicesLiveMap]]
+internal slot, or one of its items has its value changed, implementations MUST
+run the following steps:
+
+<div algorithm="deactivate sensors if necessary">
+  1. Let |global| be the {{Window}} object of the affected \[[devicesLiveMap]]
+     internal slot.
+  1. Let |result| be the result of invoking [=check for active local video sources=] with |global|.
+  1. If |result| is true, return.
+  1. For each {{AmbientLightSensor}} object |sensor| whose [=relevant global
+     object=] is |global|:
+      1. If |sensor|.{{[[state]]}} is "idle", then [=continue=].
+      1. Invoke [=deactivate a sensor object=] with |sensor|.
+      1.  Let |e| be the result of [=created|creating=]
+          a "{{NotReadableError}}" {{DOMException}}.
+      1.  [=Queue a global task=] on the [=sensor task source=] with |global| to
+          run [=notify error=] with |sensor| and |e| as
+          arguments.
+</div>
 
 Abstract Operations {#abstract-operations}
 ===================
@@ -418,12 +491,41 @@ quantization algorithm=]:
   1. Return |quantizedReading|.
 </div>
 
+<h3 dfn>Ambient light pre-activation checks algorithm</h3>
+
+The [=Ambient Light Sensor=] [=sensor type=] defines the following
+[=pre-activation checks algorithm=]:
+
+<div algorithm="check active local video source">
+  : input
+  :: |sensor|, an {{AmbientLightSensor}} object
+  : output
+  :: A [=boolean=] indicating whether the checks have passed and sensor activation may proceed.
+
+  1. Let |global| be |sensor|'s [=relevant global object=].
+  1. Return the result of invoking [=check for active local video sources=] with |global|.
+</div>
+
+<h3 dfn>Check for active local video source</h3>
+
+<div algorithm="check for active local video sources">
+  : input
+  :: |global|, an {{Window}} object
+  : output
+  :: A [=boolean=] indicating whether there are active local video sources.
+
+  1. If |global| does not have a \[[mediaStreamTrackSources]] internal slot, return false.
+  1. For each |source| in |global|'s \[[mediaStreamTrackSources]] internal slot:
+    1. If |source| is not a video input device, then [=continue=].
+    1. If |source| is not [=stopped=] or [=muted=], then return true.
+  1. Return false.
+</div>
+
 Automation {#automation}
 ==========
 This section extends the [=automation=] section defined in the Generic Sensor API [[GENERIC-SENSOR]]
 to provide mocking information about the ambient light levels for the purposes of testing a user agent's
 implementation of [=Ambient Light Sensor=].
-
 
 <h3 id="mock-ambient-light-sensor-type">Mock Sensor Type</h3>
 
@@ -440,8 +542,6 @@ dictionary is defined as follows:
 Use Cases and Requirements {#usecases-requirements}
 =========
 
-- A Web application provides input for a smart home system to control lighting.
-- A Web application checks whether light level at work space is sufficient.
 - A Web application calculates settings for a camera with manual controls (aperture, shutter speed, ISO).
 - A Web application checks the current light level to determine whether a
   camera stream will contain data that is accurate enough for its purposes
@@ -450,6 +550,11 @@ Use Cases and Requirements {#usecases-requirements}
 While some of the use cases may benefit from obtaining precise ambient light measurements, the use
 cases that convert ambient light level fluctuations to user input events would benefit from
 higher [=sampling frequency|sampling frequencies=].
+
+Note: A previous version of this specification did not require an active camera and did
+not integrate with the [[MEDIACAPTURE-STREAMS]] specification. It allowed for a wider
+range of use cases, such as providing input smart home systems to control lighting or
+checking whether the light level at a work space is sufficient.
 
 Acknowledgements {#acknowledgements}
 ================
