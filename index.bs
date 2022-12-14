@@ -138,32 +138,27 @@ Examples {#examples}
 ========
 
 <div class="example">
-    In this simple example, ambient light sensor is created with
+    In this simple example, an {{AmbientLightSensor}} instance is created with
     default configuration. Whenever a new [=sensor readings|reading=] is available,
     it is printed to the console.
 
     <pre highlight="js">
-    const sensor = new AmbientLightSensor();
-    sensor.onreading = () => console.log(sensor.illuminance);
-    sensor.onerror = event => console.log(event.error.name, event.error.message);
-    sensor.start();
+    navigator.mediaDevices.getUserMedia({video: true}).then(() => {
+      const sensor = new AmbientLightSensor();
+      sensor.onreading = () => console.log(sensor.illuminance);
+      sensor.onerror = event => console.log(event.error.name, event.error.message);
+      sensor.start();
+    });
     </pre>
 </div>
 
 <div class="example">
     In this example, the exposure value (EV) at ISO 100 is calculated from
-    the ambient light [=sensor readings=]. Initially, we check that the user
-    agent has permissions to access ambient light [=sensor readings=]. Then,
-    the {{AmbientLightSensor/illuminance!!attribute}} value is converted to the
-    closest exposure value.
+    the ambient light [=sensor readings=]. The {{AmbientLightSensor/illuminance}}
+    value is converted to the closest exposure value.
 
     <pre highlight="js">
-    navigator.permissions.query({ name: 'ambient-light-sensor' }).then(result => {
-        if (result.state === 'denied') {
-            console.log('Permission to use ambient light sensor is denied.');
-            return;
-        }
-
+    navigator.mediaDevices.getUserMedia({ video: true }).then(() => {
         const als = new AmbientLightSensor({frequency: 20});
         als.addEventListener('activate', () => console.log('Ready to measure EV.'));
         als.addEventListener('error', event => console.log(\`Error: ${event.error.name}\`));
@@ -179,42 +174,6 @@ Examples {#examples}
 
         als.start();
     });
-    </pre>
-</div>
-
-<div class="example">
-    This example demonstrates how ambient light [=sensor readings=] can be mapped
-    to recommended workplace light levels.
-
-    <pre highlight="js">
-    const als = new AmbientLightSensor();
-
-    als.onreading = () => {
-        let str = luxToWorkplaceLevel(als.illuminance);
-        if (str) {
-            console.log(\`Light level is suitable for: ${str}.\`);
-        }
-    };
-
-    als.start();
-
-    function luxToWorkplaceLevel(lux) {
-        if (lux > 20 && lux < 100) {
-            return 'public areas, short visits';
-        } else if (lux > 100 && lux < 150) {
-            return 'occasionally performed visual tasks';
-        } else if (lux > 150 && lux < 250) {
-            return 'easy office work, classes, homes, theaters';
-        } else if (lux > 250 && lux < 500) {
-            return 'normal office work, groceries, laboratories';
-        } else if (lux > 500 && lux < 1000) {
-            return 'mechanical workshops, drawing, supermarkets';
-        } else if (lux > 1000 && lux < 5000) {
-            return 'detailed drawing work, visual tasks of low contrast';
-        }
-
-        return;
-    }
     </pre>
 </div>
 
