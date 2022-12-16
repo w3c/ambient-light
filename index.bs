@@ -262,9 +262,9 @@ being aware that the data is being read.
 
 [[STEALINGSENSITIVEDATA]] and [[ALSPRIVACYANALYSIS]] specifically recommend
 requesting user permission before allowing access to illuminance readouts as a
-privacy measure. On the other hand, it can be argued that conveying to users
+privacy measure. On the other hand, it can be difficult to convey to users
 what an Ambient Light Sensor is so that they can make an informed choice to
-grant or deny access to it can be difficult.
+grant or deny access to it.
 
 What this specification does instead is consider an Ambient Light Sensor to be
 a 1x1 grayscale camera, integrate with the [[MEDIACAPTURE-STREAMS]]
