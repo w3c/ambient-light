@@ -207,7 +207,7 @@ To mitigate these threats specific to Ambient Light Sensor, user agents must:
 - [=Reduce accuracy=] of sensor readings. See [[#reduce-sensor-accuracy]].
 - Obtain user consent before providing sensor readings. This is done by
   integrating with the [[MEDIACAPTURE-STREAMS]] specification. See
-  [[#local-video-source-requirement]].
+  [[#local-camera-source-requirement]].
 
 User agents may also <a>limit maximum sampling frequency</a>.
 
@@ -253,7 +253,7 @@ experience. <a href="https://crbug.com/1332536">Chromium bug 1332536</a> and <a
 href="https://crrev.com/c/3666917">Chromium review 3666917</a> contain more
 information about this.
 
-Active local video source requirement {#local-video-source-requirement}
+Active local camera source requirement {#local-camera-source-requirement}
 -----
 
 Many of the attacks on Ambient Light sensors referenced above rely on being
@@ -268,16 +268,16 @@ grant or deny access to it.
 
 What this specification does instead is consider an Ambient Light Sensor to be
 a 1x1 grayscale camera, integrate with the [[MEDIACAPTURE-STREAMS]]
-specification and require there to be at least one local video [=source=] that
+specification and require there to be at least one local camera [=source=] that
 is not [=muted=] or [=stopped=] in order for illuminance readouts to be
 provided. In other words, an Ambient Light Sensor only provides readings if a
-local video source (such as a camera) is currently active and being used in the
-same window as the {{AmbientLightSensor}} instance.
+local video camera is currently active and being used in the same window as the
+{{AmbientLightSensor}} instance.
 
 Per the [[MEDIACAPTURE-STREAMS]] specification, this is only possible if script
 has called {{MediaDevices/getUserMedia()}} and granted the <a
 permission>"camera"</a> permission. This also means the User Agent has at least
-indicated to the user that a local video source has started being used as per
+indicated to the user that a local camera source has started being used as per
 [[MEDIACAPTURE-STREAMS#privacy-indicator-requirements]].
 
 The goal of this model is to treat an Ambient Light Sensor as potentially as
@@ -298,7 +298,7 @@ which is the device's main light detector.
 The <a>Ambient Light Sensor</a>'s [=sensor permission names=] is an
 [=set/empty=] [=ordered set|set=].
 
-Note: See [[#local-video-source-requirement]]. This specification relies on the
+Note: See [[#local-camera-source-requirement]]. This specification relies on the
 permission model specified in the [[MEDIACAPTURE-STREAMS]] specification
 instead.
 
@@ -350,9 +350,9 @@ The {{AmbientLightSensor/illuminance}} getter steps are:
 
 ### Media Capture and Streams integration ### {#media-capture-and-streams-integration}
 
-As discussed in [[#local-video-source-requirement]], illuminance readouts are
+As discussed in [[#local-camera-source-requirement]], illuminance readouts are
 provided only if the same {{Window}} with an {{AmbientLightSensor}} object has
-at least one local video [=source=] that is not [=muted=] or [=stopped=].
+at least one local camera [=source=] that is not [=muted=] or [=stopped=].
 
 The [=ambient light pre-activation checks algorithm=] is invoked by
 {{Sensor/start()}} as specified in [[GENERIC-SENSOR]].
@@ -364,7 +364,7 @@ run the following steps:
 <div algorithm="deactivate sensors if necessary">
   1. Let |global| be the {{Window}} object of the affected \[[devicesLiveMap]]
      internal slot.
-  1. Let |result| be the result of invoking [=check for active local video sources=] with |global|.
+  1. Let |result| be the result of invoking [=check for active local camera sources=] with |global|.
   1. If |result| is true, return.
   1. For each {{AmbientLightSensor}} object |sensor| whose [=relevant global
      object=] is |global|:
@@ -455,23 +455,23 @@ quantization algorithm=]:
 The [=Ambient Light Sensor=] [=sensor type=] defines the following
 [=pre-activation checks algorithm=]:
 
-<div algorithm="check active local video source">
+<div algorithm="check active local camera source">
   : input
   :: |sensor|, an {{AmbientLightSensor}} object
   : output
   :: A [=boolean=] indicating whether the checks have passed and sensor activation may proceed.
 
   1. Let |global| be |sensor|'s [=relevant global object=].
-  1. Return the result of invoking [=check for active local video sources=] with |global|.
+  1. Return the result of invoking [=check for active local camera sources=] with |global|.
 </div>
 
-<h3 dfn>Check for active local video source</h3>
+<h3 dfn>Check for active local camera source</h3>
 
-<div algorithm="check for active local video sources">
+<div algorithm="check for active local camera sources">
   : input
   :: |global|, an {{Window}} object
   : output
-  :: A [=boolean=] indicating whether there are active local video sources.
+  :: A [=boolean=] indicating whether there are active local camera sources.
 
   1. If |global| does not have a \[[mediaStreamTrackSources]] internal slot, return false.
   1. For each |source| in |global|'s \[[mediaStreamTrackSources]] internal slot:
