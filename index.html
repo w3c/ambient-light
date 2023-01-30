@@ -5,9 +5,10 @@
   <title>Ambient Light Sensor</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
+  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
+  <meta content="Bikeshed version 859efb4bd, updated Fri Jan 27 16:04:01 2023 -0800" name="generator">
   <link href="https://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="2f4a4e2b180bfff8befc56af88d119461463d991" name="document-revision">
+  <meta content="5e43a98428bc2df2f962ded6732e5f12bf1220a9" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -295,6 +296,14 @@ a.self-link:hover {
 }
 .heading > a.self-link {
     font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
 }
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
@@ -589,32 +598,35 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-10-18">18 October 2022</time></p>
-   <div data-fill-with="spec-metadata">
-    <dl>
-     <dt>This version:
-     <dd><a class="u-url" href="https://w3c.github.io/ambient-light/">https://w3c.github.io/ambient-light/</a>
-     <dt>Latest published version:
-     <dd><a href="https://www.w3.org/TR/ambient-light/">https://www.w3.org/TR/ambient-light/</a>
-     <dt>Version History:
-     <dd><a href="https://github.com/w3c/ambient-light/commits/main/index.bs">https://github.com/w3c/ambient-light/commits/main/index.bs</a>
-     <dt>Feedback:
-     <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bambient-light%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[ambient-light] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
-     <dd><a href="https://github.com/w3c/ambient-light/issues/">GitHub</a>
-     <dt>Test Suite:
-     <dd><a href="https://github.com/web-platform-tests/wpt/tree/master/ambient-light">https://github.com/web-platform-tests/wpt/tree/master/ambient-light</a>
-     <dt class="editor">Editors:
-     <dd class="editor p-author h-card vcard" data-editor-id="41974"><a class="p-name fn u-url url" href="https://intel.com/">Anssi Kostiainen</a> (<span class="p-org org">Intel Corporation</span>)
-     <dd class="editor p-author h-card vcard" data-editor-id="80407"><a class="p-name fn u-url url" href="https://intel.com/">Rijubrata Bhaumik</a> (<span class="p-org org">Intel Corporation</span>)
-     <dt class="editor">Former Editors:
-     <dd class="editor p-author h-card vcard" data-editor-id="60809"><a class="p-name fn u-url url" href="https://tobie.me">Tobie Langel</a> (<span class="p-org org">Codespeaks, formerly on behalf of Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@codespeaks.com">tobie@codespeaks.com</a>
-     <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://mozilla.com/">Doug Turner</a> (<span class="p-org org">Mozilla Corporation</span>)
-     <dt>Issue Tracking:
-     <dd><a href="https://github.com/w3c/ambient-light/milestones/Level%202">Level 2 Issues</a>
-    </dl>
-   </div>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-30">30 January 2023</time></p>
+   <details open>
+    <summary>More details about this document</summary>
+    <div data-fill-with="spec-metadata">
+     <dl>
+      <dt>This version:
+      <dd><a class="u-url" href="https://w3c.github.io/ambient-light/">https://w3c.github.io/ambient-light/</a>
+      <dt>Latest published version:
+      <dd><a href="https://www.w3.org/TR/ambient-light/">https://www.w3.org/TR/ambient-light/</a>
+      <dt>Version History:
+      <dd><a href="https://github.com/w3c/ambient-light/commits/main/index.bs">https://github.com/w3c/ambient-light/commits/main/index.bs</a>
+      <dt>Feedback:
+      <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bambient-light%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[ambient-light] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
+      <dd><a href="https://github.com/w3c/ambient-light/issues/">GitHub</a>
+      <dt>Test Suite:
+      <dd><a href="https://github.com/web-platform-tests/wpt/tree/master/ambient-light">https://github.com/web-platform-tests/wpt/tree/master/ambient-light</a>
+      <dt class="editor">Editors:
+      <dd class="editor p-author h-card vcard" data-editor-id="41974"><a class="p-name fn u-url url" href="https://intel.com/">Anssi Kostiainen</a> (<span class="p-org org">Intel Corporation</span>)
+      <dd class="editor p-author h-card vcard" data-editor-id="80407"><a class="p-name fn u-url url" href="https://intel.com/">Rijubrata Bhaumik</a> (<span class="p-org org">Intel Corporation</span>)
+      <dt class="editor">Former Editors:
+      <dd class="editor p-author h-card vcard" data-editor-id="60809"><a class="p-name fn u-url url" href="https://tobie.me">Tobie Langel</a> (<span class="p-org org">Codespeaks, formerly on behalf of Intel Corporation</span>) <a class="u-email email" href="mailto:tobie@codespeaks.com">tobie@codespeaks.com</a>
+      <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://mozilla.com/">Doug Turner</a> (<span class="p-org org">Mozilla Corporation</span>)
+      <dt>Issue Tracking:
+      <dd><a href="https://github.com/w3c/ambient-light/milestones/Level%202">Level 2 Issues</a>
+     </dl>
+    </div>
+   </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -637,7 +649,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 	All comments are welcome. </p>
    <p> This document was produced by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a>. </p>
    <p> This document was produced by a group operating under
-	the <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/">W3C Patent Policy</a>.
+	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
@@ -714,15 +726,15 @@ architectural review practices.</p>
   </nav>
   <main>
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
-   <p>The Ambient Light Sensor extends the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a> to provide information about ambient light levels,
+   <p>The Ambient Light Sensor extends the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> to provide information about ambient light levels,
 as detected by the device’s main light detector, in terms of lux units.</p>
    <h3 class="heading settled" data-level="1.1" id="scope"><span class="secno">1.1. </span><span class="content">Scope</span><a class="self-link" href="#scope"></a></h3>
    <p>This document specifies an API designed for <a href="#usecases-requirements">use cases</a> which require fine grained illuminance data, with low latency, and possibly
 sampled at high frequencies.</p>
    <p>Common use cases relying on a small set of illuminance values, such as styling
 webpages according to contrast level or preferred color scheme that may be
-influenced by a device’s measured ambient light level are best served by the the <code>prefers-contrast</code> and <code>prefers-color-scheme</code> CSS media features <a data-link-type="biblio" href="#biblio-mediaqueries-5">[MEDIAQUERIES-5]</a> as well as the accompanying <code>matchMedia</code> API <a data-link-type="biblio" href="#biblio-cssom-view-1">[CSSOM-VIEW-1]</a> and are out of scope of this API.</p>
-   <p class="note" role="note"><span>Note:</span> The <a data-link-type="biblio" href="#biblio-mediaqueries-5">[MEDIAQUERIES-5]</a> specification used to contain a <code>light-level</code> media feature that was more directly tied to ambient light readings. It has
+influenced by a device’s measured ambient light level are best served by the the <code>prefers-contrast</code> and <code>prefers-color-scheme</code> CSS media features <a data-link-type="biblio" href="#biblio-mediaqueries-5" title="Media Queries Level 5">[MEDIAQUERIES-5]</a> as well as the accompanying <code>matchMedia</code> API <a data-link-type="biblio" href="#biblio-cssom-view-1" title="CSSOM View Module">[CSSOM-VIEW-1]</a> and are out of scope of this API.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="biblio" href="#biblio-mediaqueries-5" title="Media Queries Level 5">[MEDIAQUERIES-5]</a> specification used to contain a <code>light-level</code> media feature that was more directly tied to ambient light readings. It has
 since been <a href="https://github.com/w3c/csswg-drafts/commit/f5b663c27d5a2715239633f4916880563969d770">dropped</a> from the specification in favor of the higher-level <code>prefers-color-scheme</code> and <code>prefers-contrast</code> media features.</p>
    <h2 class="heading settled" data-level="2" id="examples"><span class="secno">2. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
    <div class="example" id="example-cdf5e857">
@@ -822,11 +834,11 @@ particular pixels to allow distinguishing the contents, pixel by pixel.</p>
 the light levels associated with visited and unvisited links i.e. visited
 links styled as a block of black screen; white for unvisited.</p>
    </ul>
-   <p>Works such as <a data-link-type="biblio" href="#biblio-alsprivacyanalysis">[ALSPRIVACYANALYSIS]</a>, <a data-link-type="biblio" href="#biblio-pinskimmingviasensor">[PINSKIMMINGVIASENSOR]</a>, <a data-link-type="biblio" href="#biblio-stealingsensitivedata">[STEALINGSENSITIVEDATA]</a>, and <a data-link-type="biblio" href="#biblio-videorecognitionambientlight">[VIDEORECOGNITIONAMBIENTLIGHT]</a> delve further
+   <p>Works such as <a data-link-type="biblio" href="#biblio-alsprivacyanalysis" title="Privacy analysis of Ambient Light Sensors">[ALSPRIVACYANALYSIS]</a>, <a data-link-type="biblio" href="#biblio-pinskimmingviasensor" title="PIN Skimming: Exploiting the Ambient-Light Sensor in Mobile Devices">[PINSKIMMINGVIASENSOR]</a>, <a data-link-type="biblio" href="#biblio-stealingsensitivedata" title="Stealing sensitive browser data with the W3C Ambient Light Sensor API">[STEALINGSENSITIVEDATA]</a>, and <a data-link-type="biblio" href="#biblio-videorecognitionambientlight" title="Video recognition using ambient light sensors">[VIDEORECOGNITIONAMBIENTLIGHT]</a> delve further
 into these issues.</p>
    <p>To mitigate these threats specific to Ambient Light Sensor, user agents must <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings. User agents may also <a data-link-type="dfn" href="https://w3c.github.io/sensors/#limit-max-frequency" id="ref-for-limit-max-frequency">limit
 maximum sampling frequency</a>.</p>
-   <p>These mitigation strategies complement the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mitigation-strategies" id="ref-for-mitigation-strategies">generic mitigations</a> defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a>.</p>
+   <p>These mitigation strategies complement the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mitigation-strategies" id="ref-for-mitigation-strategies">generic mitigations</a> defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a>.</p>
    <h3 class="heading settled" data-level="3.1" id="reduce-sensor-accuracy"><span class="secno">3.1. </span><span class="content">Reducing sensor readings accuracy</span><a class="self-link" href="#reduce-sensor-accuracy"></a></h3>
    <p>In order to <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reduce-accuracy" id="ref-for-reduce-accuracy①">reduce accuracy</a> of sensor readings, this specification defines
 a <a data-link-type="dfn" href="https://w3c.github.io/sensors/#threshold-check-algorithm" id="ref-for-threshold-check-algorithm">threshold check algorithm</a> (the <a data-link-type="dfn" href="#ambient-light-threshold-check-algorithm" id="ref-for-ambient-light-threshold-check-algorithm">ambient light threshold check
@@ -840,14 +852,14 @@ requirements for their values:</p>
     <li data-md>
      <p>The <a data-link-type="dfn" href="#illuminance-threshold-value" id="ref-for-illuminance-threshold-value①">illuminance threshold value</a> should be at least half of the <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple②">illuminance rounding multiple</a>.</p>
    </ul>
-   <p class="note" role="note"><span>Note:</span> Choosing an <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple③">illuminance rounding multiple</a> requires balancing not
+   <p class="note" role="note"><span class="marker">Note:</span> Choosing an <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple③">illuminance rounding multiple</a> requires balancing not
 exposing readouts that are too precise while also providing readouts that are
 still useful for API users. The value of 50 lux as a minimum for the <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple④">illuminance rounding multiple</a> was determined in <a href="https://github.com/w3c/ambient-light/issues/13#issuecomment-302393458">GitHub
 issue #13</a> after different ambient light level measurements under different
-lighting conditions were <a href="https://docs.google.com/spreadsheets/d/1vUojkaaif6AmftQmtqra1w9Z7CH00Cn9pb0Ci6v5_Jk">gathered </a> and shown to thwart the attack described in <a data-link-type="biblio" href="#biblio-stealingsensitivedata">[STEALINGSENSITIVEDATA]</a>. 50
+lighting conditions were <a href="https://docs.google.com/spreadsheets/d/1vUojkaaif6AmftQmtqra1w9Z7CH00Cn9pb0Ci6v5_Jk">gathered </a> and shown to thwart the attack described in <a data-link-type="biblio" href="#biblio-stealingsensitivedata" title="Stealing sensitive browser data with the W3C Ambient Light Sensor API">[STEALINGSENSITIVEDATA]</a>. 50
 lux is also higher than the 5 lux required to make video recognition using
-ambient light sensor readings (<a data-link-type="biblio" href="#biblio-videorecognitionambientlight">[VIDEORECOGNITIONAMBIENTLIGHT]</a>) infeasible.</p>
-   <p class="note" role="note"><span>Note:</span> The <a data-link-type="dfn" href="#illuminance-threshold-value" id="ref-for-illuminance-threshold-value②">illuminance threshold value</a> is used to prevent leaking the fact
+ambient light sensor readings (<a data-link-type="biblio" href="#biblio-videorecognitionambientlight" title="Video recognition using ambient light sensors">[VIDEORECOGNITIONAMBIENTLIGHT]</a>) infeasible.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="dfn" href="#illuminance-threshold-value" id="ref-for-illuminance-threshold-value②">illuminance threshold value</a> is used to prevent leaking the fact
 that readings are hovering around a particular value but getting quantized to
 different values. For example, if <a data-link-type="dfn" href="#illuminance-rounding-multiple" id="ref-for-illuminance-rounding-multiple⑤">illuminance rounding multiple</a> is 50, this
 prevents switching the illuminance value between 0 and 50 if the raw readouts
@@ -865,10 +877,10 @@ the <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-name" i
 which is also its associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-permission-names" id="ref-for-sensor-permission-names">sensor permission name</a>. Its <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission-revocation-algorithm" id="ref-for-dfn-permission-revocation-algorithm">permission revocation algorithm</a> is the result of calling
 the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#generic-sensor-permission-revocation-algorithm" id="ref-for-generic-sensor-permission-revocation-algorithm">generic sensor permission revocation algorithm</a> with
 "ambient-light-sensor".</p>
-   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor②">Ambient Light Sensor</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> identified by the string "ambient-light-sensor". Its <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#default-allowlist" id="ref-for-default-allowlist">default allowlist</a> is <code>'self'</code>.</p>
+   <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor②">Ambient Light Sensor</a> is a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> identified by the string "ambient-light-sensor". Its <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist" id="ref-for-policy-controlled-feature-default-allowlist">default allowlist</a> is <code>'self'</code>.</p>
    <p>The <dfn data-dfn-type="dfn" data-noexport id="current-light-level">current light level<a class="self-link" href="#current-light-level"></a></dfn> or <dfn data-dfn-type="dfn" data-noexport id="illuminance">illuminance<a class="self-link" href="#illuminance"></a></dfn> is a value that represents the ambient light level
-around the hosting device. Its unit is the lux (lx) <a data-link-type="biblio" href="#biblio-si">[SI]</a>.</p>
-   <p class="note" role="note"><span>Note:</span> The precise lux value reported by
+around the hosting device. Its unit is the lux (lx) <a data-link-type="biblio" href="#biblio-si" title="SI Brochure: The International System of Units (SI), 8th edition">[SI]</a>.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The precise lux value reported by
 different devices in the same light can be different,
 due to differences in detection method, sensor construction, etc.</p>
    <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor③">Ambient Light Sensor</a> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="illuminance rounding multiple" data-noexport id="illuminance-rounding-multiple">illuminance rounding
@@ -877,7 +889,7 @@ illuminance readings will be rounded up to.</p>
    <p>The <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor④">Ambient Light Sensor</a> has an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="illuminance-threshold-value">illuminance threshold value</dfn>,
 measured in lux, which is used in the <a data-link-type="dfn" href="#ambient-light-threshold-check-algorithm" id="ref-for-ambient-light-threshold-check-algorithm①">ambient light threshold check
 algorithm</a>.</p>
-   <p class="note" role="note"><span>Note:</span> see <a href="#reduce-sensor-accuracy">§ 3.1 Reducing sensor readings accuracy</a> for minimum requirements for the values
+   <p class="note" role="note"><span class="marker">Note:</span> see <a href="#reduce-sensor-accuracy">§ 3.1 Reducing sensor readings accuracy</a> for minimum requirements for the values
 described above.</p>
    <h2 class="heading settled" data-level="5" id="api"><span class="secno">5. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="5.1" id="ambient-light-sensor-interface"><span class="secno">5.1. </span><span class="content">The AmbientLightSensor Interface</span><a class="self-link" href="#ambient-light-sensor-interface"></a></h3>
@@ -965,7 +977,7 @@ check algorithm</a>:</p>
       <p>Otherwise, return true.</p>
     </ol>
    </div>
-   <p class="note" role="note"><span>Note:</span> This algorithm invokes the <a data-link-type="dfn" href="#ambient-light-reading-quantization-algorithm" id="ref-for-ambient-light-reading-quantization-algorithm③">ambient light reading quantization
+   <p class="note" role="note"><span class="marker">Note:</span> This algorithm invokes the <a data-link-type="dfn" href="#ambient-light-reading-quantization-algorithm" id="ref-for-ambient-light-reading-quantization-algorithm③">ambient light reading quantization
 algorithm</a> to ensure that readings that round up to the same value do not
 trigger an update in the main <a data-link-type="dfn" href="https://w3c.github.io/sensors/#update-latest-reading" id="ref-for-update-latest-reading">update latest reading</a> algorithm. Not doing so
 would indicate to users that the raw illuminance readings are within a range
@@ -994,7 +1006,7 @@ quantization algorithm</a>:</p>
     </ol>
    </div>
    <h2 class="heading settled" data-level="7" id="automation"><span class="secno">7. </span><span class="content">Automation</span><a class="self-link" href="#automation"></a></h2>
-    This section extends the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#automation" id="ref-for-automation">automation</a> section defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor">[GENERIC-SENSOR]</a> to provide mocking information about the ambient light levels for the purposes of testing a user agent’s
+    This section extends the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#automation" id="ref-for-automation">automation</a> section defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> to provide mocking information about the ambient light levels for the purposes of testing a user agent’s
 implementation of <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor⑦">Ambient Light Sensor</a>. 
    <h3 class="heading settled" data-level="7.1" id="mock-ambient-light-sensor-type"><span class="secno">7.1. </span><span class="content">Mock Sensor Type</span><a class="self-link" href="#mock-ambient-light-sensor-type"></a></h3>
    <p>The <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑤">AmbientLightSensor</a></code> class has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light">"ambient-light"</a>, its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values">mock sensor reading values</a> dictionary is defined as follows:</p>
@@ -1037,7 +1049,7 @@ Marcos Caceres for the test suite.</p>
     However, for readability,
     these words do not appear in all uppercase letters in this specification. </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
@@ -1257,10 +1269,10 @@ Marcos Caceres for the test suite.</p>
     <li><a href="#ref-for-dfn-powerful-feature">4. Model</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-default-allowlist">
-   <a href="https://w3c.github.io/webappsec-permissions-policy/#default-allowlist">https://w3c.github.io/webappsec-permissions-policy/#default-allowlist</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-policy-controlled-feature-default-allowlist">
+   <a href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist">https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-default-allowlist">4. Model</a>
+    <li><a href="#ref-for-policy-controlled-feature-default-allowlist">4. Model</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-policy-controlled-feature">
@@ -1359,7 +1371,7 @@ Marcos Caceres for the test suite.</p>
    <li>
     <a data-link-type="biblio">[PERMISSIONS-POLICY-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-default-allowlist">default allowlist</span>
+     <li><span class="dfn-paneled" id="term-for-policy-controlled-feature-default-allowlist">default allowlist</span>
      <li><span class="dfn-paneled" id="term-for-policy-controlled-feature">policy-controlled feature</span>
     </ul>
    <li>
@@ -1542,12 +1554,13 @@ document.body.addEventListener("click", function(e) {
 </script>
 <script>/* script-var-click-highlighting */
 
-    document.addEventListener("click", e=>{
-        if(e.target.nodeName == "VAR") {
-            highlightSameAlgoVars(e.target);
-        }
-    });
+    "use strict";
     {
+        document.addEventListener("click", e=>{
+            if(e.target.nodeName == "VAR") {
+                highlightSameAlgoVars(e.target);
+            }
+        });
         const indexCounts = new Map();
         const indexNames = new Map();
         function highlightSameAlgoVars(v) {
