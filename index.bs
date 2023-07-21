@@ -48,8 +48,6 @@ urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
     text: mock sensor type
     text: MockSensorType
     text: mock sensor reading values
-    text: threshold check algorithm
-    text: reading quantization algorithm
     text: latest reading
 urlPrefix: https://tc39.es/ecma262/; spec: ECMA-262
   type: abstract-op
@@ -384,12 +382,12 @@ check algorithm=]:
   1. Let |latestIlluminance| be |latestReading|["illuminance"].
   1. If [$abs$](|latestIlluminance| - |newIlluminance|) < [=illuminance
      threshold value=], return false.
-  1. Let |roundedNewIlluminance| be the result of invoking the [=ambient light
+  1. Let |roundedNewReading| be the result of invoking the [=ambient light
      reading quantization algorithm=] algorithm with |newIlluminance|.
-  1. Let |roundedLatestIlluminance| be the result of invoking the [=ambient
+  1. Let |roundedLatestReading| be the result of invoking the [=ambient
      light reading quantization algorithm=] algorithm with |latestIlluminance|.
-  1. If |roundedNewIlluminance| and |roundedLatestIlluminance| are equal,
-     return false.
+  1. If |roundedNewReading|["illuminance"] and |roundedLatestIlluminance|["illuminance"]
+     are equal, return false.
   1. Otherwise, return true.
 </div>
 
