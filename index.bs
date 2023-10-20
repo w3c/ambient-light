@@ -413,6 +413,7 @@ quantization algorithm=]:
 
 Automation {#automation}
 ==========
+
 This section extends [[GENERIC-SENSOR#automation]] by providing [=Ambient Light Sensor=]-specific virtual sensor metadata.
 
 <div algorithm>
