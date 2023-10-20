@@ -5,9 +5,9 @@
   <title>Ambient Light Sensor</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version d29f71adb, updated Wed Jul 19 11:08:56 2023 -0700" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="adf6c8b8210ed910020c05de4d826db1925a1e31" name="document-revision">
+  <meta content="2f5cf3f205df6c81fd759ea8202104d3a5a8ae01" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -669,7 +669,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-07-21">21 July 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-10-20">20 October 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -767,11 +767,7 @@ architectural review practices.</p>
       <li><a href="#ambient-light-threshold-check-algorithm"><span class="secno">6.2</span> <span class="content">Ambient light threshold check algorithm</span></a>
       <li><a href="#ambient-light-reading-quantization-algorithm"><span class="secno">6.3</span> <span class="content">Ambient light reading quantization algorithm</span></a>
      </ol>
-    <li>
-     <a href="#automation"><span class="secno">7</span> <span class="content">Automation</span></a>
-     <ol class="toc">
-      <li><a href="#mock-ambient-light-sensor-type"><span class="secno">7.1</span> <span class="content">Mock Sensor Type</span></a>
-     </ol>
+    <li><a href="#automation"><span class="secno">7</span> <span class="content">Automation</span></a>
     <li><a href="#usecases-requirements"><span class="secno">8</span> <span class="content">Use Cases and Requirements</span></a>
     <li><a href="#acknowledgements"><span class="secno">9</span> <span class="content">Acknowledgements</span></a>
     <li>
@@ -1077,14 +1073,17 @@ quantization algorithm</a>:</p>
     </ol>
    </div>
    <h2 class="heading settled" data-level="7" id="automation"><span class="secno">7. </span><span class="content">Automation</span><a class="self-link" href="#automation"></a></h2>
-    This section extends the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#automation" id="ref-for-automation">automation</a> section defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> to provide mocking information about the ambient light levels for the purposes of testing a user agent’s
-implementation of <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor⑦">Ambient Light Sensor</a>. 
-   <h3 class="heading settled" data-level="7.1" id="mock-ambient-light-sensor-type"><span class="secno">7.1. </span><span class="content">Mock Sensor Type</span><a class="self-link" href="#mock-ambient-light-sensor-type"></a></h3>
-   <p>The <code class="idl"><a data-link-type="idl" href="#ambientlightsensor" id="ref-for-ambientlightsensor⑤">AmbientLightSensor</a></code> class has an associated <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-type" id="ref-for-mock-sensor-type">mock sensor type</a> which is <a class="idl-code" data-link-type="enum-value" href="https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light" id="ref-for-dom-mocksensortype-ambient-light">"ambient-light"</a>, its <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mock-sensor-reading-values" id="ref-for-mock-sensor-reading-values">mock sensor reading values</a> dictionary is defined as follows:</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="idl-code" data-dfn-type="dictionary" data-export id="dictdef-ambientlightreadingvalues"><code><c- g>AmbientLightReadingValues</c-></code><a class="self-link" href="#dictdef-ambientlightreadingvalues"></a></dfn> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="AmbientLightReadingValues" data-dfn-type="dict-member" data-export data-type="double? " id="dom-ambientlightreadingvalues-illuminance"><code><c- g>illuminance</c-></code><a class="self-link" href="#dom-ambientlightreadingvalues-illuminance"></a></dfn>;
-};
-</pre>
+   <p>This section extends <a href="https://w3c.github.io/sensors/#automation"><cite>Generic Sensor API</cite> § 9 Automation</a> by providing <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor⑦">Ambient Light Sensor</a>-specific virtual sensor metadata.</p>
+   <div class="algorithm" data-algorithm="illuminance reading parsing algorithm"> The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="illuminance-reading-parsing-algorithm">illuminance reading parsing algorithm</dfn>, given a JSON <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object-objects" id="ref-for-sec-object-objects">Object</a></code> <var>parameters</var>, must return the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/sensors/#parse-single-value-number-reading" id="ref-for-parse-single-value-number-reading">parse single-value number reading</a> with <var>parameters</var> and "<code>illuminance</code>". </div>
+   <p>The <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata">per-type virtual sensor metadata</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a> must have the following <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a>:</p>
+   <dl>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a>
+    <dd data-md>
+     <p>"<code>ambient-light</code>"</p>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a>
+    <dd data-md>
+     <p>A <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata" id="ref-for-virtual-sensor-metadata">virtual sensor metadata</a> whose <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata-virtual-sensor-type" id="ref-for-virtual-sensor-metadata-virtual-sensor-type">virtual sensor type</a> is <a data-link-type="dfn" href="#ambient-light-sensor" id="ref-for-ambient-light-sensor⑧">Ambient Light Sensor</a> and <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata-reading-parsing-algorithm" id="ref-for-virtual-sensor-metadata-reading-parsing-algorithm">reading parsing algorithm</a> is <a data-link-type="dfn" href="#illuminance-reading-parsing-algorithm" id="ref-for-illuminance-reading-parsing-algorithm">illuminance reading parsing algorithm</a>.</p>
+   </dl>
    <h2 class="heading settled" data-level="8" id="usecases-requirements"><span class="secno">8. </span><span class="content">Use Cases and Requirements</span><a class="self-link" href="#usecases-requirements"></a></h2>
    <ul>
     <li data-md>
@@ -1156,7 +1155,6 @@ Marcos Caceres for the test suite.</p>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#ambient-light-reading-quantization-algorithm">Ambient light reading quantization algorithm</a><span>, in § 6.2</span>
-   <li><a href="#dictdef-ambientlightreadingvalues">AmbientLightReadingValues</a><span>, in § 7.1</span>
    <li><a href="#ambient-light-sensor">Ambient Light Sensor</a><span>, in § 4</span>
    <li><a href="#permissiondef-ambient-light-sensor">ambient-light-sensor</a><span>, in § 4</span>
    <li><a href="#ambientlightsensor">AmbientLightSensor</a><span>, in § 5.1</span>
@@ -1172,8 +1170,8 @@ Marcos Caceres for the test suite.</p>
     <ul>
      <li><a href="#dom-ambientlightsensor-illuminance">attribute for AmbientLightSensor</a><span>, in § 5.1</span>
      <li><a href="#illuminance">definition of</a><span>, in § 4</span>
-     <li><a href="#dom-ambientlightreadingvalues-illuminance">dict-member for AmbientLightReadingValues</a><span>, in § 7.1</span>
     </ul>
+   <li><a href="#illuminance-reading-parsing-algorithm">illuminance reading parsing algorithm</a><span>, in § 7</span>
    <li><a href="#illuminance-rounding-multiple">illuminance rounding multiple</a><span>, in § 4</span>
    <li><a href="#illuminance-threshold-value">illuminance threshold value</a><span>, in § 4</span>
   </ul>
@@ -1182,15 +1180,14 @@ Marcos Caceres for the test suite.</p>
    <li>
     <a data-link-type="biblio">[ECMASCRIPT]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="a6e67972">Object</span>
      <li><span class="dfn-paneled" id="b01bbc68">abs</span>
     </ul>
    <li>
     <a data-link-type="biblio">[GENERIC-SENSOR]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="09e1ad7e">"ambient-light"</span>
      <li><span class="dfn-paneled" id="1b956603">Sensor</span>
      <li><span class="dfn-paneled" id="207de9db">SensorOptions</span>
-     <li><span class="dfn-paneled" id="8b05f5b6">automation</span>
      <li><span class="dfn-paneled" id="5822d2f3">check sensor policy-controlled features</span>
      <li><span class="dfn-paneled" id="2797dd43">default sensor</span>
      <li><span class="dfn-paneled" id="a09cf46b">generic sensor permission revocation algorithm</span>
@@ -1198,8 +1195,9 @@ Marcos Caceres for the test suite.</p>
      <li><span class="dfn-paneled" id="0026f53f">initialize a sensor object</span>
      <li><span class="dfn-paneled" id="c79c290a">limit maximum sampling frequency</span>
      <li><span class="dfn-paneled" id="a296510f">mitigation strategies</span>
-     <li><span class="dfn-paneled" id="4acdbf1c">mock sensor reading values</span>
-     <li><span class="dfn-paneled" id="c3b7f760">mock sensor type</span>
+     <li><span class="dfn-paneled" id="c1bbb186">parse single-value number reading</span>
+     <li><span class="dfn-paneled" id="5d47b5a4">per-type virtual sensor metadata</span>
+     <li><span class="dfn-paneled" id="611c5008">reading parsing algorithm</span>
      <li><span class="dfn-paneled" id="1f45ff31">reading quantization algorithm</span>
      <li><span class="dfn-paneled" id="214e5c65">reduce accuracy</span>
      <li><span class="dfn-paneled" id="6f3f0749">sampling frequency</span>
@@ -1208,11 +1206,17 @@ Marcos Caceres for the test suite.</p>
      <li><span class="dfn-paneled" id="f96b75e9">sensor type</span>
      <li><span class="dfn-paneled" id="6048fac5">threshold check algorithm</span>
      <li><span class="dfn-paneled" id="d8b6acc6">update latest reading</span>
+     <li><span class="dfn-paneled" id="bb15fee5">virtual sensor metadata</span>
+     <li><span class="dfn-paneled" id="d5e5825c">virtual sensor type</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="36858240">boolean</span>
+     <li><span class="dfn-paneled" id="8958b003">entry</span>
+     <li><span class="dfn-paneled" id="d14a6f26">key</span>
+     <li><span class="dfn-paneled" id="3fca5a9e">map</span>
+     <li><span class="dfn-paneled" id="802b0fdd">value</span>
     </ul>
    <li>
     <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
@@ -1279,10 +1283,6 @@ Marcos Caceres for the test suite.</p>
 <c- b>interface</c-> <a href="#ambientlightsensor"><code><c- g>AmbientLightSensor</c-></code></a> : <a data-link-type="idl-name" href="https://w3c.github.io/sensors/#sensor"><c- n>Sensor</c-></a> {
   <a href="#dom-ambientlightsensor-ambientlightsensor"><code><c- g>constructor</c-></code></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://w3c.github.io/sensors/#dictdef-sensoroptions"><c- n>SensorOptions</c-></a> <a href="#dom-ambientlightsensor-ambientlightsensor-sensoroptions-sensoroptions"><code><c- g>sensorOptions</c-></code></a> = {});
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-ambientlightsensor-illuminance"><code><c- g>illuminance</c-></code></a>;
-};
-
-<c- b>dictionary</c-> <a href="#dictdef-ambientlightreadingvalues"><code><c- g>AmbientLightReadingValues</c-></code></a> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>? <a data-type="double? " href="#dom-ambientlightreadingvalues-illuminance"><code><c- g>illuminance</c-></code></a>;
 };
 
 </pre>
@@ -1594,11 +1594,10 @@ Marcos Caceres for the test suite.</p>
 </script>
 <script>/* Boilerplate: script-dfn-panel-json */
 window.dfnpanelData = {};
+window.dfnpanelData['a6e67972'] = {"dfnID": "a6e67972", "url": "https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object-objects", "dfnText": "Object", "refSections": [{"refs": [{"id": "ref-for-sec-object-objects"}], "title": "7. Automation"}], "external": true};
 window.dfnpanelData['b01bbc68'] = {"dfnID": "b01bbc68", "url": "https://tc39.es/ecma262/#eqn-abs", "dfnText": "abs", "refSections": [{"refs": [{"id": "ref-for-eqn-abs"}], "title": "6.2. Ambient light threshold check algorithm"}], "external": true};
-window.dfnpanelData['09e1ad7e'] = {"dfnID": "09e1ad7e", "url": "https://w3c.github.io/sensors/#dom-mocksensortype-ambient-light", "dfnText": "\"ambient-light\"", "refSections": [{"refs": [{"id": "ref-for-dom-mocksensortype-ambient-light"}], "title": "7.1. Mock Sensor Type"}], "external": true};
 window.dfnpanelData['1b956603'] = {"dfnID": "1b956603", "url": "https://w3c.github.io/sensors/#sensor", "dfnText": "Sensor", "refSections": [{"refs": [{"id": "ref-for-sensor"}], "title": "4. Model"}, {"refs": [{"id": "ref-for-sensor\u2460"}], "title": "5.1. The AmbientLightSensor Interface"}], "external": true};
 window.dfnpanelData['207de9db'] = {"dfnID": "207de9db", "url": "https://w3c.github.io/sensors/#dictdef-sensoroptions", "dfnText": "SensorOptions", "refSections": [{"refs": [{"id": "ref-for-dictdef-sensoroptions"}], "title": "5.1. The AmbientLightSensor Interface"}, {"refs": [{"id": "ref-for-dictdef-sensoroptions\u2460"}], "title": "6.1. Construct an ambient light sensor object"}], "external": true};
-window.dfnpanelData['8b05f5b6'] = {"dfnID": "8b05f5b6", "url": "https://w3c.github.io/sensors/#automation", "dfnText": "automation", "refSections": [{"refs": [{"id": "ref-for-automation"}], "title": "7. Automation"}], "external": true};
 window.dfnpanelData['5822d2f3'] = {"dfnID": "5822d2f3", "url": "https://w3c.github.io/sensors/#check-sensor-policy-controlled-features", "dfnText": "check sensor policy-controlled features", "refSections": [{"refs": [{"id": "ref-for-check-sensor-policy-controlled-features"}], "title": "6.1. Construct an ambient light sensor object"}], "external": true};
 window.dfnpanelData['2797dd43'] = {"dfnID": "2797dd43", "url": "https://w3c.github.io/sensors/#default-sensor", "dfnText": "default sensor", "refSections": [{"refs": [{"id": "ref-for-default-sensor"}], "title": "4. Model"}], "external": true};
 window.dfnpanelData['a09cf46b'] = {"dfnID": "a09cf46b", "url": "https://w3c.github.io/sensors/#generic-sensor-permission-revocation-algorithm", "dfnText": "generic sensor permission revocation algorithm", "refSections": [{"refs": [{"id": "ref-for-generic-sensor-permission-revocation-algorithm"}], "title": "4. Model"}], "external": true};
@@ -1606,8 +1605,9 @@ window.dfnpanelData['fd4ad34f'] = {"dfnID": "fd4ad34f", "url": "https://w3c.gith
 window.dfnpanelData['0026f53f'] = {"dfnID": "0026f53f", "url": "https://w3c.github.io/sensors/#initialize-a-sensor-object", "dfnText": "initialize a sensor object", "refSections": [{"refs": [{"id": "ref-for-initialize-a-sensor-object"}], "title": "6.1. Construct an ambient light sensor object"}], "external": true};
 window.dfnpanelData['c79c290a'] = {"dfnID": "c79c290a", "url": "https://w3c.github.io/sensors/#limit-max-frequency", "dfnText": "limit maximum sampling frequency", "refSections": [{"refs": [{"id": "ref-for-limit-max-frequency"}], "title": "3. Security and Privacy Considerations"}], "external": true};
 window.dfnpanelData['a296510f'] = {"dfnID": "a296510f", "url": "https://w3c.github.io/sensors/#mitigation-strategies", "dfnText": "mitigation strategies", "refSections": [{"refs": [{"id": "ref-for-mitigation-strategies"}], "title": "3. Security and Privacy Considerations"}], "external": true};
-window.dfnpanelData['4acdbf1c'] = {"dfnID": "4acdbf1c", "url": "https://w3c.github.io/sensors/#mock-sensor-reading-values", "dfnText": "mock sensor reading values", "refSections": [{"refs": [{"id": "ref-for-mock-sensor-reading-values"}], "title": "7.1. Mock Sensor Type"}], "external": true};
-window.dfnpanelData['c3b7f760'] = {"dfnID": "c3b7f760", "url": "https://w3c.github.io/sensors/#mock-sensor-type", "dfnText": "mock sensor type", "refSections": [{"refs": [{"id": "ref-for-mock-sensor-type"}], "title": "7.1. Mock Sensor Type"}], "external": true};
+window.dfnpanelData['c1bbb186'] = {"dfnID": "c1bbb186", "url": "https://w3c.github.io/sensors/#parse-single-value-number-reading", "dfnText": "parse single-value number reading", "refSections": [{"refs": [{"id": "ref-for-parse-single-value-number-reading"}], "title": "7. Automation"}], "external": true};
+window.dfnpanelData['5d47b5a4'] = {"dfnID": "5d47b5a4", "url": "https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata", "dfnText": "per-type virtual sensor metadata", "refSections": [{"refs": [{"id": "ref-for-per-type-virtual-sensor-metadata"}], "title": "7. Automation"}], "external": true};
+window.dfnpanelData['611c5008'] = {"dfnID": "611c5008", "url": "https://w3c.github.io/sensors/#virtual-sensor-metadata-reading-parsing-algorithm", "dfnText": "reading parsing algorithm", "refSections": [{"refs": [{"id": "ref-for-virtual-sensor-metadata-reading-parsing-algorithm"}], "title": "7. Automation"}], "external": true};
 window.dfnpanelData['1f45ff31'] = {"dfnID": "1f45ff31", "url": "https://w3c.github.io/sensors/#reading-quantization-algorithm", "dfnText": "reading quantization algorithm", "refSections": [{"refs": [{"id": "ref-for-reading-quantization-algorithm"}], "title": "3.1. Reducing sensor readings accuracy"}, {"refs": [{"id": "ref-for-reading-quantization-algorithm\u2460"}], "title": "6.3. Ambient light reading quantization algorithm"}], "external": true};
 window.dfnpanelData['214e5c65'] = {"dfnID": "214e5c65", "url": "https://w3c.github.io/sensors/#reduce-accuracy", "dfnText": "reduce accuracy", "refSections": [{"refs": [{"id": "ref-for-reduce-accuracy"}], "title": "3. Security and Privacy Considerations"}, {"refs": [{"id": "ref-for-reduce-accuracy\u2460"}], "title": "3.1. Reducing sensor readings accuracy"}], "external": true};
 window.dfnpanelData['6f3f0749'] = {"dfnID": "6f3f0749", "url": "https://w3c.github.io/sensors/#sampling-frequency", "dfnText": "sampling frequency", "refSections": [{"refs": [{"id": "ref-for-sampling-frequency"}], "title": "8. Use Cases and Requirements"}], "external": true};
@@ -1616,7 +1616,13 @@ window.dfnpanelData['5afb8cab'] = {"dfnID": "5afb8cab", "url": "https://w3c.gith
 window.dfnpanelData['f96b75e9'] = {"dfnID": "f96b75e9", "url": "https://w3c.github.io/sensors/#sensor-type", "dfnText": "sensor type", "refSections": [{"refs": [{"id": "ref-for-sensor-type"}], "title": "4. Model"}, {"refs": [{"id": "ref-for-sensor-type\u2460"}], "title": "6.2. Ambient light threshold check algorithm"}, {"refs": [{"id": "ref-for-sensor-type\u2461"}], "title": "6.3. Ambient light reading quantization algorithm"}], "external": true};
 window.dfnpanelData['6048fac5'] = {"dfnID": "6048fac5", "url": "https://w3c.github.io/sensors/#threshold-check-algorithm", "dfnText": "threshold check algorithm", "refSections": [{"refs": [{"id": "ref-for-threshold-check-algorithm"}, {"id": "ref-for-threshold-check-algorithm\u2460"}], "title": "3.1. Reducing sensor readings accuracy"}, {"refs": [{"id": "ref-for-threshold-check-algorithm\u2461"}], "title": "6.2. Ambient light threshold check algorithm"}], "external": true};
 window.dfnpanelData['d8b6acc6'] = {"dfnID": "d8b6acc6", "url": "https://w3c.github.io/sensors/#update-latest-reading", "dfnText": "update latest reading", "refSections": [{"refs": [{"id": "ref-for-update-latest-reading"}], "title": "6.2. Ambient light threshold check algorithm"}], "external": true};
+window.dfnpanelData['bb15fee5'] = {"dfnID": "bb15fee5", "url": "https://w3c.github.io/sensors/#virtual-sensor-metadata", "dfnText": "virtual sensor metadata", "refSections": [{"refs": [{"id": "ref-for-virtual-sensor-metadata"}], "title": "7. Automation"}], "external": true};
+window.dfnpanelData['d5e5825c'] = {"dfnID": "d5e5825c", "url": "https://w3c.github.io/sensors/#virtual-sensor-metadata-virtual-sensor-type", "dfnText": "virtual sensor type", "refSections": [{"refs": [{"id": "ref-for-virtual-sensor-metadata-virtual-sensor-type"}], "title": "7. Automation"}], "external": true};
 window.dfnpanelData['36858240'] = {"dfnID": "36858240", "url": "https://infra.spec.whatwg.org/#boolean", "dfnText": "boolean", "refSections": [{"refs": [{"id": "ref-for-boolean"}], "title": "6.2. Ambient light threshold check algorithm"}], "external": true};
+window.dfnpanelData['8958b003'] = {"dfnID": "8958b003", "url": "https://infra.spec.whatwg.org/#map-entry", "dfnText": "entry", "refSections": [{"refs": [{"id": "ref-for-map-entry"}], "title": "7. Automation"}], "external": true};
+window.dfnpanelData['d14a6f26'] = {"dfnID": "d14a6f26", "url": "https://infra.spec.whatwg.org/#map-key", "dfnText": "key", "refSections": [{"refs": [{"id": "ref-for-map-key"}], "title": "7. Automation"}], "external": true};
+window.dfnpanelData['3fca5a9e'] = {"dfnID": "3fca5a9e", "url": "https://infra.spec.whatwg.org/#ordered-map", "dfnText": "map", "refSections": [{"refs": [{"id": "ref-for-ordered-map"}], "title": "7. Automation"}], "external": true};
+window.dfnpanelData['802b0fdd'] = {"dfnID": "802b0fdd", "url": "https://infra.spec.whatwg.org/#map-value", "dfnText": "value", "refSections": [{"refs": [{"id": "ref-for-map-value"}], "title": "7. Automation"}], "external": true};
 window.dfnpanelData['e740d7e5'] = {"dfnID": "e740d7e5", "url": "https://w3c.github.io/permissions/#dfn-name", "dfnText": "name", "refSections": [{"refs": [{"id": "ref-for-dfn-name"}], "title": "4. Model"}], "external": true};
 window.dfnpanelData['409a61ca'] = {"dfnID": "409a61ca", "url": "https://w3c.github.io/permissions/#dfn-permission-revocation-algorithm", "dfnText": "permission revocation algorithm", "refSections": [{"refs": [{"id": "ref-for-dfn-permission-revocation-algorithm"}], "title": "4. Model"}], "external": true};
 window.dfnpanelData['6c2d7879'] = {"dfnID": "6c2d7879", "url": "https://w3c.github.io/permissions/#dfn-powerful-feature", "dfnText": "powerful feature", "refSections": [{"refs": [{"id": "ref-for-dfn-powerful-feature"}], "title": "4. Model"}], "external": true};
@@ -1626,17 +1632,18 @@ window.dfnpanelData['dca2de17'] = {"dfnID": "dca2de17", "url": "https://webidl.s
 window.dfnpanelData['889e932f'] = {"dfnID": "889e932f", "url": "https://webidl.spec.whatwg.org/#Exposed", "dfnText": "Exposed", "refSections": [{"refs": [{"id": "ref-for-Exposed"}], "title": "5.1. The AmbientLightSensor Interface"}], "external": true};
 window.dfnpanelData['b75bb3bd'] = {"dfnID": "b75bb3bd", "url": "https://webidl.spec.whatwg.org/#SecureContext", "dfnText": "SecureContext", "refSections": [{"refs": [{"id": "ref-for-SecureContext"}], "title": "5.1. The AmbientLightSensor Interface"}], "external": true};
 window.dfnpanelData['c3e881ef'] = {"dfnID": "c3e881ef", "url": "https://webidl.spec.whatwg.org/#securityerror", "dfnText": "SecurityError", "refSections": [{"refs": [{"id": "ref-for-securityerror"}], "title": "6.1. Construct an ambient light sensor object"}], "external": true};
-window.dfnpanelData['8c800cdf'] = {"dfnID": "8c800cdf", "url": "https://webidl.spec.whatwg.org/#idl-double", "dfnText": "double", "refSections": [{"refs": [{"id": "ref-for-idl-double"}], "title": "5.1. The AmbientLightSensor Interface"}, {"refs": [{"id": "ref-for-idl-double\u2460"}], "title": "7.1. Mock Sensor Type"}], "external": true};
+window.dfnpanelData['8c800cdf'] = {"dfnID": "8c800cdf", "url": "https://webidl.spec.whatwg.org/#idl-double", "dfnText": "double", "refSections": [{"refs": [{"id": "ref-for-idl-double"}], "title": "5.1. The AmbientLightSensor Interface"}], "external": true};
 window.dfnpanelData['4013a022'] = {"dfnID": "4013a022", "url": "https://webidl.spec.whatwg.org/#this", "dfnText": "this", "refSections": [{"refs": [{"id": "ref-for-this"}], "title": "5.1.1. The illuminance attribute"}], "external": true};
 window.dfnpanelData['b4cfa5ce'] = {"dfnID": "b4cfa5ce", "url": "https://webidl.spec.whatwg.org/#dfn-throw", "dfnText": "throw", "refSections": [{"refs": [{"id": "ref-for-dfn-throw"}], "title": "6.1. Construct an ambient light sensor object"}], "external": true};
-window.dfnpanelData['ambient-light-sensor'] = {"dfnID": "ambient-light-sensor", "url": "#ambient-light-sensor", "dfnText": "Ambient Light Sensor", "refSections": [{"refs": [{"id": "ref-for-ambient-light-sensor"}, {"id": "ref-for-ambient-light-sensor\u2460"}, {"id": "ref-for-ambient-light-sensor\u2461"}, {"id": "ref-for-ambient-light-sensor\u2462"}, {"id": "ref-for-ambient-light-sensor\u2463"}], "title": "4. Model"}, {"refs": [{"id": "ref-for-ambient-light-sensor\u2464"}], "title": "6.2. Ambient light threshold check algorithm"}, {"refs": [{"id": "ref-for-ambient-light-sensor\u2465"}], "title": "6.3. Ambient light reading quantization algorithm"}, {"refs": [{"id": "ref-for-ambient-light-sensor\u2466"}], "title": "7. Automation"}], "external": false};
+window.dfnpanelData['ambient-light-sensor'] = {"dfnID": "ambient-light-sensor", "url": "#ambient-light-sensor", "dfnText": "Ambient Light Sensor", "refSections": [{"refs": [{"id": "ref-for-ambient-light-sensor"}, {"id": "ref-for-ambient-light-sensor\u2460"}, {"id": "ref-for-ambient-light-sensor\u2461"}, {"id": "ref-for-ambient-light-sensor\u2462"}, {"id": "ref-for-ambient-light-sensor\u2463"}], "title": "4. Model"}, {"refs": [{"id": "ref-for-ambient-light-sensor\u2464"}], "title": "6.2. Ambient light threshold check algorithm"}, {"refs": [{"id": "ref-for-ambient-light-sensor\u2465"}], "title": "6.3. Ambient light reading quantization algorithm"}, {"refs": [{"id": "ref-for-ambient-light-sensor\u2466"}, {"id": "ref-for-ambient-light-sensor\u2467"}], "title": "7. Automation"}], "external": false};
 window.dfnpanelData['illuminance-rounding-multiple'] = {"dfnID": "illuminance-rounding-multiple", "url": "#illuminance-rounding-multiple", "dfnText": "illuminance rounding\nmultiple", "refSections": [{"refs": [{"id": "ref-for-illuminance-rounding-multiple"}, {"id": "ref-for-illuminance-rounding-multiple\u2460"}, {"id": "ref-for-illuminance-rounding-multiple\u2461"}, {"id": "ref-for-illuminance-rounding-multiple\u2462"}, {"id": "ref-for-illuminance-rounding-multiple\u2463"}, {"id": "ref-for-illuminance-rounding-multiple\u2464"}], "title": "3.1. Reducing sensor readings accuracy"}, {"refs": [{"id": "ref-for-illuminance-rounding-multiple\u2465"}], "title": "6.2. Ambient light threshold check algorithm"}, {"refs": [{"id": "ref-for-illuminance-rounding-multiple\u2466"}], "title": "6.3. Ambient light reading quantization algorithm"}], "external": false};
 window.dfnpanelData['illuminance-threshold-value'] = {"dfnID": "illuminance-threshold-value", "url": "#illuminance-threshold-value", "dfnText": "illuminance threshold value", "refSections": [{"refs": [{"id": "ref-for-illuminance-threshold-value"}, {"id": "ref-for-illuminance-threshold-value\u2460"}, {"id": "ref-for-illuminance-threshold-value\u2461"}], "title": "3.1. Reducing sensor readings accuracy"}, {"refs": [{"id": "ref-for-illuminance-threshold-value\u2462"}, {"id": "ref-for-illuminance-threshold-value\u2463"}], "title": "6.2. Ambient light threshold check algorithm"}], "external": false};
-window.dfnpanelData['ambientlightsensor'] = {"dfnID": "ambientlightsensor", "url": "#ambientlightsensor", "dfnText": "AmbientLightSensor", "refSections": [{"refs": [{"id": "ref-for-ambientlightsensor"}], "title": "4. Model"}, {"refs": [{"id": "ref-for-ambientlightsensor\u2460"}], "title": "5.1. The AmbientLightSensor Interface"}, {"refs": [{"id": "ref-for-ambientlightsensor\u2461"}, {"id": "ref-for-ambientlightsensor\u2462"}, {"id": "ref-for-ambientlightsensor\u2463"}], "title": "6.1. Construct an ambient light sensor object"}, {"refs": [{"id": "ref-for-ambientlightsensor\u2464"}], "title": "7.1. Mock Sensor Type"}], "external": false};
+window.dfnpanelData['ambientlightsensor'] = {"dfnID": "ambientlightsensor", "url": "#ambientlightsensor", "dfnText": "AmbientLightSensor", "refSections": [{"refs": [{"id": "ref-for-ambientlightsensor"}], "title": "4. Model"}, {"refs": [{"id": "ref-for-ambientlightsensor\u2460"}], "title": "5.1. The AmbientLightSensor Interface"}, {"refs": [{"id": "ref-for-ambientlightsensor\u2461"}, {"id": "ref-for-ambientlightsensor\u2462"}, {"id": "ref-for-ambientlightsensor\u2463"}], "title": "6.1. Construct an ambient light sensor object"}], "external": false};
 window.dfnpanelData['dom-ambientlightsensor-illuminance'] = {"dfnID": "dom-ambientlightsensor-illuminance", "url": "#dom-ambientlightsensor-illuminance", "dfnText": "illuminance", "refSections": [{"refs": [{"id": "ref-for-dom-ambientlightsensor-illuminance"}], "title": "2. Examples"}, {"refs": [{"id": "ref-for-dom-ambientlightsensor-illuminance\u2460"}], "title": "5.1.1. The illuminance attribute"}], "external": false};
 window.dfnpanelData['construct-an-ambient-light-sensor-object'] = {"dfnID": "construct-an-ambient-light-sensor-object", "url": "#construct-an-ambient-light-sensor-object", "dfnText": "6.1. Construct an ambient light sensor object", "refSections": [{"refs": [{"id": "ref-for-construct-an-ambient-light-sensor-object"}], "title": "5.1. The AmbientLightSensor Interface"}, {"refs": [{"id": "ref-for-construct-an-ambient-light-sensor-object"}], "title": "6.1. Construct an ambient light sensor object"}], "external": false};
 window.dfnpanelData['ambient-light-threshold-check-algorithm'] = {"dfnID": "ambient-light-threshold-check-algorithm", "url": "#ambient-light-threshold-check-algorithm", "dfnText": "6.2. Ambient light threshold check algorithm", "refSections": [{"refs": [{"id": "ref-for-ambient-light-threshold-check-algorithm"}], "title": "3.1. Reducing sensor readings accuracy"}, {"refs": [{"id": "ref-for-ambient-light-threshold-check-algorithm\u2460"}], "title": "4. Model"}, {"refs": [{"id": "ref-for-ambient-light-threshold-check-algorithm"}], "title": "6.2. Ambient light threshold check algorithm"}], "external": false};
 window.dfnpanelData['ambient-light-reading-quantization-algorithm'] = {"dfnID": "ambient-light-reading-quantization-algorithm", "url": "#ambient-light-reading-quantization-algorithm", "dfnText": "6.3. Ambient light reading quantization algorithm", "refSections": [{"refs": [{"id": "ref-for-ambient-light-reading-quantization-algorithm"}], "title": "3.1. Reducing sensor readings accuracy"}, {"refs": [{"id": "ref-for-ambient-light-reading-quantization-algorithm\u2460"}, {"id": "ref-for-ambient-light-reading-quantization-algorithm\u2461"}, {"id": "ref-for-ambient-light-reading-quantization-algorithm\u2462"}], "title": "6.2. Ambient light threshold check algorithm"}, {"refs": [{"id": "ref-for-ambient-light-reading-quantization-algorithm"}], "title": "6.3. Ambient light reading quantization algorithm"}], "external": false};
+window.dfnpanelData['illuminance-reading-parsing-algorithm'] = {"dfnID": "illuminance-reading-parsing-algorithm", "url": "#illuminance-reading-parsing-algorithm", "dfnText": "illuminance reading parsing algorithm", "refSections": [{"refs": [{"id": "ref-for-illuminance-reading-parsing-algorithm"}], "title": "7. Automation"}], "external": false};
 </script>
 <script>/* Boilerplate: script-dom-helper */
 function query(sel) { return document.querySelector(sel); }
