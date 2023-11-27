@@ -294,6 +294,8 @@ the [=generic sensor permission revocation algorithm=] with
 
 The <a>Ambient Light Sensor</a> is a [=policy-controlled feature=] identified by the string "ambient-light-sensor". Its [=default allowlist=] is `'self'`.
 
+The <a>Ambient Light Sensor</a> has a [=virtual sensor type=], which is "<code><dfn data-lt="ambient-light virtual sensor type">ambient-light</dfn></code>".
+
 The <dfn>current light level</dfn> or <dfn>illuminance</dfn>
 is a value that represents the ambient light level
 around the hosting device. Its unit is the lux (lx) [[SI]].
@@ -422,9 +424,9 @@ The <dfn>illuminance reading parsing algorithm</dfn>, given a JSON {{Object}} |p
 
 The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 : [=map/key=]
-:: "`ambient-light`"
+:: "<code>[=ambient-light virtual sensor type|ambient-light=]</code>"
 : [=map/value=]
-:: A [=virtual sensor metadata=] whose [=virtual sensor metadata/virtual sensor type=] is [=Ambient Light Sensor=] and [=reading parsing algorithm=] is [=illuminance reading parsing algorithm=].
+:: A [=virtual sensor metadata=] whose [=virtual sensor metadata/reading parsing algorithm=] is [=illuminance reading parsing algorithm=].
 
 Use Cases and Requirements {#usecases-requirements}
 =========
