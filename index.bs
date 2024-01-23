@@ -88,6 +88,18 @@ urlPrefix: https://tc39.es/ecma262/; spec: ECMA-262
     "id": "VIDEORECOGNITIONAMBIENTLIGHT",
     "publisher": "IEEE",
     "date": "21 April 2016"
+  },
+  "IMAGINGPRIVACY": {
+    "title": "Imaging privacy threats from an ambient light sensor",
+    "authors": [
+      "Yang Liu",
+      "Gregory W. Wornell",
+      "William T. Freeman",
+      "Frédo Durand"
+    ],
+    "href": "https://www.science.org/doi/10.1126/sciadv.adj3608",
+    "publisher": "Science Advances",
+    "date": "10 January 2024"
   }
 }
 </pre>
@@ -227,8 +239,8 @@ the device environment. Potential privacy risks include:
     links styled as a block of black screen; white for unvisited.
 
 Works such as [[ALSPRIVACYANALYSIS]], [[PINSKIMMINGVIASENSOR]],
-[[STEALINGSENSITIVEDATA]], and [[VIDEORECOGNITIONAMBIENTLIGHT]] delve further
-into these issues.
+[[STEALINGSENSITIVEDATA]], [[VIDEORECOGNITIONAMBIENTLIGHT]], and
+[[IMAGINGPRIVACY]] delve further into these issues.
 
 To mitigate these threats specific to Ambient Light Sensor, user agents must
 <a>reduce accuracy</a> of sensor readings. User agents may also <a>limit
