@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/ambient-light/" rel="canonical">
-  <meta content="19f1aca361d41f0b6516cae32f89c53a148d3f0a" name="document-revision">
+  <meta content="96e67a1f5977f0056f4a48ef240c0314cc2bf8b8" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -669,7 +669,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Ambient Light Sensor</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-01-05">5 January 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-01-24">24 January 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -901,8 +901,7 @@ particular pixels to allow distinguishing the contents, pixel by pixel.</p>
 the light levels associated with visited and unvisited links i.e. visited
 links styled as a block of black screen; white for unvisited.</p>
    </ul>
-   <p>Works such as <a data-link-type="biblio" href="#biblio-alsprivacyanalysis" title="Privacy analysis of Ambient Light Sensors">[ALSPRIVACYANALYSIS]</a>, <a data-link-type="biblio" href="#biblio-pinskimmingviasensor" title="PIN Skimming: Exploiting the Ambient-Light Sensor in Mobile Devices">[PINSKIMMINGVIASENSOR]</a>, <a data-link-type="biblio" href="#biblio-stealingsensitivedata" title="Stealing sensitive browser data with the W3C Ambient Light Sensor API">[STEALINGSENSITIVEDATA]</a>, and <a data-link-type="biblio" href="#biblio-videorecognitionambientlight" title="Video recognition using ambient light sensors">[VIDEORECOGNITIONAMBIENTLIGHT]</a> delve further
-into these issues.</p>
+   <p>Works such as <a data-link-type="biblio" href="#biblio-alsprivacyanalysis" title="Privacy analysis of Ambient Light Sensors">[ALSPRIVACYANALYSIS]</a>, <a data-link-type="biblio" href="#biblio-pinskimmingviasensor" title="PIN Skimming: Exploiting the Ambient-Light Sensor in Mobile Devices">[PINSKIMMINGVIASENSOR]</a>, <a data-link-type="biblio" href="#biblio-stealingsensitivedata" title="Stealing sensitive browser data with the W3C Ambient Light Sensor API">[STEALINGSENSITIVEDATA]</a>, <a data-link-type="biblio" href="#biblio-videorecognitionambientlight" title="Video recognition using ambient light sensors">[VIDEORECOGNITIONAMBIENTLIGHT]</a>, and <a data-link-type="biblio" href="#biblio-imagingprivacy" title="Imaging privacy threats from an ambient light sensor">[IMAGINGPRIVACY]</a> delve further into these issues.</p>
    <p>To mitigate these threats specific to Ambient Light Sensor, user agents must <a data-link-type="dfn" href="https://w3c.github.io/sensors/#reduce-accuracy" id="ref-for-reduce-accuracy">reduce accuracy</a> of sensor readings. User agents may also <a data-link-type="dfn" href="https://w3c.github.io/sensors/#limit-max-frequency" id="ref-for-limit-max-frequency">limit
 maximum sampling frequency</a>.</p>
    <p>These mitigation strategies complement the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#mitigation-strategies" id="ref-for-mitigation-strategies">generic mitigations</a> defined in the Generic Sensor API <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a>.</p>
@@ -1269,6 +1268,8 @@ Marcos Caceres for the test suite.</p>
    <dd>Lukasz Olejnik. <a href="https://blog.lukaszolejnik.com/privacy-of-ambient-light-sensors/"><cite>Privacy analysis of Ambient Light Sensors</cite></a>. 31 August 2016. URL: <a href="https://blog.lukaszolejnik.com/privacy-of-ambient-light-sensors/">https://blog.lukaszolejnik.com/privacy-of-ambient-light-sensors/</a>
    <dt id="biblio-cssom-view-1">[CSSOM-VIEW-1]
    <dd>Simon Pieters. <a href="https://drafts.csswg.org/cssom-view/"><cite>CSSOM View Module</cite></a>. URL: <a href="https://drafts.csswg.org/cssom-view/">https://drafts.csswg.org/cssom-view/</a>
+   <dt id="biblio-imagingprivacy">[IMAGINGPRIVACY]
+   <dd>Yang Liu; et al. <a href="https://www.science.org/doi/10.1126/sciadv.adj3608"><cite>Imaging privacy threats from an ambient light sensor</cite></a>. 10 January 2024. URL: <a href="https://www.science.org/doi/10.1126/sciadv.adj3608">https://www.science.org/doi/10.1126/sciadv.adj3608</a>
    <dt id="biblio-mediaqueries-5">[MEDIAQUERIES-5]
    <dd>Dean Jackson; et al. <a href="https://drafts.csswg.org/mediaqueries-5/"><cite>Media Queries Level 5</cite></a>. URL: <a href="https://drafts.csswg.org/mediaqueries-5/">https://drafts.csswg.org/mediaqueries-5/</a>
    <dt id="biblio-pinskimmingviasensor">[PINSKIMMINGVIASENSOR]
