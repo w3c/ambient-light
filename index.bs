@@ -367,7 +367,7 @@ Abstract Operations {#abstract-operations}
     :: An {{AmbientLightSensor}} object.
 
     1.  Let |allowed| be the result of invoking [=check sensor policy-controlled features=]
-        with {{AmbientLightSensor}}.
+        with [=Ambient Light Sensor=].
     1.  If |allowed| is false, then:
         1.  [=Throw=] a {{SecurityError}} {{DOMException}}.
     1.  Let |ambient_light_sensor| be the new {{AmbientLightSensor}} object.
