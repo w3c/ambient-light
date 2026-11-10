@@ -395,10 +395,10 @@ check algorithm=]:
   1. If [$abs$](|latestIlluminance| - |newIlluminance|) < [=illuminance
      threshold value=], return false.
   1. Let |roundedNewReading| be the result of invoking the [=ambient light
-     reading quantization algorithm=] algorithm with |newIlluminance|.
+     reading quantization algorithm=] with |newReading|.
   1. Let |roundedLatestReading| be the result of invoking the [=ambient
-     light reading quantization algorithm=] algorithm with |latestIlluminance|.
-  1. If |roundedNewReading|["illuminance"] and |roundedLatestIlluminance|["illuminance"]
+     light reading quantization algorithm=] with |latestReading|.
+  1. If |roundedNewReading|["illuminance"] and |roundedLatestReading|["illuminance"]
      are equal, return false.
   1. Otherwise, return true.
 </div>
@@ -421,7 +421,7 @@ quantization algorithm=]:
   : output
   :: A [=sensor reading=]
 
-  1. Let |quantizedReading| be |reading|.
+  1. Let |quantizedReading| be a [=map/clone=] of |reading|.
   1. Set |quantizedReading|["illuminance"] to the multiple of the [=illuminance
      rounding multiple=] that |reading|["illuminance"] is closest to.
   1. Return |quantizedReading|.
